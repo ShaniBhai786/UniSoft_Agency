@@ -1,61 +1,46 @@
 "use client"
-import React from "react"
-import "../styles/main.css"
-
+import React, { useState } from "react"
+import "../styles.css"
+import { motion } from "framer-motion"
+import { TypeAnimation } from 'react-type-animation'
+import Link from "next/link"
 
 const Main = () => {
+
+  const fadeUp = {
+    hidden: { opacity: 0, y: 40 },
+    show: { opacity: 1, y: 0 }
+  }
+
   return (
     <div className="container">
-
       <section className="hero">
-        <video src="/video.mp4" autoPlay loop muted className="logoVideo" />
+        <video autoPlay loop muted playsInline className="bgVideo">
+          <source src="/assets/video.mp4" alt="video" width={100} height={100} controls playsInline type="video/mp4" />
+        </video>
 
-        <h1>Build. Scale. Dominate</h1>
-        <p>We help businesses grow with powerful web development and digital solutions.</p>
+        <div className="overlay" />
+        <motion.h1 initial="hidden" animate="show" variants={fadeUp} transition={{ duration: 0.8 }}>
+        <TypeAnimation
+  sequence={[
+    "Smart Software and Digital Solutions for Your Business Growth",
+    1500,
+    "",
+  ]}
+  className="typingText"
+  speed={50}
+  repeat={Infinity}
+/>
+        </motion.h1>
+        <motion.p initial="hidden" animate="show" variants={fadeUp} transition={{ delay: 0.2 }}>
+          We craft powerful digital solutions that grow your business.
+        </motion.p>
 
-        <div className="buttons">
+        <motion.div className="buttons" initial="hidden" animate="show" variants={fadeUp} transition={{ delay: 0.4 }}>
           <button className="primary">Get Started</button>
-          <button className="secondary">View Services</button>
-        </div>
+          <Link href="/services"><button className="secondary">View Services</button></Link>
+        </motion.div>
       </section>
-
-      <section className="services">
-        <h2>Our Services</h2>
-
-        <div className="cards">
-          <div className="card">
-            <h3>Web Development</h3>
-            <p>MERN & WordPress solutions built to convert visitors into clients.</p>
-          </div>
-
-          <div className="card">
-            <h3>SEO Optimization</h3>
-            <p>Rank higher and get consistent organic traffic.</p>
-          </div>
-
-          <div className="card">
-            <h3>Digital Marketing</h3>
-            <p>Campaigns that generate real business growth.</p>
-          </div>
-        </div>
-      </section>
-
-      <section className="about">
-        <h2>Why UniSoft?</h2>
-        <p>
-          We combine creativity with technology to deliver scalable and high-performance solutions for modern businesses.
-        </p>
-      </section>
-
-      <section className="cta">
-        <h2>Ready to Grow?</h2>
-        <button>Contact Us</button>
-      </section>
-
-      <footer>
-        © {new Date().getFullYear()} UniSoft
-      </footer>
-
     </div>
   )
 }
