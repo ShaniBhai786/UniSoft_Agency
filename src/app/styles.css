@@ -1067,7 +1067,7 @@
   box-shadow: 0 0px 40px rgba(34, 32, 0, 0.6);
 }
 .contactus {
-  width: 420px;
+  width: 420px; 
   padding: 40px;
   border-radius: 15px;
   background: rgba(255, 255, 255, 0.1);
