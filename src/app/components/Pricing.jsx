@@ -1,6 +1,13 @@
-import React from 'react'
+"use client"
+import React, { useState } from 'react'
+import { motion } from "framer-motion";
 
 const Pricing = () => {
+  const [yearly, setYearly] = useState("")
+  const fadeUp = {
+    hidden: { opacity: 0, y: 40 },
+    show: { opacity: 1, y: 0 },
+  };
   return (
     <>
         <section id="pricing" className="pricing">
