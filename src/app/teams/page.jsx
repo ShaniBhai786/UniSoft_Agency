@@ -35,40 +35,40 @@ function Teams() {
   const [activeMember, setActiveMember] = useState(null);
   const [showTeam, setShowTeam] = useState(false);
 
- const teamsData = [
-  {
-    title: "Software Development Team",
-    desc: "Our development team builds scalable, secure, and high-performance web and software applications using modern technologies such as React, Next.js, Node.js, and cloud-based architectures to deliver robust digital solutions.",
-  },
-  {
-    title: "SEO & Digital Marketing Team",
-    desc: "Our SEO and digital marketing specialists help businesses improve search engine rankings, increase organic traffic, and generate qualified leads through data-driven strategies and performance-focused campaigns.",
-  },
-  {
-    title: "UI/UX Design Team",
-    desc: "Our UI/UX design team creates intuitive, visually appealing, and user-centered interfaces that enhance usability, strengthen brand identity, and deliver exceptional digital experiences.",
-  },
-  {
-    title: "Project Management Team",
-    desc: "Our project management team ensures efficient planning, coordination, and execution of projects, maintaining clear communication, timely delivery, and alignment with client requirements.",
-  },
-  {
-    title: "Quality Assurance (QA) Team",
-    desc: "Our QA team performs rigorous testing and quality checks to ensure that all products are reliable, secure, and free from defects, guaranteeing a smooth user experience.",
-  },
-  {
-    title: "Support & Maintenance Team",
-    desc: "Our support and maintenance team provides continuous technical assistance, system updates, and long-term maintenance to ensure uninterrupted business operations and system stability.",
-  },
-];
-const fadeUp = {
-  hidden: { opacity: 0, y: 40 },
-  show: { opacity: 1, y: 0 },
-};
+  const teamsData = [
+    {
+      title: "Software Development Team",
+      desc: "Our development team builds scalable, secure, and high-performance web and software applications using modern technologies such as React, Next.js, Node.js, and cloud-based architectures to deliver robust digital solutions.",
+    },
+    {
+      title: "SEO & Digital Marketing Team",
+      desc: "Our SEO and digital marketing specialists help businesses improve search engine rankings, increase organic traffic, and generate qualified leads through data-driven strategies and performance-focused campaigns.",
+    },
+    {
+      title: "UI/UX Design Team",
+      desc: "Our UI/UX design team creates intuitive, visually appealing, and user-centered interfaces that enhance usability, strengthen brand identity, and deliver exceptional digital experiences.",
+    },
+    {
+      title: "Project Management Team",
+      desc: "Our project management team ensures efficient planning, coordination, and execution of projects, maintaining clear communication, timely delivery, and alignment with client requirements.",
+    },
+    {
+      title: "Quality Assurance (QA) Team",
+      desc: "Our QA team performs rigorous testing and quality checks to ensure that all products are reliable, secure, and free from defects, guaranteeing a smooth user experience.",
+    },
+    {
+      title: "Support & Maintenance Team",
+      desc: "Our support and maintenance team provides continuous technical assistance, system updates, and long-term maintenance to ensure uninterrupted business operations and system stability.",
+    },
+  ];
+  const fadeUp = {
+    hidden: { opacity: 0, y: 40 },
+    show: { opacity: 1, y: 0 },
+  };
 
   return (
     <div className="teams" id="teams">
-      
+
       {/* SEO */}
       <Helmet>
         <title>UniSoft Software Company</title>
@@ -83,7 +83,7 @@ const fadeUp = {
         <link rel="canonical" href="https://unisoftpvt.com/" />
 
         <script type="application/ld+json">
-{`
+          {`
 {
   "@context": "https://schema.org",
   "@type": "Organization",
@@ -110,11 +110,11 @@ const fadeUp = {
   ]
 }
 `}
-</script>
-<meta property="og:title" content="Dr. Roshaan - CEO UniSoft" />
-<meta property="og:description" content="Chief Executive Officer of UniSoft Pvt Ltd" />
-<meta property="og:image" content="https://unisoftpvt.com/images/ceo.jpeg" />
-<meta property="og:type" content="website" />
+        </script>
+        <meta property="og:title" content="Dr. Roshaan - CEO UniSoft" />
+        <meta property="og:description" content="Chief Executive Officer of UniSoft Pvt Ltd" />
+        <meta property="og:image" content="https://unisoftpvt.com/images/ceo.jpeg" />
+        <meta property="og:type" content="website" />
       </Helmet>
 
       {/* HEADING */}
@@ -124,21 +124,21 @@ const fadeUp = {
           UniSoft has a team of skilled professionals specializing in software
           development, SEO services, and digital marketing globally.
         </p>
-      </div> 
+      </div>
 
       {/* TEAM MEMBERS */}
       <div className="members">
         {teamMembers.map((member) => (
           <React.Fragment key={member.id}>
             <motion.div
-          className="m1"
-          key={member.id}
-          initial="hidden"
-          whileInView="show"
-          variants={fadeUp}
-          transition={{ delay: member.id * 0.1 }}
-          viewport={{ once: true }}
-        >
+              className="m1"
+              key={member.id}
+              initial="hidden"
+              whileInView="show"
+              variants={fadeUp}
+              transition={{ delay: member.id * 0.1 }}
+              viewport={{ once: true }}
+            >
               <div className={member.img}></div>
 
               <button
@@ -186,7 +186,7 @@ const fadeUp = {
       {showTeam && (
         <div className="team-info-overlay">
           <div className="team-info">
-            
+
             <button
               onClick={() => setShowTeam(false)}
               className="close"
