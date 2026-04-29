@@ -1104,7 +1104,7 @@
 .contact-card {
   background: #1e293b64;
   border-color: #0ea5e9;
-  box-shadow: 0 0 8px rgba(25, 212, 187, 0.7);
+  box-shadow: 0 0 5px #0ea5e9;
   padding: 25px;
   border-radius: 10px;
   transition: all 0.3s ease-in-out;
