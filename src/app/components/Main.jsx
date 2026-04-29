@@ -15,22 +15,30 @@ const Main = () => {
   return (
     <div className="container">
       <section className="hero">
-        <video autoPlay loop muted playsInline className="bgVideo">
-          <source src="/assets/video.mp4" alt="video" width={100} height={100} controls playsInline type="video/mp4" />
+        <video
+          className="bgVideo"
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="none"
+          poster="/assets/thumbnail.png"
+        >
+          <source src="/assets/newVideo.mp4" type="video/mp4" />
         </video>
 
         <div className="overlay" />
         <motion.h1 initial="hidden" animate="show" variants={fadeUp} transition={{ duration: 0.8 }}>
-        <TypeAnimation
-  sequence={[
-    "Smart Software and Digital Solutions for Your Business Growth",
-    1500,
-    "",
-  ]}
-  className="typingText"
-  speed={50}
-  repeat={Infinity}
-/>
+          <TypeAnimation
+            sequence={[
+              "Smart Software and Digital Solutions for Your Business Growth",
+              1500,
+              "",
+            ]}
+            className="typingText"
+            speed={50}
+            repeat={Infinity}
+          />
         </motion.h1>
         <motion.p initial="hidden" animate="show" variants={fadeUp} transition={{ delay: 0.2 }}>
           We craft powerful digital solutions that grow your business.
