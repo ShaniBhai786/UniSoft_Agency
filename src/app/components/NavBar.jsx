@@ -1,10 +1,11 @@
 "use client"
-import React from 'react'
+import React, { useState } from 'react'
 import Link from "next/link"
 import Image from "next/image"
 import "../styles.css"
 
 const NavBar = () => {
+  const [nav, setNav] = useState(false)
       return (
     <>
         <nav className="navbar">
@@ -13,14 +14,23 @@ const NavBar = () => {
           <div className="title"><Link href="/"><h1>UniSoft</h1></Link></div>
         </div>
         <div className="navLinks">
-          <Link href="/">Home</Link>
-          <Link href="/services">Services</Link>
-          <Link href="/about">About</Link>
-          <Link href="/teams">Teams</Link>
-          <Link href="/pricing">Pricing</Link>
-          <Link href="/contact">Contact</Link>
+          <Link className='links' href="/">Home</Link>
+          <Link className='links' href="/services">Services</Link>
+          <Link className='links' href="/about">About</Link>
+          <Link className='links' href="/teams">Teams</Link>
+          <Link className='links' href="/pricing">Pricing</Link>
+          <Link className='links' href="/contact">Contact</Link>
         </div>
+        {nav && <div className="navLinksNav" onClick={() => setNav(!nav)}>
+          <Link className='links' href="/">Home</Link>
+          <Link className='links' href="/services">Services</Link>
+          <Link className='links' href="/about">About</Link>
+          <Link className='links' href="/teams">Teams</Link>
+          <Link className='links' href="/pricing">Pricing</Link>
+          <Link className='links' href="/contact">Contact</Link>
+        </div>}
         <Link href="quote"><button className="navBtn">Get Free Consultation</button></Link>
+        <i className='fa fa-bars' id='bars' onClick={() => setNav(!nav)}></i>
       </nav>
     </>
   )
