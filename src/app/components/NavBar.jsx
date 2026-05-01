@@ -22,12 +22,13 @@ const NavBar = () => {
           <Link className='links' href="/contact">Contact</Link>
         </div>
         {nav && <div className="navLinksNav" onClick={() => setNav(!nav)}>
-          <Link className='links' href="/">Home</Link>
-          <Link className='links' href="/services">Services</Link>
-          <Link className='links' href="/about">About</Link>
-          <Link className='links' href="/teams">Teams</Link>
-          <Link className='links' href="/pricing">Pricing</Link>
-          <Link className='links' href="/contact">Contact</Link>
+          <i className='fa fa-close close' onClick={() => setNav(!nav)}></i>
+          <Link className='links' href="/"><i className='fa fa-home'></i><span>Home</span></Link>
+          <Link className='links' href="/services"><i className='fa fa-mobile'></i><span>Services</span></Link>
+          <Link className='links' href="/about"> <i className='fa fa-info-circle'></i><span>About</span></Link>
+          <Link className='links' href="/teams"><i className='fa fa-users'></i><span>Teams</span></Link>
+          <Link className='links' href="/pricing"><i className='fa fa-dollar'></i><span>Pricing</span></Link>
+          <Link className='links' href="/contact"><i className='fa fa-phone'></i><span>Contact</span></Link>
         </div>}
         <Link href="quote"><button className="navBtn">Get Free Consultation</button></Link>
         <i className='fa fa-bars' id='bars' onClick={() => setNav(!nav)}></i>

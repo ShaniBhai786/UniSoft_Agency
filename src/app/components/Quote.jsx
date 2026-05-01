@@ -2,20 +2,12 @@ import React, {useEffect, useRef, useState} from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import emailjs from '@emailjs/browser';
-import { useNavigate } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowLeft } from "@fortawesome/free-solid-svg-icons";
 import Loading from "./Loading";
+import { motion } from "framer-motion";
 
 function Quote() {
   const [loading, setLoading] = useState(false)
-  const navigate = useNavigate();
-
-  const handleBackClick = () => {
-    navigate(-1);
-  };
   
-
   const initialValues = {
     name: "",
     email: "",
@@ -53,17 +45,28 @@ function Quote() {
   useEffect(() => {
     window.scrollTo(0, 0)
   },[!onSubmit])
+  const fadeUp = {
+    hidden: { opacity: 0, y: 40 },
+    show: { opacity: 1, y: 0 },
+  };
   return (
     <section className="quote" id="quote">
       {loading && <Loading />}
-      <FontAwesomeIcon icon={faArrowLeft} className='back-icon' onClick={handleBackClick} />
-      <div className="quote-header">
+      <motion.div
+              key={1}
+              className="quote-header"
+              initial="hidden"
+              whileInView="show"
+              variants={fadeUp}
+              transition={{ delay: 1 * 0.2 }}
+              viewport={{ once: true }}
+            >
         <h2>Get a Quote</h2>
         <p>
           Tell us about your project and the UniSoft team will provide a
           customized solution for your business.
         </p>
-      </div>
+      </motion.div>
 
       <Formik
         initialValues={initialValues}
