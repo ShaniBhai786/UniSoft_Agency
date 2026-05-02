@@ -197,7 +197,7 @@ function Teams() {
             <ul>
               {teamsData.map((team, index) => (
                 <li key={index}>
-                  <h3>{team.title}</h3>
+                  <h3 className="team-title">{team.title}</h3>
                   <p className="team-desc">{team.desc}</p>
                 </li>
               ))}

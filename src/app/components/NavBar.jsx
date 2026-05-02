@@ -31,7 +31,7 @@ const NavBar = () => {
           <Link className='links' href="/contact"><i className='fa fa-phone'></i><span>Contact</span></Link>
         </div>}
         <Link href="quote"><button className="navBtn">Get Free Consultation</button></Link>
-        <i className='fa fa-bars' id='bars' onClick={() => setNav(!nav)}></i>
+        <div className="closeBtn" onClick={() => setNav(!nav)}><i className='fa fa-bars' id='bars'></i></div>
       </nav>
     </>
   )

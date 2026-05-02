@@ -82,6 +82,9 @@
     text-decoration: none;
     transition: 0.3s;
   }
+  .closeBtn{
+    display: none;
+  }
   
   .navLinks a:hover {
     color: white;
@@ -128,6 +131,13 @@
   .hero p{
     color: rgba(255, 255, 255, 0.831);
   }
+  .textSection{
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    text-align: center;
+    height: 4rem;
+  }
 
   .services, .pricing {
     background: #0b0b0f;
@@ -167,7 +177,7 @@
     position: absolute;
     width: 100%;
     height: 100%;
-    background: radial-gradient(circle at center, rgba(0, 0, 0, 0.279), rgba(0, 0, 0, 0.808));
+    background: radial-gradient(circle at center, rgba(0, 0, 0, 0.779), rgba(0, 0, 0, 0.751));
     z-index: 1;
   }
 
@@ -207,8 +217,14 @@
     border: 1px solid rgba(255,255,255,0.2);
     transition: all 1s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   }
+  .primary .link ,.secondary .link{
+    position: relative;
+    display: block;
+    color: white;
+    width: 100%;
+  }
   .secondary:hover{
-    background-color: #1a1a1f;
+    background-color: #0e33ac;
     color: white;
     transform: translateY(-2px);
   }
@@ -695,7 +711,13 @@
   background: #0f172a;
   color: #fff;
 }
+.team-info li {
+  margin-bottom: 15px;
+}
 
+.team-info h3 {
+  color: #38bdf8;
+}
 .details h1 {
   font-size: 2.5rem;
   margin-bottom: 10px;
@@ -1317,7 +1339,9 @@
 .about-cta button:hover {
   background: #0ea5e9;
 }
-
+.buttons p{
+  display: none;
+}
 @media (max-width: 768px) {
   .navbar{
     display: 100%;
@@ -1377,17 +1401,24 @@
     right: 5%;
   }
   .container{
-    height: 100dvh;
+    height: 60vh;
   }
   .hero{
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     font-size: 10px;
+  }
+  .textSection{
+    width: 100%;
+    padding: 10px;
   }
   .hero h1{
     width: 100%;
     text-align: center;
+  }
+  .hero p{
+    display: none;
   }
   .typingText{
     display: block;
@@ -1398,21 +1429,23 @@
     width: 90%;
     text-align: center;
     z-index: 9;
-    font-size: 17px;
+    font-size: 15px;
+    height: 3rem;
+    width: 100%;
+    margin-top: 1rem;
   }
   .bgVideo{
     display: flex;
     position: sticky;
     width: 100%;
     height: fit-content;
-    object-fit: contain;
+    object-fit: cover;
     top: 0%;
     margin: 0;
   }
   .overlay{
-    display: block;
+    display: none;
     position: absolute;
-    height: 80dvh;
     top: 0%;
     margin: 0;
   }
@@ -1423,6 +1456,27 @@
   .contact{
     height: 100dvh;
   }
+  .closeBtn{
+    display: flex;
+    position: absolute;
+    top: 1.6rem;
+    right: 5%;
+  }
+  .buttons{
+    display: flex;
+    flex-direction: column;
+  }
+  .buttons p{
+    display: block;
+  }
+  .user-info{
+    width: 100%;
+    height: 60vh;
+  }
+  .user-desc{
+    text-align: left;
+  }
+  
 }
 .fa-bars{
   display: none;

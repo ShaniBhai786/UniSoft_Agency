@@ -15,7 +15,8 @@ const Main = () => {
   return (
     <div className="container">
       <section className="hero">
-      <motion.h1 initial="hidden" animate="show" variants={fadeUp} transition={{ duration: 0.8 }}>
+      <div className="textSection">
+        <motion.h1 initial="hidden" animate="show" variants={fadeUp} transition={{ duration: 0.8 }}>
           <TypeAnimation
             sequence={[
               "Smart Software and Digital Solutions for Your Business Growth",
@@ -23,13 +24,14 @@ const Main = () => {
               "",
             ]}
             className="typingText"
-            speed={150}
+            speed={50}
             repeat={Infinity}
           />
         </motion.h1>
         <motion.p initial="hidden" animate="show" variants={fadeUp} transition={{ delay: 0.2 }}>
           We craft powerful digital solutions that grow your business.
         </motion.p>
+      </div>
         <video
           className="bgVideo"
           autoPlay
@@ -44,8 +46,11 @@ const Main = () => {
 
         <div className="overlay" />
         <motion.div className="buttons" initial="hidden" animate="show" variants={fadeUp} transition={{ delay: 0.4 }}>
-          <button className="primary">Get Started</button>
-          <Link href="/services"><button className="secondary">View Services</button></Link>
+          <p>
+          We craft powerful digital solutions that grow your business.
+        </p>
+          <button className="primary"><Link href="quote" className="link">Get Started</Link></button>
+          <button className="secondary"><Link href="/services" className="link">View Services</Link></button>
         </motion.div>
       </section>
     </div>
