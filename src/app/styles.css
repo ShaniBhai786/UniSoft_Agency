@@ -1483,6 +1483,15 @@
   .team-info h3::after {
     width: 80%;
   }
+  .contactus{
+    width: 100%;
+  }
+  .feedback-form{
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 50px;
+  }
 }
 .fa-bars{
   display: none;
