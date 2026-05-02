@@ -1483,6 +1483,9 @@
   .team-info h3::after {
     width: 80%;
   }
+  .inputs-div{
+    width: 100%;
+  }
   .contactus{
     width: 100%;
   }
