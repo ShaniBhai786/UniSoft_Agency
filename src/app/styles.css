@@ -1476,7 +1476,13 @@
   .user-desc{
     text-align: left;
   }
-  
+  .team-info li {
+    grid-template-columns: 1fr;
+  }
+
+  .team-info h3::after {
+    width: 80%;
+  }
 }
 .fa-bars{
   display: none;
