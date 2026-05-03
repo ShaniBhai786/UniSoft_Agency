@@ -3,11 +3,15 @@ import React, { useEffect, useRef, useState } from 'react'
 import { motion } from "framer-motion";
 import { Formik, Form, Field, ErrorMessage } from "formik"
 import * as Yup from "yup"
+import emailjs from '@emailjs/browser';
+import Loading from './Loading';
 
 const Pricing = () => {
   const [selectedPackage, setSelectedPackage] = useState(null)
   const [isPackageSelect, setIsPackageSelect] = useState(false)
   const formRef = useRef(null)
+  const [loading, setLoading] = useState(false)
+
   const pricingPlans = [
     {
       title: "Starter",
@@ -73,9 +77,23 @@ const Pricing = () => {
     email: Yup.string().email("Invalid email").required("Enter your email"),
   })
 
-  const onSubmit = (values, { resetForm }) => {
-    console.log(values)
-    alert(`Request Submitted Successfully \n ${selectedPackage?.title}`)
+  const onSubmit = async (values, { resetForm }) => {
+    try {
+      setLoading(true)
+
+      await emailjs.sendForm(
+        'service_3xs9iqc',
+        'template_0ds7q6l',
+        formRef.current,
+        '5NYUNk6egOmHicaIZ'
+      )
+      alert(`Request Submitted Successfully\n ${selectedPackage?.title}`)
+    } catch (error) {
+      alert(error)
+    }
+    finally{
+      setLoading(false)
+    }
     resetForm()
     setSelectedPackage(null)
     localStorage.removeItem("package-details")
@@ -85,22 +103,19 @@ const Pricing = () => {
     setSelectedPackage(plan)
     localStorage.setItem("package-details", JSON.stringify(plan))
     setIsPackageSelect(true)
-
-    setTimeout(() => {
-      formRef.current?.scrollIntoView({ behavior: "smooth" })
-    }, 200)
   }
 
   return (
     <>
-      {isPackageSelect && <section className='get-started-form' ref={formRef}>
+    {loading && <Loading />}
+      {isPackageSelect && <section className='get-started-form'>
         <Formik
           enableReinitialize
           initialValues={initialValues}
           validationSchema={validationSchema}
           onSubmit={onSubmit}
         >
-          <Form>
+          <Form ref={formRef}>
             <div className="inputs-div">
 
               <div className="input">
@@ -121,7 +136,6 @@ const Pricing = () => {
               </div>
 
             </div>
-
             <div className="buttonsDiv">
               <button type='submit' className="btn1">Submit</button>
               <button type='reset' className="btn2" onClick={() => setIsPackageSelect(false)}>Cancel</button>
