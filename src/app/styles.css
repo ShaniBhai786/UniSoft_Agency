@@ -157,9 +157,8 @@
   display: block;
   position: relative;
   top: 1rem;
-  max-width: 977px;
+  max-width: 977px; 
 }
-
 .textSection {
   display: flex;
   position: relative;
@@ -169,7 +168,7 @@
   border-radius: 12px;
   justify-content: center;
   align-items: center;
-  height: 9rem;
+  /* height: 9rem; */
   width: 90%;
   z-index: 9;
 }
@@ -233,7 +232,6 @@
   display: flex;
   position: relative;
   gap: 15px;
-  bottom: 1%;
   z-index: 9;
 }
 
@@ -1616,7 +1614,7 @@
   }
 
   .container {
-    height: 65vh;
+    height: 70vh;
   }
 
   .hero {
@@ -1626,15 +1624,13 @@
     font-size: 10px;
   }
   .content{
-    padding: 0px 10px;
-    height: 70vh;
+    padding: 0px;
+    height: 80%;
   }
   .textSection{
+    background-color: #0ea5e9;
     background-color: transparent;
     backdrop-filter: none;
-  }
-
-  .textSection {
     width: 100%;
     padding: 10px;
   }
@@ -1653,14 +1649,12 @@
     position: relative;
     text-align: center;
     align-self: center;
-    height: 2rem;
     width: 90%;
-    text-align: center;
     z-index: 9;
     font-size: 15px;
     height: 3rem;
     width: 100%;
-    margin-top: 1rem;
+    top: 3rem;
   }
 
   .bgVideo {
@@ -1703,6 +1697,7 @@
     display: flex;
     flex-direction: column;
     gap: 10px;
+    margin-bottom: 3rem;
     width: 80%;
   }
 

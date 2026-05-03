@@ -71,7 +71,7 @@ const Main = () => {
         {/* ✅ TWITTER */}
         <meta name="twitter:card" content="summary_large_image" />
         <script type="application/ld+json">
-{`
+          {`
 {
   "@context": "https://schema.org",
   "@type": "Organization",
@@ -87,58 +87,57 @@ const Main = () => {
   }
 }
 `}
-</script>
+        </script>
       </Helmet>
       <section className="hero">
-      <div className="content">
-        <div className="textSection">
-        <motion.h1 initial="hidden" animate="show" variants={fadeUp} transition={{ duration: 0.8 }}>
-          <TypeAnimation
-            sequence={[
-              "All-in-One Business Software Solutions for Growth and Efficiency.", 1000, "",
-                "Streamline Your Business Operations with Powerful Digital Solutions.", 1000, "",
-                "Boost Productivity with Advanced Software, SEO and Web Services.", 1000, "",
-                "Complete IT Solutions – Websites, SEO, and Automation.", 1000, "",
-                "Transform Your Business with Modern Software Solutions.", 1000, ""
-            ]}
-            className="typingText"
-            speed={50}
-            repeat={Infinity}
-          />
-        </motion.h1>
-        <motion.p initial="hidden" animate="show" variants={fadeUp} transition={{ delay: 0.2 }} className="article">
-          <article>
-              UniSoft provides professional software development, website design,
-              SEO services, digital marketing, and business automation solutions
-              to help companies grow faster and smarter in the digital world.
-            </article>
-        </motion.p>
-      </div>
-      <video
-          className="bgVideo"
-          autoPlay
-          loop
-          muted
-          playsInline
-          preload="none"
-          poster="/assets/thumbnail.png"
-        >
-          <source src="/assets/newVideo.mp4" type="video/mp4" />
-        </video>
-
-        <div className="overlay" />
-      <motion.div className="buttons" initial="hidden" animate="show" variants={fadeUp} transition={{ delay: 0.4 }}>
-          <p className="article">
-          <article>
-              UniSoft provides professional software development, website design,
-              SEO services, digital marketing, and business automation solutions
-              to help companies grow faster and smarter in the digital world.
-            </article>
-        </p>
-          <button className="primary"><Link href="/pricing" className="link">Get Started</Link></button>
-          <button className="secondary"><Link href="/services" className="link">View Services</Link></button>
-        </motion.div>
-      </div>
+        <div className="content">
+          <div className="textSection">
+            <motion.h1 initial="hidden" animate="show" variants={fadeUp} transition={{ duration: 0.8 }}>
+              <TypeAnimation
+                sequence={[
+                  "All-in-One Business Software Solutions for Growth and Efficiency.", 1000, "",
+                  "Streamline Your Business Operations with Powerful Digital Solutions.", 1000, "",
+                  "Boost Productivity with Advanced Software, SEO and Web Services.", 1000, "",
+                  "Complete IT Solutions – Websites, SEO, and Automation.", 1000, "",
+                  "Transform Your Business with Modern Software Solutions.", 1000, ""
+                ]}
+                className="typingText"
+                speed={50}
+                repeat={Infinity}
+              />
+            </motion.h1>
+            <motion.p initial="hidden" animate="show" variants={fadeUp} transition={{ delay: 0.2 }} className="article">
+              <article>
+                UniSoft provides professional software development, website design,
+                SEO services, digital marketing, and business automation solutions
+                to help companies grow faster and smarter in the digital world.
+              </article>
+            </motion.p>
+          </div>
+          <video
+            className="bgVideo"
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="none"
+            poster="/assets/thumbnail.png"
+          >
+            <source src="/assets/newVideo.mp4" type="video/mp4" />
+          </video>
+          <div className="overlay" />
+          <motion.div className="buttons" initial="hidden" animate="show" variants={fadeUp} transition={{ delay: 0.4 }}>
+            <p className="article">
+              <article>
+                UniSoft provides professional software development, website design,
+                SEO services, digital marketing, and business automation solutions
+                to help companies grow faster and smarter in the digital world.
+              </article>
+            </p>
+            <button className="primary"><Link href="/pricing" className="link">Get Started</Link></button>
+            <button className="secondary"><Link href="/services" className="link">View Services</Link></button>
+          </motion.div>
+        </div>
       </section>
     </div>
   )
