@@ -841,13 +841,19 @@
   position: absolute;
   top: 10px;
   right: 15px;
-  background: red;
+  background: rgba(255, 0, 0, 0.45);
   border: none;
   color: white;
   font-size: 18px;
   padding: 5px 10px;
   border-radius: 50%;
   cursor: pointer;
+  z-index: 99;
+  transition: all 0.3s ease-in-out;
+}
+.close:hover{
+  transform: rotate(360deg);
+  background-color: rgba(255, 0, 0, 0.895);
 }
 
 .submit-btn {
@@ -909,27 +915,28 @@
 }
 .enrollment-btn {
   display: block;
-  position: fixed;
-  right: 5%;
+  position: absolute;
+  /* right: 5%; */
   align-items: center;
   justify-content: center;
   padding: 14px 28px;
-  background: linear-gradient(135deg, #0e33ac, #0ea5e9);
+  background: linear-gradient(135deg, #16a34a, #22c55e);
   color: #0b0b0f;
-  font-weight: 600;
+  font-weight: 800;
   font-size: 15px;
   border-radius: 12px;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 0px 25px #0e33ac;
-  color: white;
+  box-shadow: 0 0px 25px #16a34a;
+  color: #ffff;
   user-select: none;
   overflow: hidden;
+  margin-bottom: 20px;
 }
 
 .enrollment-btn:hover {
   transform: translateY(-3px);
-  box-shadow: 0 15px 35px #0e33ac;
+  box-shadow: 0 15px 35px #16a34a;
 }
 
 .enrollment-btn:active {
