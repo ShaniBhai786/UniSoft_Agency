@@ -173,14 +173,11 @@ function Teams() {
           </React.Fragment>
         ))}
       </div>
+      <div className="team-btn">
+        <button onClick={() => setShowTeam(true)} className="enrollment-btn-team">Show Team Info</button>
+      </div>
 
       {/* SHOW TEAM BUTTON */}
-      <button
-        onClick={() => setShowTeam(true)}
-        className="submit-btn"
-      >
-        Show Team Info
-      </button>
 
       {/* TEAM INFO MODAL */}
       {showTeam && (
