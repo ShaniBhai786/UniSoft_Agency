@@ -1596,7 +1596,7 @@
   width: 100%;
 }
 
-.input-field {
+.input-field-pkg {
   width: 100%;
   padding: 16px 14px;
   background: transparent;
@@ -1608,7 +1608,7 @@
   transition: 0.3s;
 }
 
-.input-field:focus {
+.input-field-pkg:focus {
   border-color: #22c55e;
   box-shadow: 0 0 0 2px rgba(34,197,94,0.2);
 }

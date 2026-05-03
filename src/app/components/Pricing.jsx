@@ -87,7 +87,8 @@ const Pricing = () => {
         formRef.current,
         '5NYUNk6egOmHicaIZ'
       )
-      alert(`Request Submitted Successfully\n ${selectedPackage?.title}`)
+      alert(`Request Submitted Successfully`)
+      setIsPackageSelect(false)
     } catch (error) {
       alert(error)
     }
@@ -119,19 +120,19 @@ const Pricing = () => {
             <div className="inputs-div">
 
               <div className="input">
-                <Field type="text" name="name" className="input-field" placeholder="" />
+                <Field type="text" name="name" className="input-field-pkg" placeholder="" />
                 <label className='label'>Your Name</label>
                 <ErrorMessage name='name' component="div" className='error' />
               </div>
 
               <div className="input">
-                <Field type="email" name="email" className="input-field" placeholder="" />
+                <Field type="email" name="email" className="input-field-pkg" placeholder="" />
                 <label className='label'>Your Email</label>
                 <ErrorMessage name='email' component="div" className='error' />
               </div>
 
               <div className="input">
-                <Field type="text" name="package" className="input-field" placeholder="" readOnly />
+                <Field type="text" name="package" className="input-field-pkg" placeholder="" readOnly />
                 <label className='label'>Selected Package</label>
               </div>
 
