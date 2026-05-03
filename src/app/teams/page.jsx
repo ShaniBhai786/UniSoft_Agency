@@ -30,7 +30,7 @@ const teamMembers = [
     desc: "Deborah Smith manages UniSoft’s daily operations and strategic planning. He ensures smooth execution of projects, maintains quality standards, and drives organizational efficiency and client satisfaction.",
   },
 ];
-
+const googleFormsURL = "https://docs.google.com/forms/d/e/1FAIpQLSe0BVdAiHGeHx99ZovWhXHRlP307WBZp4U6yXh6BLC5ozPW6Q/viewform?usp=publish-editor"
 function Teams() {
   const [activeMember, setActiveMember] = useState(null);
   const [showTeam, setShowTeam] = useState(false);
@@ -68,7 +68,7 @@ function Teams() {
 
   return (
     <div className="teams" id="teams">
-
+      <a href={googleFormsURL} target="_blank" className="enrollment-btn">Join UniSoft Teams</a>
       {/* SEO */}
       <Helmet>
         <title>UniSoft Software Company</title>
