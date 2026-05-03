@@ -49,8 +49,8 @@ const Main = () => {
           <p>
           We craft powerful digital solutions that grow your business.
         </p>
-          <button className="primary"><Link href="quote" className="link">Get Started</Link></button>
-          <button className="secondary"><Link href="/pricing" className="link">View Services</Link></button>
+          <button className="primary"><Link href="/pricing" className="link">Get Started</Link></button>
+          <button className="secondary"><Link href="/services" className="link">View Services</Link></button>
         </motion.div>
       </section>
     </div>
