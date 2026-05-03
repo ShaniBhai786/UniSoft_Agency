@@ -20,13 +20,13 @@ function Contact() {
     <>
       <div className='contact' id='contact'>
         <motion.div
-          className="c"
           key={1}
           initial="hidden"
           whileInView="show"
           variants={fadeUp}
           transition={{ delay: 3 * 0.1 }}
           viewport={{ once: true }}
+          className="c"
         >
           <Feedback setLoading={setLoading} />
         </motion.div>
