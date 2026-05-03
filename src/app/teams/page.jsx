@@ -68,7 +68,6 @@ function Teams() {
 
   return (
     <div className="teams" id="teams">
-      <a href={googleFormsURL} target="_blank" className="enrollment-btn">Join UniSoft Teams</a>
       {/* SEO */}
       <Helmet>
         <title>UniSoft Software Company</title>
@@ -120,6 +119,7 @@ function Teams() {
       {/* HEADING */}
       <div className="details">
         <h1>Our Expert Team</h1>
+        <a href={googleFormsURL} target="_blank" className="enrollment-btn">Join UniSoft Teams</a>
         <p>
           UniSoft has a team of skilled professionals specializing in software
           development, SEO services, and digital marketing globally.
