@@ -111,7 +111,7 @@ const Main = () => {
               UniSoft provides professional software development, website design,
               SEO services, digital marketing, and business automation solutions
               to help companies grow faster and smarter in the digital world.
-            </article>  
+            </article>
         </motion.p>
       </div>
       <motion.div className="buttons" initial="hidden" animate="show" variants={fadeUp} transition={{ delay: 0.4 }}>

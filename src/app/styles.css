@@ -211,7 +211,7 @@
 }
 
 .overlay {
-  position: fixed;
+  position: absolute;
   width: 100%;
   height: 100%;
   background: radial-gradient(circle at center, rgba(0, 0, 0, 0.817), rgba(0, 0, 0, 0.452));
@@ -219,7 +219,7 @@
 }
 
 .hero>*:not(.bgVideo):not(.overlay) {
-  position: relative;
+  position: absolute;
   z-index: 2;
 }
 
@@ -1614,7 +1614,7 @@
   }
 
   .container {
-    height: 60vh;
+    height: 90vh;
   }
 
   .hero {
@@ -1622,6 +1622,13 @@
     justify-content: flex-start;
     align-items: center;
     font-size: 10px;
+  }
+  .content{
+    padding: 120px 10px;
+  }
+  .textSection{
+    background-color: transparent;
+    backdrop-filter: none;
   }
 
   .textSection {
