@@ -50,14 +50,14 @@ function Footer() {
         <div className="footer-section">
           <h3>Contact</h3>
           <p> <i className="fa fa-location-dot"></i> Wyoming, USA</p>
-          <p><i className="fa fa-phone"></i> +92 314 8588707</p>
+          <p><i className="fa fa-phone"></i> +1 (928) 4383214</p>
           <p><i className="fa fa-envelope"></i> unisoftpvt@gmail.com</p>
 
           <div className="social-icons">
             <a href="https://www.facebook.com/share/1FkdLuFvcd/" target="_main" className="icons"><i className="fa-brands fa-facebook"></i></a>
             <a href="#" className="icons"><i className="fa-brands fa-linkedin"></i></a>
             <a href="#" className="icons"><i className="fa-brands fa-instagram"></i></a>
-            <a href="https://wa.me/923148588707" target="_main" className="icons"><i className="fa-brands fa-whatsapp"></i></a>
+            <a href="https://wa.me/19284383214" target="_main" className="icons"><i className="fa-brands fa-whatsapp"></i></a>
           </div>
         </div>
 
