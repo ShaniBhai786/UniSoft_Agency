@@ -120,7 +120,7 @@ const Pricing = () => {
             <div className="inputs-div">
 
               <div className="input">
-                <Field type="text" name="name" className="input-field-pkg" placeholder="" />
+                <Field type="text" name="name" className="input-field-pkg" placeholder=" " />
                 <label className='label'>Your Name</label>
                 <ErrorMessage name='name' component="div" className='error' />
               </div>
@@ -132,7 +132,7 @@ const Pricing = () => {
               </div>
 
               <div className="input">
-                <Field type="text" name="package" className="input-field-pkg" placeholder="" readOnly />
+                <Field type="text" name="package" className="input-field-pkg" placeholder=" " readOnly />
                 <label className='label'>Selected Package</label>
               </div>
 

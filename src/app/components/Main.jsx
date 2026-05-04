@@ -92,7 +92,7 @@ const Main = () => {
       <section className="hero">
         <div className="content">
           <div className="textSection">
-            <motion.h1 initial="hidden" animate="show" variants={fadeUp} transition={{ duration: 0.8 }}>
+            <motion.h1 className="asd" initial="hidden" animate="show" variants={fadeUp} transition={{ duration: 0.8 }}>
               <TypeAnimation
                 sequence={[
                   "All-in-One Business Software Solutions for Growth and Efficiency.", 1000, "",
