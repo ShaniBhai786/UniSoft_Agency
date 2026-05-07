@@ -17,7 +17,7 @@ const Main = () => {
     <div className="container">
       <Helmet>
         <title>
-          UniSoft – Best Software, SEO & Web Development Company in Pakistan
+          UniSoft – Best Software, SEO & Web Development Company in USA & Pakistan
         </title>
 
         <meta

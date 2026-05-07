@@ -60,7 +60,6 @@ function Footer() {
             <a href="https://wa.me/19284383214" target="_main" className="icons"><i className="fa-brands fa-whatsapp"></i></a>
           </div>
         </div>
-
       </div>
 
       <div className="footer-bottom">

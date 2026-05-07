@@ -27,7 +27,7 @@ const teamMembers = [
     role: "Managing Director (MD)",
     short: "MD",
     img: "member3",
-    desc: "Deborah Smith manages UniSoft’s daily operations and strategic planning. He ensures smooth execution of projects, maintains quality standards, and drives organizational efficiency and client satisfaction.",
+    desc: "Deborah Smith manages UniSoft’s daily operations and strategic planning. She ensures smooth execution of projects, maintains quality standards, and drives organizational efficiency and client satisfaction.",
   },
 ];
 const googleFormsURL = "https://docs.google.com/forms/d/e/1FAIpQLSe0BVdAiHGeHx99ZovWhXHRlP307WBZp4U6yXh6BLC5ozPW6Q/viewform?usp=publish-editor"
@@ -77,7 +77,7 @@ function Teams() {
         />
         <meta
           name="keywords"
-          content="UniSoft team, software company Pakistan, SEO experts, web developers, IT professionals"
+          content="UniSoft team, software company USA and Pakistan, SEO experts, web developers, IT professionals"
         />
         <link rel="canonical" href="https://unisoftpvt.com/" />
 
