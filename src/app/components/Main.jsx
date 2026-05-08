@@ -16,79 +16,193 @@ const Main = () => {
   return (
     <div className="container">
       <Helmet>
-        <title>
-          UniSoft – Best Software, SEO & Web Development Company in USA & Pakistan
-        </title>
+  {/* =========================
+      PRIMARY SEO
+  ========================== */}
+  <title>
+    UniSoft Pvt Ltd | Global Software, SEO & Web Development Company
+  </title>
 
-        <meta
-          name="description"
-          content="UniSoft is a leading software company in USA & Pakistan providing web development, SEO services, digital marketing, and business automation solutions to grow your business online."
-        />
+  <meta
+    name="description"
+    content="UniSoft Pvt Ltd is a global software company providing professional web development, SEO, digital marketing, MERN stack, WordPress, ecommerce, UI/UX, branding, and custom software solutions for businesses worldwide."
+  />
 
-        <meta
-          name="keywords"
-          content="
-          uniSoft, ubisoft, uniSoft software company, unisoft company, unisoftpvt, unisoft in USA, unisoft software company is US, react.js next.js development services,
-          software company USA and Pakistan,
-          software house in Lahore,
-          SEO services USA and Pakistan,
-          web development company USA and Pakistan,
-          digital marketing agency USA and Pakistan,
-          IT company Lahore,
-          best software house in Lahore,
-          affordable SEO services,
-          custom software development
-          "
-        />
+  <meta
+    name="keywords"
+    content="
+    UniSoft,
+    UniSoft Pvt Ltd,
+    unisoftpvt,
+    software company,
+    global software company,
+    web development company,
+    SEO agency,
+    digital marketing company,
+    MERN stack developers,
+    React.js development,
+    Next.js development,
+    Node.js developers,
+    WordPress development,
+    ecommerce development,
+    custom software development,
+    branding agency,
+    UI UX design,
+    Meta Ads experts,
+    Shopify development,
+    mobile app development,
+    SaaS development,
+    software house Pakistan,
+    software company USA,
+    web agency worldwide,
+    affordable SEO services,
+    business automation solutions,
+    international software company
+    "
+  />
 
-        <meta
-          name="google-site-verification"
-          content="WsViIkxJ04PGtVYoEIi1Ki4kHW8UyjuXdEuRnHrTl3I"
-        />
+  <meta name="robots" content="index, follow, max-image-preview:large" />
 
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="author" content="UniSoft Pvt Ltd" />
 
-        {/* ✅ FAVICON */}
-        <link rel="icon" href="/favicon.ico" />
-        <link rel="shortcut icon" href="/favicon.ico" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-        {/* ✅ OPEN GRAPH (Facebook / WhatsApp) */}
-        <meta property="og:title" content="UniSoft – Software & SEO Company" />
-        <meta
-          property="og:description"
-          content="Grow your business with UniSoft’s SEO, software & web solutions."
-        />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://unisoftpvt.com" />
-        <meta
-          property="og:image"
-          content="https://unisoftpvt.com/preview.png"
-        />
-        <link rel="canonical" href="https://unisoftpvt.com/" />
-        <meta name="author" content="UniSoft" />
-        <meta property="og:image" content="https://unisoftpvt.com/preview.png" />
+  <meta name="theme-color" content="#000000" />
 
-        {/* ✅ TWITTER */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <script type="application/ld+json">
-          {`
+  <meta
+    name="google-site-verification"
+    content="WsViIkxJ04PGtVYoEIi1Ki4kHW8UyjuXdEuRnHrTl3I"
+  />
+
+  <link rel="canonical" href="https://unisoftpvt.com/" />
+
+  {/* =========================
+      FAVICON
+  ========================== */}
+  <link rel="icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" href="/favicon.ico" />
+  <link rel="shortcut icon" href="/favicon.ico" />
+
+  {/* =========================
+      OPEN GRAPH / FACEBOOK / LINKEDIN
+  ========================== */}
+  <meta
+    property="og:title"
+    content="UniSoft Pvt Ltd | Global Software & SEO Agency"
+  />
+
+  <meta
+    property="og:description"
+    content="Professional web development, SEO, digital marketing, ecommerce, and software solutions helping businesses grow worldwide."
+  />
+
+  <meta property="og:type" content="website" />
+
+  <meta property="og:url" content="https://unisoftpvt.com/" />
+
+  <meta
+    property="og:image"
+    content="https://unisoftpvt.com/preview.png"
+  />
+
+  <meta property="og:site_name" content="UniSoft Pvt Ltd" />
+
+  <meta property="og:locale" content="en_US" />
+
+  {/* =========================
+      TWITTER SEO
+  ========================== */}
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <meta
+    name="twitter:title"
+    content="UniSoft Pvt Ltd | Web Development & SEO Experts"
+  />
+
+  <meta
+    name="twitter:description"
+    content="Global software company offering web development, SEO, branding, ecommerce, and digital marketing services."
+  />
+
+  <meta
+    name="twitter:image"
+    content="https://unisoftpvt.com/preview.png"
+  />
+
+  {/* =========================
+      GEO & LANGUAGE SEO
+  ========================== */}
+  <meta name="language" content="English" />
+  <meta name="distribution" content="global" />
+  <meta name="rating" content="general" />
+  <meta name="revisit-after" content="7 days" />
+
+  {/* =========================
+      STRUCTURED DATA / SCHEMA
+  ========================== */}
+  <script type="application/ld+json">
+    {`
 {
   "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "UniSoft",
+  "@type": "ProfessionalService",
+  "name": "UniSoft Pvt Ltd",
   "url": "https://unisoftpvt.com",
   "logo": "https://unisoftpvt.com/favicon.ico",
-  "sameAs": [],
-  "contactPoint": {
-    "@type": "ContactPoint",
-    "telephone": "+92-305-3019712",
-    "contactType": "customer service",
-    "ceo": "Roshaan Ahmad"
-  }
+  "image": "https://unisoftpvt.com/preview.png",
+  "description": "UniSoft Pvt Ltd is an international software company providing web development, SEO, branding, ecommerce, digital marketing, and custom software solutions globally.",
+  "telephone": "+1-928-438-3214",
+  "email": "info@unisoftpvt.com",
+  "founder": {
+    "@type": "Person",
+    "name": "Dr. Roshaan",
+    "jobTitle": "Chief Executive Officer"
+  },
+  "areaServed": [
+    {
+      "@type": "Country",
+      "name": "United States"
+    },
+    {
+      "@type": "Country",
+      "name": "Pakistan"
+    },
+    {
+      "@type": "Country",
+      "name": "United Kingdom"
+    },
+    {
+      "@type": "Country",
+      "name": "Canada"
+    },
+    {
+      "@type": "Country",
+      "name": "Australia"
+    }
+  ],
+  "serviceType": [
+    "Web Development",
+    "SEO Services",
+    "Digital Marketing",
+    "MERN Stack Development",
+    "React.js Development",
+    "Next.js Development",
+    "WordPress Development",
+    "Shopify Development",
+    "UI UX Design",
+    "Ecommerce Development",
+    "Meta Ads",
+    "Branding",
+    "Custom Software Development"
+  ],
+  "sameAs": [
+    "https://www.linkedin.com/",
+    "https://www.facebook.com/",
+    "https://www.instagram.com/"
+  ]
 }
 `}
-        </script>
-      </Helmet>
+  </script>
+</Helmet>
       <section className="hero">
         <div className="content">
           <div className="textSection">
