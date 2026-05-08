@@ -16,21 +16,21 @@ const Main = () => {
   return (
     <div className="container">
       <Helmet>
-  {/* =========================
+        {/* =========================
       PRIMARY SEO
   ========================== */}
-  <title>
-    UniSoft Pvt Ltd | Global Software, SEO & Web Development Company
-  </title>
+        <title>
+          UniSoft Pvt Ltd | Global Software, SEO & Web Development Company
+        </title>
 
-  <meta
-    name="description"
-    content="UniSoft Pvt Ltd is a global software company providing professional web development, SEO, digital marketing, MERN stack, WordPress, ecommerce, UI/UX, branding, and custom software solutions for businesses worldwide."
-  />
+        <meta
+          name="description"
+          content="UniSoft Pvt Ltd is a global software company providing professional web development, SEO, digital marketing, MERN stack, WordPress, ecommerce, UI/UX, branding, and custom software solutions for businesses worldwide."
+        />
 
-  <meta
-    name="keywords"
-    content="
+        <meta
+          name="keywords"
+          content="
     UniSoft,
     UniSoft Pvt Ltd,
     unisoftpvt,
@@ -59,89 +59,89 @@ const Main = () => {
     business automation solutions,
     international software company
     "
-  />
+        />
 
-  <meta name="robots" content="index, follow, max-image-preview:large" />
+        <meta name="robots" content="index, follow, max-image-preview:large" />
 
-  <meta name="author" content="UniSoft Pvt Ltd" />
+        <meta name="author" content="UniSoft Pvt Ltd" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <meta name="theme-color" content="#000000" />
+        <meta name="theme-color" content="#000000" />
 
-  <meta
-    name="google-site-verification"
-    content="WsViIkxJ04PGtVYoEIi1Ki4kHW8UyjuXdEuRnHrTl3I"
-  />
+        <meta
+          name="google-site-verification"
+          content="WsViIkxJ04PGtVYoEIi1Ki4kHW8UyjuXdEuRnHrTl3I"
+        />
 
-  <link rel="canonical" href="https://unisoftpvt.com/" />
+        <link rel="canonical" href="https://unisoftpvt.com/" />
 
-  {/* =========================
+        {/* =========================
       FAVICON
   ========================== */}
-  <link rel="icon" href="/favicon.ico" />
-  <link rel="apple-touch-icon" href="/favicon.ico" />
-  <link rel="shortcut icon" href="/favicon.ico" />
+        <link rel="icon" href="/favicon.ico" />
+        <link rel="apple-touch-icon" href="/favicon.ico" />
+        <link rel="shortcut icon" href="/favicon.ico" />
 
-  {/* =========================
+        {/* =========================
       OPEN GRAPH / FACEBOOK / LINKEDIN
   ========================== */}
-  <meta
-    property="og:title"
-    content="UniSoft Pvt Ltd | Global Software & SEO Agency"
-  />
+        <meta
+          property="og:title"
+          content="UniSoft Pvt Ltd | Global Software & SEO Agency"
+        />
 
-  <meta
-    property="og:description"
-    content="Professional web development, SEO, digital marketing, ecommerce, and software solutions helping businesses grow worldwide."
-  />
+        <meta
+          property="og:description"
+          content="Professional web development, SEO, digital marketing, ecommerce, and software solutions helping businesses grow worldwide."
+        />
 
-  <meta property="og:type" content="website" />
+        <meta property="og:type" content="website" />
 
-  <meta property="og:url" content="https://unisoftpvt.com/" />
+        <meta property="og:url" content="https://unisoftpvt.com/" />
 
-  <meta
-    property="og:image"
-    content="https://unisoftpvt.com/preview.png"
-  />
+        <meta
+          property="og:image"
+          content="https://unisoftpvt.com/preview.png"
+        />
 
-  <meta property="og:site_name" content="UniSoft Pvt Ltd" />
+        <meta property="og:site_name" content="UniSoft Pvt Ltd" />
 
-  <meta property="og:locale" content="en_US" />
+        <meta property="og:locale" content="en_US" />
 
-  {/* =========================
+        {/* =========================
       TWITTER SEO
   ========================== */}
-  <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:card" content="summary_large_image" />
 
-  <meta
-    name="twitter:title"
-    content="UniSoft Pvt Ltd | Web Development & SEO Experts"
-  />
+        <meta
+          name="twitter:title"
+          content="UniSoft Pvt Ltd | Web Development & SEO Experts"
+        />
 
-  <meta
-    name="twitter:description"
-    content="Global software company offering web development, SEO, branding, ecommerce, and digital marketing services."
-  />
+        <meta
+          name="twitter:description"
+          content="Global software company offering web development, SEO, branding, ecommerce, and digital marketing services."
+        />
 
-  <meta
-    name="twitter:image"
-    content="https://unisoftpvt.com/preview.png"
-  />
+        <meta
+          name="twitter:image"
+          content="https://unisoftpvt.com/preview.png"
+        />
 
-  {/* =========================
+        {/* =========================
       GEO & LANGUAGE SEO
   ========================== */}
-  <meta name="language" content="English" />
-  <meta name="distribution" content="global" />
-  <meta name="rating" content="general" />
-  <meta name="revisit-after" content="7 days" />
+        <meta name="language" content="English" />
+        <meta name="distribution" content="global" />
+        <meta name="rating" content="general" />
+        <meta name="revisit-after" content="7 days" />
 
-  {/* =========================
+        {/* =========================
       STRUCTURED DATA / SCHEMA
   ========================== */}
-  <script type="application/ld+json">
-    {`
+        <script type="application/ld+json">
+          {`
 {
   "@context": "https://schema.org",
   "@type": "ProfessionalService",
@@ -201,8 +201,8 @@ const Main = () => {
   ]
 }
 `}
-  </script>
-</Helmet>
+        </script>
+      </Helmet>
       <section className="hero">
         <div className="content">
           <div className="textSection">
