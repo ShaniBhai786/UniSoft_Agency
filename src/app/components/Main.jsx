@@ -22,18 +22,18 @@ const Main = () => {
 
         <meta
           name="description"
-          content="UniSoft is a leading software company in Pakistan & USA providing web development, SEO services, digital marketing, and business automation solutions to grow your business online."
+          content="UniSoft is a leading software company in USA & Pakistan providing web development, SEO services, digital marketing, and business automation solutions to grow your business online."
         />
 
         <meta
           name="keywords"
           content="
           uniSoft, ubisoft, uniSoft software company, unisoft company, unisoftpvt, unisoft in USA, unisoft software company is US, react.js next.js development services,
-          software company Pakistan,
+          software company USA and Pakistan,
           software house in Lahore,
-          SEO services Pakistan,
-          web development company Pakistan,
-          digital marketing agency Pakistan,
+          SEO services USA and Pakistan,
+          web development company USA and Pakistan,
+          digital marketing agency USA and Pakistan,
           IT company Lahore,
           best software house in Lahore,
           affordable SEO services,
