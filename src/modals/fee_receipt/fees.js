@@ -8,6 +8,12 @@ const feeSchema = new mongoose.Schema({
         trim: true,
         index: true
     },
+    studentId: {
+        type: String,
+        required: true,
+        trim: true,
+        index: true
+    },
     class: {
         type: String,
         required: true,

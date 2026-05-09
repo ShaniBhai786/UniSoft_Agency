@@ -8,6 +8,12 @@ const Page = () => {
     const feeFields = [
         {
             type: "text",
+            name: "studentId",
+            id: "studentId",
+            label: "Student ID"
+        },
+        {
+            type: "text",
             name: "name",
             id: "name",
             label: "Student's Name"
@@ -69,6 +75,7 @@ const Page = () => {
     ]
     const initialValues = {
         name: "",
+        studentId: "",
         class: "",
         fee: "",
         pending: 0,
@@ -83,7 +90,7 @@ const Page = () => {
     name: Yup.string()
         .required("Name is required")
         .min(2, "Too short"),
-
+    studentId: Yup.string().required("Student ID is required"),
     class: Yup.string()
         .required("Class is required"),
 

@@ -221,11 +221,9 @@ const Main = () => {
               />
             </motion.h1>
             <motion.p initial="hidden" animate="show" variants={fadeUp} transition={{ delay: 0.2 }} className="article">
-              <article>
                 UniSoft provides professional software development, website design,
                 SEO services, digital marketing, and business automation solutions
                 to help companies grow faster and smarter in the digital world.
-              </article>
             </motion.p>
           </div>
           <video
@@ -242,11 +240,9 @@ const Main = () => {
           <div className="overlay" />
           <motion.div className="buttons" initial="hidden" animate="show" variants={fadeUp} transition={{ delay: 0.4 }}>
             <p className="article">
-              <article>
                 UniSoft provides professional software development, website design,
                 SEO services, digital marketing, and business automation solutions
                 to help companies grow faster and smarter in the digital world.
-              </article>
             </p>
             <button className="primary"><Link href="/pricing" className="link">Get Started</Link></button>
             <button className="secondary"><Link href="/services" className="link">View Services</Link></button>
