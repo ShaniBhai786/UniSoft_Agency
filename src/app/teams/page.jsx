@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState } from "react";
-import { Helmet } from "react-helmet";
 import { motion } from "framer-motion";
 
 const teamMembers = [
@@ -68,130 +67,56 @@ function Teams() {
 
   return (
     <div className="teams" id="teams">
-      {/* SEO */}
-      <Helmet>
-  {/* Primary SEO */}
-  <title>
-    UniSoft Pvt Ltd | Web Development, SEO & Digital Marketing Agency USA
-  </title>
-
-  <meta
-    name="description"
-    content="UniSoft Pvt Ltd is a leading software company serving businesses in the USA and Pakistan. We specialize in MERN stack development, WordPress websites, SEO, Meta Ads, eCommerce solutions, and digital marketing services that grow businesses online."
-  />
-
-  <meta
-    name="keywords"
-    content="software company USA, web development company USA, SEO agency USA, MERN stack developers, WordPress development, digital marketing agency, ecommerce website development, Meta Ads experts, React developers, Next.js development, software house Pakistan, UniSoft Pvt Ltd"
-  />
-
-  <meta name="robots" content="index, follow, max-image-preview:large" />
-
-  <meta name="author" content="UniSoft Pvt Ltd" />
-
-  <link rel="canonical" href="https://unisoftpvt.com/" />
-
-  {/* Open Graph / Facebook */}
-  <meta
-    property="og:title"
-    content="UniSoft Pvt Ltd | Top Web Development & SEO Agency USA"
-  />
-
-  <meta
-    property="og:description"
-    content="Professional web development, SEO, branding, and digital marketing services for startups and businesses across the USA."
-  />
-
-  <meta
-    property="og:image"
-    content="https://unisoftpvt.com/images/ceo.jpeg"
-  />
-
-  <meta property="og:url" content="https://unisoftpvt.com/" />
-
-  <meta property="og:type" content="website" />
-
-  <meta property="og:site_name" content="UniSoft Pvt Ltd" />
-
-  {/* Twitter SEO */}
-  <meta name="twitter:card" content="summary_large_image" />
-
-  <meta
-    name="twitter:title"
-    content="UniSoft Pvt Ltd | Software Company USA"
-  />
-
-  <meta
-    name="twitter:description"
-    content="Expert MERN stack, WordPress, SEO, and digital marketing services helping businesses scale online in the USA."
-  />
-
-  <meta
-    name="twitter:image"
-    content="https://unisoftpvt.com/images/ceo.jpeg"
-  />
-
-  {/* Geo SEO */}
-  <meta name="geo.region" content="US" />
-  <meta name="geo.placename" content="United States" />
-  <meta name="language" content="English" />
-
-  {/* Schema Markup */}
-  <script type="application/ld+json">
-    {`
-{
-  "@context": "https://schema.org",
-  "@type": "ProfessionalService",
-  "name": "UniSoft Pvt Ltd",
-  "url": "https://unisoftpvt.com",
-  "logo": "https://unisoftpvt.com/logo.png",
-  "image": "https://unisoftpvt.com/images/ceo.jpeg",
-  "description": "UniSoft Pvt Ltd is a software company providing web development, SEO, branding, and digital marketing services for businesses in the USA and Pakistan.",
-  "telephone": "+1-928-438-3214",
-  "email": "unisoftpvt@gmail.com",
-  "address": {
-    "@type": "PostalAddress",
-    "addressCountry": "US"
-  },
-  "founder": {
-    "@type": "Person",
-    "name": "Dr. Roshaan",
-    "jobTitle": "Chief Executive Officer",
-    "image": "https://unisoftpvt.com/images/ceo.jpeg",
-    "sameAs": [
-      "https://www.linkedin.com/",
-      "https://www.facebook.com/"
-    ]
-  },
-  "sameAs": [
-    "https://www.linkedin.com/",
-    "https://www.facebook.com/",
-    "https://www.instagram.com/"
-  ],
-  "areaServed": [
-    {
-      "@type": "Country",
-      "name": "United States"
-    },
-    {
-      "@type": "Country",
-      "name": "Pakistan"
-    }
-  ],
-  "serviceType": [
-    "Web Development",
-    "SEO Services",
-    "Digital Marketing",
-    "MERN Stack Development",
-    "WordPress Development",
-    "Meta Ads",
-    "Ecommerce Development",
-    "AI Automation"
-  ]
-}
-`}
-  </script>
-</Helmet>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "ProfessionalService",
+            name: "UniSoft Pvt Ltd",
+            url: "https://unisoftpvt.com",
+            logo: "https://unisoftpvt.com/logo.png",
+            image: "https://unisoftpvt.com/images/ceo.jpeg",
+            description:
+              "UniSoft Pvt Ltd is a software company providing web development, SEO, branding, and digital marketing services for businesses in the USA and Pakistan.",
+            telephone: "+1-928-438-3214",
+            email: "unisoftpvt@gmail.com",
+            address: {
+              "@type": "PostalAddress",
+              addressCountry: "US",
+            },
+            founder: {
+              "@type": "Person",
+              name: "Dr. Roshaan",
+              jobTitle: "Chief Executive Officer",
+              image: "https://unisoftpvt.com/images/ceo.jpeg",
+              sameAs: [
+                "https://www.linkedin.com/",
+                "https://www.facebook.com/",
+              ],
+            },
+            sameAs: [
+              "https://www.linkedin.com/",
+              "https://www.facebook.com/",
+              "https://www.instagram.com/",
+            ],
+            areaServed: [
+              { "@type": "Country", name: "United States" },
+              { "@type": "Country", name: "Pakistan" },
+            ],
+            serviceType: [
+              "Web Development",
+              "SEO Services",
+              "Digital Marketing",
+              "MERN Stack Development",
+              "WordPress Development",
+              "Meta Ads",
+              "Ecommerce Development",
+              "AI Automation",
+            ],
+          }),
+        }}
+      />
 
       {/* HEADING */}
       <div className="details">
