@@ -86,22 +86,38 @@
 .navLinks {
   display: flex;
   gap: 25px;
+  position: relative;
 }
 
 .navLinks a {
   color: #aaa;
   text-decoration: none;
   transition: 0.3s;
+  position: relative;
 }
 
 .closeBtn {
   display: none;
 }
 
-.navLinks a:hover {
+.navLinks a::before{
+  content: "";
+  position: absolute;
+  transition: all 0.3s ease-in-out;
+  width: 0%;
+  height: 2px;
+  background: #38bdf8;
+  left: 0;
+  bottom: -10px;
+  border-radius: 100%;
+}
+.navLinks a:hover::before {
+  width: 100%;
   color: white;
 }
-
+.navLinks a:hover{
+  color: white;
+}
 .navBtn {
   background: #2563eb;
   border: none;
