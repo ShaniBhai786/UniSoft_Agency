@@ -1958,8 +1958,16 @@
 }
 
 @media (max-width: 500px) {
-  .get-started-form form {
-    padding: 25px;
+  .get-started-form {
+    padding: 40px 10px;
+    height: 100vh;
+  }
+  .get-started-form form{
+    padding: 20px;
+  }
+  .input-field-pkg{
+    padding: 12px 14px;
+    width: 100%;
   }
 }
 

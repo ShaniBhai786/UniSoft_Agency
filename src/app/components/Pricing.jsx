@@ -13,140 +13,140 @@ const Pricing = () => {
   const [loading, setLoading] = useState(false)
 
   const pricingPlans = [
-  {
-    title: "Starter",
-    price: "$299",
-    desc: "Best for small businesses",
-    features: [
-      "1-3 Page Website",
-      "Basic SEO Setup",
-      "Responsive Design",
-      "Email Integration"
-    ],
-    packageName: "Starter Package",
-    popular: false
-  },
+    {
+      title: "Starter",
+      price: "$299",
+      desc: "Best for small businesses",
+      features: [
+        "1-3 Page Website",
+        "Basic SEO Setup",
+        "Responsive Design",
+        "Email Integration"
+      ],
+      packageName: "Starter Package",
+      popular: false
+    },
 
-  {
-    title: "Professional",
-    price: "$799",
-    desc: "Perfect for growing brands",
-    features: [
-      "5-10 Page Website",
-      "Advanced SEO",
-      "Speed Optimization",
-      "Meta Ads Setup",
-      "Analytics Integration"
-    ],
-    packageName: "Professional Package",
-    popular: true
-  },
+    {
+      title: "Professional",
+      price: "$799",
+      desc: "Perfect for growing brands",
+      features: [
+        "5-10 Page Website",
+        "Advanced SEO",
+        "Speed Optimization",
+        "Meta Ads Setup",
+        "Analytics Integration"
+      ],
+      packageName: "Professional Package",
+      popular: true
+    },
 
-  {
-    title: "Enterprise",
-    price: "$1499+",
-    desc: "For large scale businesses",
-    features: [
-      "Custom Web App",
-      "Full SEO Strategy",
-      "Meta + Google Ads",
-      "Business Automation",
-      "Priority Support"
-    ],
-    packageName: "Enterprise Package",
-    popular: false
-  },
+    {
+      title: "Enterprise",
+      price: "$1499+",
+      desc: "For large scale businesses",
+      features: [
+        "Custom Web App",
+        "Full SEO Strategy",
+        "Meta + Google Ads",
+        "Business Automation",
+        "Priority Support"
+      ],
+      packageName: "Enterprise Package",
+      popular: false
+    },
 
-  {
-    title: "SEO Growth",
-    price: "$399/mo",
-    desc: "Improve rankings & organic traffic",
-    features: [
-      "Keyword Research",
-      "On-Page SEO",
-      "Technical SEO",
-      "Google Search Console",
-      "Monthly SEO Reports"
-    ],
-    packageName: "SEO Growth Package",
-    popular: false
-  },
+    {
+      title: "SEO Growth",
+      price: "$399/mo",
+      desc: "Improve rankings & organic traffic",
+      features: [
+        "Keyword Research",
+        "On-Page SEO",
+        "Technical SEO",
+        "Google Search Console",
+        "Monthly SEO Reports"
+      ],
+      packageName: "SEO Growth Package",
+      popular: false
+    },
 
-  {
-    title: "Meta Ads Pro",
-    price: "$499/mo",
-    desc: "High converting Facebook & Instagram ads",
-    features: [
-      "Meta Ads Campaign Setup",
-      "Audience Targeting",
-      "Creative Ad Design",
-      "Retargeting Ads",
-      "Performance Optimization"
-    ],
-    packageName: "Meta Ads Package",
-    popular: false
-  },
+    {
+      title: "Meta Ads Pro",
+      price: "$499/mo",
+      desc: "High converting Facebook & Instagram ads",
+      features: [
+        "Meta Ads Campaign Setup",
+        "Audience Targeting",
+        "Creative Ad Design",
+        "Retargeting Ads",
+        "Performance Optimization"
+      ],
+      packageName: "Meta Ads Package",
+      popular: false
+    },
 
-  {
-    title: "Google Ads Expert",
-    price: "$599/mo",
-    desc: "Generate leads through Google Ads",
-    features: [
-      "Google Search Ads",
-      "Conversion Tracking",
-      "Keyword Optimization",
-      "Competitor Analysis",
-      "ROI Focused Campaigns"
-    ],
-    packageName: "Google Ads Package",
-    popular: false
-  },
+    {
+      title: "Google Ads Expert",
+      price: "$599/mo",
+      desc: "Generate leads through Google Ads",
+      features: [
+        "Google Search Ads",
+        "Conversion Tracking",
+        "Keyword Optimization",
+        "Competitor Analysis",
+        "ROI Focused Campaigns"
+      ],
+      packageName: "Google Ads Package",
+      popular: false
+    },
 
-  {
-    title: "Business Management",
-    price: "$899/mo",
-    desc: "Complete digital business management",
-    features: [
-      "Client Management",
-      "Social Media Handling",
-      "Lead Generation",
-      "Business Automation",
-      "Monthly Strategy Meetings"
-    ],
-    packageName: "Business Management Package",
-    popular: false
-  },
+    {
+      title: "Business Management",
+      price: "$899/mo",
+      desc: "Complete digital business management",
+      features: [
+        "Client Management",
+        "Social Media Handling",
+        "Lead Generation",
+        "Business Automation",
+        "Monthly Strategy Meetings"
+      ],
+      packageName: "Business Management Package",
+      popular: false
+    },
 
-  {
-    title: "Social Media Growth",
-    price: "$349/mo",
-    desc: "Grow your brand on social platforms",
-    features: [
-      "Content Creation",
-      "Instagram & Facebook Management",
-      "Post Scheduling",
-      "Engagement Strategy",
-      "Monthly Insights"
-    ],
-    packageName: "Social Media Package",
-    popular: false
-  },
+    {
+      title: "Social Media Growth",
+      price: "$349/mo",
+      desc: "Grow your brand on social platforms",
+      features: [
+        "Content Creation",
+        "Instagram & Facebook Management",
+        "Post Scheduling",
+        "Engagement Strategy",
+        "Monthly Insights"
+      ],
+      packageName: "Social Media Package",
+      popular: false
+    },
 
-  {
-    title: "E-Commerce Boost",
-    price: "$999",
-    desc: "Powerful online store solutions",
-    features: [
-      "Custom Online Store",
-      "Payment Gateway Integration",
-      "Product Management",
-      "SEO Optimized Store",
-      "Marketing Integration"
-    ],
-    packageName: "E-Commerce Package",
-    popular: false
-  }
-];
+    {
+      title: "E-Commerce Boost",
+      price: "$999",
+      desc: "Powerful online store solutions",
+      features: [
+        "Custom Online Store",
+        "Payment Gateway Integration",
+        "Product Management",
+        "SEO Optimized Store",
+        "Marketing Integration"
+      ],
+      packageName: "E-Commerce Package",
+      popular: false
+    }
+  ];
   const fadeUp = {
     hidden: { opacity: 0, y: 40 },
     show: { opacity: 1, y: 0 },
@@ -174,7 +174,7 @@ const Pricing = () => {
       setLoading(true)
 
       await emailjs.sendForm(
-        'service_3xs9iqc',
+        'service_x7b7qei',
         'template_0ds7q6l',
         formRef.current,
         '5NYUNk6egOmHicaIZ'
@@ -182,9 +182,14 @@ const Pricing = () => {
       alert(`Request Submitted Successfully`)
       setIsPackageSelect(false)
     } catch (error) {
-      alert(error)
+      console.error("Email sending error:", error)
+      alert(
+        error?.text ||
+        error?.message ||
+        JSON.stringify(error)
+      )
     }
-    finally{
+    finally {
       setLoading(false)
     }
     resetForm()
@@ -200,7 +205,7 @@ const Pricing = () => {
 
   return (
     <>
-    {loading && <Loading />}
+      {loading && <Loading />}
       {isPackageSelect && <section className='get-started-form'>
         <Formik
           enableReinitialize
