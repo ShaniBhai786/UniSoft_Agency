@@ -1,19 +1,5 @@
 import React from "react";
 import Link  from "next/link";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-
-import {
-  faLocationDot,
-  faPhone,
-  faEnvelope,
-} from "@fortawesome/free-solid-svg-icons";
-
-import {
-  faFacebook,
-  faInstagram,
-  faLinkedin,
-  faWhatsapp,
-} from "@fortawesome/free-brands-svg-icons";
 
 function Footer() {
   return (
