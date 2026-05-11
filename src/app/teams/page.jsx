@@ -103,6 +103,7 @@ function Teams() {
             areaServed: [
               { "@type": "Country", name: "United States" },
               { "@type": "Country", name: "Pakistan" },
+              { "@type": "Country", name: "United Kingdom" },
             ],
             serviceType: [
               "Web Development",
