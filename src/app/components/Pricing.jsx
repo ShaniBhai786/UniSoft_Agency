@@ -203,11 +203,53 @@ const Pricing = () => {
     setIsPackageSelect(true)
   }
 
+  const services = [
+  {
+    title: "Business Development",
+    price: "$300/month",
+  },
+  {
+    title: "UI/UX Design",
+    price: "$200 - $800",
+  },
+  {
+    title: "Graphic Design & Branding",
+    price: "$100 - $700",
+  },
+  {
+    title: "Video Ads & Editing",
+    price: "$150 - $1000",
+  },
+  {
+    title: "Social Media Content Design",
+    price: "$100 - $500",
+  },
+  {
+    title: "AI Chatbots & AI Agents",
+    price: "$500 - $3000",
+  },
+  {
+    title: "Automation Solutions",
+    price: "$300 - $2000",
+  },
+  {
+    title: "Custom Software",
+    price: "$1000+",
+  },
+]
+  const handleAdditional = (title, price) => {
+    const addtionalServices = {title, price, packageName: `${title} - ${price}`}
+    setSelectedPackage(addtionalServices)
+    localStorage.setItem("package-details", JSON.stringify(addtionalServices))
+    setIsPackageSelect(true)
+  }
+
   return (
     <>
       {loading && <Loading />}
       {isPackageSelect && <section className='get-started-form'>
         <Formik
+          key={selectedPackage?.packageName}
           enableReinitialize
           initialValues={initialValues}
           validationSchema={validationSchema}
@@ -287,16 +329,17 @@ const Pricing = () => {
         </div>
 
         <div className="services-table">
-          <h3>Additional Services</h3>
-          <div className="table">
-            <div><span>Website Development</span><span>$300 - $1500</span></div>
-            <div><span>SEO Services</span><span>$200/month</span></div>
-            <div><span>Meta Ads Management</span><span>$150/month</span></div>
-            <div><span>Business Development</span><span>$300/month</span></div>
-            <div><span>UI/UX Design</span><span>$200 - $800</span></div>
-            <div><span>Custom Software</span><span>$1000+</span></div>
-          </div>
-        </div>
+  <h3>Additional Services</h3>
+
+  <div className="table">
+  {services.map((service, index) => (
+    <div key={index} onClick={() => handleAdditional(service.title, service.price)}>
+      <span>{service.title}</span>
+      <span>{service.price}</span>
+    </div>
+  ))}
+</div>
+</div>
 
       </section>
     </>
