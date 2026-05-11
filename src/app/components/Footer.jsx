@@ -1,9 +1,82 @@
 import React from "react";
-import Link  from "next/link";
+import Link from "next/link";
 
 function Footer() {
   return (
     <footer className="footer">
+      <div className="trust-partise">
+        <h2>Supporting Businesses Worldwide with Digital Solutions</h2>
+
+        <p>
+          Certified Google Partner, Meta Ads Specialist, SEO Experts,
+          MERN Stack Developers, and Digital Growth Professionals helping
+          businesses scale globally.
+        </p>
+
+        <div className="trust-badges">
+
+  <div className="trust-badge">
+    <i className="fa-brands fa-google badge-icon"></i>
+    <span>Google Certified</span>
+  </div>
+
+  <div className="trust-badge">
+    <i className="fa-brands fa-meta badge-icon"></i>
+    <span>Meta Ads Specialist</span>
+  </div>
+
+  <div className="trust-badge">
+    <i className="fa-solid fa-magnifying-glass-chart badge-icon"></i>
+    <span>SEO Specialist</span>
+  </div>
+
+  <div className="trust-badge">
+    <i className="fa-brands fa-react badge-icon"></i>
+    <span>MERN Stack</span>
+  </div>
+
+  <div className="trust-badge">
+    <i className="fa-solid fa-code badge-icon"></i>
+    <span>Custom Web Apps</span>
+  </div>
+
+  <div className="trust-badge">
+    <i className="fa-solid fa-globe badge-icon"></i>
+    <span>Global Clients</span>
+  </div>
+
+  <div className="trust-badge">
+    <i className="fa-solid fa-mobile-screen-button badge-icon"></i>
+    <span>Responsive Design</span>
+  </div>
+
+  <div className="trust-badge">
+    <i className="fa-solid fa-server badge-icon"></i>
+    <span>Backend Development</span>
+  </div>
+
+  <div className="trust-badge">
+    <i className="fa-solid fa-bullhorn badge-icon"></i>
+    <span>Digital Marketing</span>
+  </div>
+
+  <div className="trust-badge">
+    <i className="fa-solid fa-chart-line badge-icon"></i>
+    <span>Business Growth</span>
+  </div>
+
+  <div className="trust-badge">
+    <i className="fa-solid fa-cart-shopping badge-icon"></i>
+    <span>E-Commerce Solutions</span>
+  </div>
+
+  <div className="trust-badge">
+    <i className="fa-brands fa-wordpress badge-icon"></i>
+    <span>WordPress Expert</span>
+  </div>
+
+</div>
+      </div>
       <div className="footer-container">
 
         <div className="footer-section">

@@ -25,6 +25,7 @@
 .container {
   background: #0b0b0f;
   color: white;
+  height: fit-content;
 }
 
 .navbar {
@@ -128,7 +129,7 @@
   text-align: center;
   position: relative;
   overflow: hidden;
-  height: 100dvh;
+  height: 100vh;
   z-index: 1;
 }
 .content {
@@ -139,7 +140,7 @@
   justify-content: center;
   gap: 50px;
   width: 100%;
-  padding: 140px 20px;
+  padding: 180px 20px;
   overflow: hidden;
 }
 
@@ -304,7 +305,7 @@
 
 .pricing-cards {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
   gap: 30px;
 }
 
@@ -315,10 +316,11 @@
   backdrop-filter: blur(20px);
   transition: 0.4s;
   position: relative;
+  transition: all 0.3s ease-in-out;
 }
 
 .card:hover {
-  transform: translateY(-10px);
+  transform: translate(-10px);
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
 }
 
@@ -411,7 +413,93 @@
 .table span {
   color: #e5e7eb;
 }
+.trust-partise{
+    width: 100%;
+    padding: 80px 20px;
+    background: linear-gradient(135deg, #0f172a, #1e293b);
+    text-align: center;
+    border-radius: 20px;
+    margin: 60px 0;
+    position: relative;
+    overflow: hidden;
+}
 
+.trust-partise::before{
+    content: "";
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    background: rgba(255,255,255,0.05);
+    border-radius: 50%;
+    top: -120px;
+    left: -120px;
+}
+
+.trust-partise::after{
+    content: "";
+    position: absolute;
+    width: 250px;
+    height: 250px;
+    background: rgba(255,255,255,0.04);
+    border-radius: 50%;
+    bottom: -100px;
+    right: -100px;
+}
+
+.trust-partise h2{
+    color: #fff;
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 2;
+}
+
+.trust-partise p{
+    color: #cbd5e1;
+    font-size: 1.1rem;
+    max-width: 700px;
+    margin: auto;
+    line-height: 1.8;
+    position: relative;
+    z-index: 2;
+}
+
+.trust-badges{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 35px;
+    position: relative;
+    z-index: 2;
+}
+.trust-badge{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 22px;
+    border: 1px solid rgba(255,255,255,0.15);
+    background: rgba(255,255,255,0.06);
+    backdrop-filter: blur(10px);
+    border-radius: 14px;
+    color: white;
+    font-weight: 600;
+    transition: 0.3s ease;
+    cursor: pointer;
+}
+
+.badge-icon{
+    font-size: 20px;
+    color: #38bdf8;
+}
+
+.trust-badge:hover{
+    transform: translateY(-5px) scale(1.03);
+    background: rgba(255,255,255,0.12);
+    border-color: #38bdf8;
+}
 .footer {
   background: #0d1117;
   color: #c9d1d9;
