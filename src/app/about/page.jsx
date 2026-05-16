@@ -1,196 +1,189 @@
-"use client"
+"use client";
+
 import Link from "next/link";
 import React, { useEffect } from "react";
 import { motion } from "framer-motion";
 
 function About() {
   useEffect(() => {
-    window.scroll(0, 0)
-  },[])
+    window.scrollTo(0, 0);
+  }, []);
+
   const fadeUp = {
     hidden: { opacity: 0, y: 40 },
     show: { opacity: 1, y: 0 },
   };
+
   return (
-    <section className="about" id="about">
+    <section className="aboutSection">
 
-      {/* About Intro */}
-      <motion.div
-          className="about-intro"
-          key={1}
-          initial="hidden"
-          whileInView="show"
-          variants={fadeUp}
-          transition={{ delay: 1 * 0.1 }}
-          viewport={{ once: true }}
-        >
-        <h2>About UniSoft</h2>
-        <p>
-          UniSoft creates innovative digital solutions to help businesses grow, delivering high-quality software, modern websites, and reliable applications by combining creativity, technology, and experience.
+      {/* BACKGROUND */}
+      <div className="aboutGlow" />
+      <div className="aboutGrid" />
 
-        </p>
-      </motion.div>
+      <div className="aboutContainer">
 
-      {/* Who We Are / What We Do / Why Choose Us */}
-      <div className="three-qoutes">
+        {/* HERO INTRO */}
         <motion.div
-          className="aboutCard"
-          key={2}
+          className="aboutHero"
           initial="hidden"
           whileInView="show"
           variants={fadeUp}
-          transition={{ delay: 2 * 0.1 }}
+          transition={{ duration: 0.6 }}
           viewport={{ once: true }}
         >
-          <h3>Who We Are</h3>
+          <span className="badge">ABOUT UNISOFT</span>
+
+          <h1>
+            We Build Digital Products That Drive Growth
+          </h1>
+
           <p>
-            We are a team of passionate developers and designers dedicated to
-            building modern software solutions for businesses. Our focus is to
-            create reliable, scalable, and user-friendly digital products.
+            UniSoft delivers modern software, scalable web applications,
+            and intelligent digital solutions that help businesses grow,
+            automate, and succeed in the digital era.
           </p>
         </motion.div>
 
-        <motion.div
-          className="aboutCard"
-          key={1}
-          initial="hidden"
-          whileInView="show"
-          variants={fadeUp}
-          transition={{ delay: 3 * 0.1 }}
-          viewport={{ once: true }}
-        >
-          <h3>What We Do</h3>
-          <p>
-            We develop websites, web applications, and custom software that
-            help businesses improve their online presence and streamline their
-            operations.
-          </p>
-        </motion.div>
+        {/* CORE CARDS */}
+        <div className="aboutGridCards">
 
-        <motion.div
-          className="aboutCard"
-          key={4}
-          initial="hidden"
-          whileInView="show"
-          variants={fadeUp}
-          transition={{ delay: 4 * 0.1 }}
-          viewport={{ once: true }}
-        >
-          <h3>Why Choose Us</h3>
-          <p>
-            We combine creativity, technology, and strategic thinking to
-            deliver high-quality solutions that help our clients grow and
-            succeed.
-          </p>
-        </motion.div>
-      </div>
-
-      {/* Mission & Vision */}
-      <div className="mission-vision">
-        <motion.div
-          className="mission"
-          key={5}
-          initial="hidden"
-          whileInView="show"
-          variants={fadeUp}
-          transition={{ delay: 1 * 0.1 }}
-          viewport={{ once: true }}
-        >
-          <h3>Our Mission</h3>
-          <p>
-            Our mission is to empower businesses with innovative and reliable
-            software solutions that drive digital transformation and growth.
-          </p>
-        </motion.div>
-
-        <motion.div
-          className="vision"
-          key={6}
-          initial="hidden"
-          whileInView="show"
-          variants={fadeUp}
-          transition={{ delay: 2 * 0.1 }}
-          viewport={{ once: true }}
-        >
-          <h3>Our Vision</h3>
-          <p>
-            Our vision is to become a trusted technology partner for businesses
-            worldwide by delivering impactful digital experiences.
-          </p>
-        </motion.div>
-      </div>
-
-      {/* Technologies */}
-      <motion.div
-          className="techs"
-          key={7}
-          initial="hidden"
-          whileInView="show"
-          variants={fadeUp}
-          transition={{ delay: 4 * 0.1 }}
-          viewport={{ once: true }}
-        >
-        <h2>Technologies We Use</h2>
-        <div className="tech-list">
-          <span>React</span>
-          <span>Node.js</span>
-          <span>JavaScript</span>
-          <span>Python</span>
-          <span>MongoDB</span>
-          <span>HTML</span>
-          <span>CSS</span>
-          <span>WordPress</span>
+          {[
+            {
+              title: "Who We Are",
+              desc:
+                "A team of passionate engineers and designers building scalable digital products with modern technologies.",
+              icon: "ri-team-line",
+            },
+            {
+              title: "What We Do",
+              desc:
+                "We create websites, web apps, SEO systems, and automation tools that improve business performance.",
+              icon: "ri-code-s-slash-line",
+            },
+            {
+              title: "Why Choose Us",
+              desc:
+                "We combine strategy, design, and engineering to deliver powerful digital solutions that actually grow businesses.",
+              icon: "ri-rocket-line",
+            },
+          ].map((item, i) => (
+            <motion.div
+              key={i}
+              className="aboutCard"
+              initial="hidden"
+              whileInView="show"
+              variants={fadeUp}
+              transition={{ delay: i * 0.2 }}
+              viewport={{ once: true }}
+            >
+              <i className={item.icon}></i>
+              <h3>{item.title}</h3>
+              <p>{item.desc}</p>
+            </motion.div>
+          ))}
         </div>
-      </motion.div>
 
-      {/* Company Stats */}
-      <div className="stats">
+        {/* MISSION + VISION */}
+        <div className="aboutSplit">
+
+          <motion.div
+            className="splitCard"
+            initial="hidden"
+            whileInView="show"
+            variants={fadeUp}
+            viewport={{ once: true }}
+          >
+            <h2>Our Mission</h2>
+            <p>
+              Empower businesses with scalable, reliable, and innovative
+              software solutions that accelerate digital transformation.
+            </p>
+          </motion.div>
+
+          <motion.div
+            className="splitCard"
+            initial="hidden"
+            whileInView="show"
+            variants={fadeUp}
+            viewport={{ once: true }}
+          >
+            <h2>Our Vision</h2>
+            <p>
+              To become a global technology partner delivering impactful
+              digital experiences and intelligent automation systems.
+            </p>
+          </motion.div>
+        </div>
+
+        {/* TECHNOLOGIES */}
         <motion.div
-          className="stat"
-          key={8}
+          className="techStack"
           initial="hidden"
           whileInView="show"
           variants={fadeUp}
-          transition={{ delay: 2 * 0.1 }}
           viewport={{ once: true }}
         >
-          <h3>50+</h3>
-          <p>Projects Completed</p>
+          <h2>Technologies We Use</h2>
+
+          <div className="techTags">
+            {[
+              "React",
+              "Next.js",
+              "Node.js",
+              "MongoDB",
+              "Python",
+              "Tailwind",
+              "AWS",
+              "WordPress",
+            ].map((tech, i) => (
+              <span key={i}>{tech}</span>
+            ))}
+          </div>
         </motion.div>
 
+        {/* STATS */}
+        <div className="statsGrid">
+
+          {[
+            { value: "50+", label: "Projects Completed" },
+            { value: "30+", label: "Happy Clients" },
+            { value: "5+", label: "Years Experience" },
+          ].map((stat, i) => (
+            <motion.div
+              key={i}
+              className="statCard"
+              initial="hidden"
+              whileInView="show"
+              variants={fadeUp}
+              transition={{ delay: i * 0.2 }}
+              viewport={{ once: true }}
+            >
+              <h3>{stat.value}</h3>
+              <p>{stat.label}</p>
+            </motion.div>
+          ))}
+
+        </div>
+
+        {/* CTA */}
         <motion.div
-          className="stat"
-          key={9}
+          className="aboutCTA"
           initial="hidden"
           whileInView="show"
           variants={fadeUp}
-          transition={{ delay: 3 * 0.1 }}
           viewport={{ once: true }}
         >
-          <h3>30+</h3>
-          <p>Happy Clients</p>
+          <h2>Let’s Build Something Powerful Together</h2>
+          <p>Start your digital transformation with UniSoft today.</p>
+
+          <Link href="/quote" className="ctaBtn">
+            Get In Touch
+            <i className="ri-arrow-right-line"></i>
+          </Link>
         </motion.div>
 
-        <motion.div
-          className="stat"
-          key={10}
-          initial="hidden"
-          whileInView="show"
-          variants={fadeUp}
-          transition={{ delay: 4 * 0.1 }}
-          viewport={{ once: true }}
-        >
-          <h3>5+</h3>
-          <p>Years Experience</p>
-        </motion.div>
       </div>
-
-      {/* Call To Action */}
-      <div className="about-cta">
-        <h2>Let's Build Something Great Together</h2>
-        <button><Link href="/contact" >Get In Touch</Link></button>
-      </div>
-
     </section>
   );
 }

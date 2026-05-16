@@ -1,168 +1,282 @@
-"use client"
-import React, {useEffect, useRef, useState} from "react";
+"use client";
+
+import React, { useEffect, useRef, useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import emailjs from '@emailjs/browser';
+import emailjs from "@emailjs/browser";
 import Loading from "../components/Loading";
 import { motion } from "framer-motion";
 
 function Quote() {
-  const [loading, setLoading] = useState(false)
-  
+  const [loading, setLoading] = useState(false);
+
+  const form = useRef();
+
+  const fadeUp = {
+    hidden: { opacity: 0, y: 50 },
+    show: { opacity: 1, y: 0 },
+  };
+
   const initialValues = {
     name: "",
     email: "",
     phone: "",
     service: "",
-    message: ""
+    message: "",
   };
 
   const validationSchema = Yup.object({
-    name: Yup.string().required("Name is required"),
-    email: Yup.string().email("Invalid email").required("Email is required"),
-    phone: Yup.string().required("Please Enter Contact number"),
+    name: Yup.string().required("Full name is required"),
+    email: Yup.string()
+      .email("Invalid email address")
+      .required("Email is required"),
+    phone: Yup.string().required("Phone number is required"),
     service: Yup.string().required("Please select a service"),
-    message: Yup.string().required("Please describe your project")
+    message: Yup.string().required("Please describe your project"),
   });
 
-  const form = useRef()
   const onSubmit = async (values, { resetForm }) => {
     try {
-      setLoading(true)
-      await emailjs.sendForm('service_3xs9iqc', 'template_0ds7q6l', form.current, {
-        publicKey: '5NYUNk6egOmHicaIZ',
-      })
+      setLoading(true);
+
+      await emailjs.sendForm(
+        "service_3xs9iqc",
+        "template_0ds7q6l",
+        form.current,
+        {
+          publicKey: "5NYUNk6egOmHicaIZ",
+        }
+      );
+
       resetForm();
+      alert("Quote request submitted successfully!");
     } catch (error) {
-      console.log(error)      
-      alert("Error Getting a Qoute, Please try again later")
+      console.log(error);
+      alert("Failed to send request. Please try again.");
+    } finally {
+      setLoading(false);
     }
-    finally{
-      alert("Quote request sent successfully!");
-      setLoading(false)
-    }
-    console.log(values);
   };
 
   useEffect(() => {
-    window.scrollTo(0, 0)
-  },[!onSubmit])
-  const fadeUp = {
-    hidden: { opacity: 0, y: 40 },
-    show: { opacity: 1, y: 0 },
-  };
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
-    <section className="quote" id="quote">
+    <section className="quoteSection" id="quote">
+
+      {/* BACKGROUND */}
+      <div className="quoteGradient" />
+      <div className="quoteGrid" />
+
       {loading && <Loading />}
-      <motion.div
-              key={1}
-              className="quote-header"
-              initial="hidden"
-              whileInView="show"
-              variants={fadeUp}
-              transition={{ delay: 1 * 0.2 }}
-              viewport={{ once: true }}
+
+      <div className="quoteContainer">
+
+        {/* LEFT CONTENT */}
+        <motion.div
+          className="quoteLeft"
+          initial="hidden"
+          whileInView="show"
+          variants={fadeUp}
+          transition={{ duration: 0.7 }}
+          viewport={{ once: true }}
+        >
+
+          <span className="quoteBadge">
+            START YOUR DIGITAL TRANSFORMATION 🚀
+          </span>
+
+          <h2>
+            Let’s Build Powerful Solutions for Your Business
+          </h2>
+
+          <p>
+            UniSoft helps businesses grow with high-performance
+            software development, SEO optimization, web applications,
+            branding, digital marketing, and automation solutions.
+          </p>
+
+          {/* FEATURES */}
+          <div className="quoteFeatures">
+
+            <div className="featureCard">
+              <i className="ri-code-box-line"></i>
+
+              <div>
+                <h4>Custom Development</h4>
+                <span>Scalable software & web apps</span>
+              </div>
+            </div>
+
+            <div className="featureCard">
+              <i className="ri-line-chart-line"></i>
+
+              <div>
+                <h4>SEO & Marketing</h4>
+                <span>Increase traffic & conversions</span>
+              </div>
+            </div>
+
+            <div className="featureCard">
+              <i className="ri-shield-check-line"></i>
+
+              <div>
+                <h4>Reliable Support</h4>
+                <span>Fast communication & assistance</span>
+              </div>
+            </div>
+
+          </div>
+        </motion.div>
+
+        {/* RIGHT FORM */}
+        <motion.div
+          className="quoteRight"
+          initial={{ opacity: 0, x: 60 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+        >
+
+          <div className="formWrapper">
+
+            <div className="formTop">
+              <h3>Request a Free Quote</h3>
+              <p>
+                Fill out the form and our team will contact you shortly.
+              </p>
+            </div>
+
+            <Formik
+              initialValues={initialValues}
+              validationSchema={validationSchema}
+              onSubmit={onSubmit}
             >
-        <h2>Get a Quote</h2>
-        <p>
-          Tell us about your project and the UniSoft team will provide a
-          customized solution for your business.
-        </p>
-      </motion.div>
+              <Form className="quoteForm" ref={form}>
 
-      <Formik
-        initialValues={initialValues}
-        validationSchema={validationSchema}
-        onSubmit={onSubmit}
-      >
+                <div className="inputGroup">
+                  <i className="ri-user-line"></i>
 
-        <Form className="quote-form" ref={form}>
+                  <Field
+                    type="text"
+                    name="name"
+                    placeholder="Full Name"
+                  />
+                </div>
 
-          <motion.div
-              key={2}
-              className="form-group"
-              initial="hidden"
-              whileInView="show"
-              variants={fadeUp}
-              transition={{ delay: 2 * 0.2 }}
-              viewport={{ once: true }}
-            >
-            <Field type="text" name="name" placeholder="Your Name" />
-            <ErrorMessage name="name" component="span" className="error"/>
-          </motion.div>
+                <ErrorMessage
+                  name="name"
+                  component="span"
+                  className="error"
+                />
 
-          <motion.div
-              key={3}
-              className="form-group"
-              initial="hidden"
-              whileInView="show"
-              variants={fadeUp}
-              transition={{ delay: 2 * 0.2 }}
-              viewport={{ once: true }}
-            >
-            <Field type="email" name="email" placeholder="Your Email" />
-            <ErrorMessage name="email" component="span" className="error"/>
-          </motion.div>
+                <div className="inputGroup">
+                  <i className="ri-mail-line"></i>
 
-          <motion.div
-              key={4}
-              className="form-group"
-              initial="hidden"
-              whileInView="show"
-              variants={fadeUp}
-              transition={{ delay: 2 * 0.2 }}
-              viewport={{ once: true }}
-            >
-            <Field type="tel" name="phone" placeholder="Phone Number" />
-          </motion.div>
+                  <Field
+                    type="email"
+                    name="email"
+                    placeholder="Email Address"
+                  />
+                </div>
 
-          <motion.div
-              key={5}
-              className="form-group"
-              initial="hidden"
-              whileInView="show"
-              variants={fadeUp}
-              transition={{ delay: 2 * 0.2 }}
-              viewport={{ once: true }}
-            >
-            <Field as="select" name="service">
-              <option value="">Select Service</option>
-              <option value="SEO Service">SEO Service</option>
-              <option value="Website Development">Website Development</option>
-              <option value="Web Application">Web Application</option>
-              <option value="Custom Software">Custom Software</option>
-              <option value="Business Management">Business Management</option>
-              <option value="UI/UX Design">UI/UX Design</option>
-              <option value="Meta Ads">Meta Ads</option>
-              <option value="Graphics Design Services">Graphics Design Services</option>
-            </Field>
-            <ErrorMessage name="service" component="span" className="error"/>
-          </motion.div>
+                <ErrorMessage
+                  name="email"
+                  component="span"
+                  className="error"
+                />
 
-          <motion.div
-              key={6}
-              className="form-group"
-              initial="hidden"
-              whileInView="show"
-              variants={fadeUp}
-              transition={{ delay: 2 * 0.2 }}
-              viewport={{ once: true }}
-            >
-            <Field
-              as="textarea"
-              name="message"
-              rows="5"
-              placeholder="Describe your project"
-            />
-            <ErrorMessage name="message" component="span" className="error"/>
-          </motion.div>
+                <div className="inputGroup">
+                  <i className="ri-phone-line"></i>
 
-          <button type="submit">Request Quote</button>
+                  <Field
+                    type="tel"
+                    name="phone"
+                    placeholder="Phone Number"
+                  />
+                </div>
 
-        </Form>
+                <ErrorMessage
+                  name="phone"
+                  component="span"
+                  className="error"
+                />
 
-      </Formik>
+                <div className="inputGroup">
+                  <i className="ri-briefcase-line"></i>
 
+                  <Field as="select" name="service">
+                    <option value="">Select Service</option>
+
+                    <option value="SEO Service">
+                      SEO Service
+                    </option>
+
+                    <option value="Website Development">
+                      Website Development
+                    </option>
+
+                    <option value="Web Application">
+                      Web Application
+                    </option>
+
+                    <option value="Custom Software">
+                      Custom Software
+                    </option>
+
+                    <option value="Business Management">
+                      Business Management
+                    </option>
+
+                    <option value="UI/UX Design">
+                      UI/UX Design
+                    </option>
+
+                    <option value="Meta Ads">
+                      Meta Ads
+                    </option>
+
+                    <option value="Graphics Design Services">
+                      Graphics Design Services
+                    </option>
+                  </Field>
+                </div>
+
+                <ErrorMessage
+                  name="service"
+                  component="span"
+                  className="error"
+                />
+
+                <div className="inputGroup textareaGroup">
+                  <i className="ri-chat-3-line"></i>
+
+                  <Field
+                    as="textarea"
+                    name="message"
+                    rows="5"
+                    placeholder="Describe your project requirements..."
+                  />
+                </div>
+
+                <ErrorMessage
+                  name="message"
+                  component="span"
+                  className="error"
+                />
+
+                <button type="submit" className="submitBtn">
+                  Submit Request
+                  <i className="ri-arrow-right-line"></i>
+                </button>
+
+              </Form>
+            </Formik>
+
+          </div>
+        </motion.div>
+      </div>
     </section>
   );
 }
