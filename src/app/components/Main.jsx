@@ -77,12 +77,12 @@ const Main = () => {
           <div className="statsGrid">
 
             <div className="statCard">
-              <h2>250+</h2>
+              <h2>50+</h2>
               <p>Projects Completed</p>
             </div>
 
             <div className="statCard">
-              <h2>120+</h2>
+              <h2>30+</h2>
               <p>Global Clients</p>
             </div>
 
