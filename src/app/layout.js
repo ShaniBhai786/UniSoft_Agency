@@ -19,6 +19,8 @@ export default function RootLayout({ children }) {
           href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css"
           rel="stylesheet"
         />
+        <meta name="robots" content="index, follow" />
+        <meta name="googlebot" content="index, follow" />
       </head>
       <body>
 
