@@ -33,7 +33,8 @@ function Tech() {
       </div>
 
       <div className="tech-services">
-      <motion.div
+        <Link href="/pricing">
+        <motion.div
           className="tech-card"
           key={1}
           initial="hidden"
@@ -50,30 +51,34 @@ function Tech() {
             businesses create a strong online presence.
           </p>
         </motion.div>
+        </Link>
 
-        <motion.div
-          className="tech-card"
-          key={2}
-          initial="hidden"
-          whileInView="show"
-          variants={fadeUp}
-          transition={{ delay: 2 * 0.1 }}
-          viewport={{ once: true }}
-        >
-          <i className="fa fa-laptop-code tech-icon"></i>
-          <h3>Web Applications</h3>
-          <p>
-            Powerful web applications designed to automate business processes
-            and improve productivity.
-          </p>
-        </motion.div>
+        <Link href="/pricing">
+          <motion.div
+            className="tech-card"
+            key={2}
+            initial="hidden"
+            whileInView="show"
+            variants={fadeUp}
+            transition={{ delay: 2 * 0.1 }}
+            viewport={{ once: true }}
+          >
+            <i className="fa fa-laptop-code tech-icon"></i>
+            <h3>Web Applications</h3>
+            <p>
+              Powerful web applications designed to automate business processes
+              and improve productivity.
+            </p>
+          </motion.div>
+        </Link>
 
-        <motion.div
-          className="tech-card"
-          key={3}
-          initial="hidden"
-          whileInView="show"
-          variants={fadeUp}
+        <Link href="/pricing">
+          <motion.div
+            className="tech-card"
+            key={3}
+            initial="hidden"
+            whileInView="show"
+            variants={fadeUp}
           transition={{ delay: 2 * 0.2 }}
           viewport={{ once: true }}
         >
@@ -85,12 +90,13 @@ function Tech() {
             scalability.
           </p>
         </motion.div>
-
-        <motion.div
-          className="tech-card"
-          key={4}
-          initial="hidden"
-          whileInView="show"
+        </Link>
+        <Link href="/pricing">
+          <motion.div
+            className="tech-card"
+            key={4}
+            initial="hidden"
+            whileInView="show"
           variants={fadeUp}
           transition={{ delay: 2 * 0.2 }}
           viewport={{ once: true }}
@@ -103,16 +109,18 @@ function Tech() {
             challenges and improve operational efficiency.
           </p>
         </motion.div>
+        </Link>
+        
         <Link href="/quote">
-        <motion.div
-          className="tech-card-quote"
-          key={5}
-          initial="hidden"
-          whileInView="show"
-          variants={fadeUp}
-          transition={{ delay: 2 * 0.2 }}
-          viewport={{ once: true }}
-        >
+          <motion.div
+            className="tech-card-quote"
+            key={5}
+            initial="hidden"
+            whileInView="show"
+            variants={fadeUp}
+            transition={{ delay: 2 * 0.2 }}
+            viewport={{ once: true }}
+          >
             <i className="fa fa-book tech-icon"></i>
             {/* <FontAwesomeIcon icon={faBook} className="tech-icon" /> */}
             <h3>Get A Quote</h3>

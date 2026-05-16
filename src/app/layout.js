@@ -15,6 +15,10 @@ export default function RootLayout({ children }) {
           rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
         />
+        <link
+          href="https://cdn.jsdelivr.net/npm/remixicon@4.2.0/fonts/remixicon.css"
+          rel="stylesheet"
+        />
       </head>
       <body>
 

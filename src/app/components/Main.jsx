@@ -13,106 +13,149 @@ const Main = () => {
   };
 
   return (
-    <div className="container">
-      <section className="hero">
-        <div className="content">
+    <main className="dashboardHero">
 
-          {/* TEXT CONTENT */}
-          <div className="textSection">
-            <motion.h1
-              className="asd"
-              initial="hidden"
-              animate="show"
-              variants={fadeUp}
-              transition={{ duration: 0.8 }}
-            >
-              <TypeAnimation
-                sequence={[
-                  "All-in-One Business Software Solutions for Growth and Efficiency.",
-                  1000,
-                  "",
-                  "Streamline Your Business Operations with Powerful Digital Solutions.",
-                  1000,
-                  "",
-                  "Boost Productivity with Advanced Software, SEO and Web Services.",
-                  1000,
-                  "",
-                  "Complete IT Solutions – Websites, SEO, and Automation.",
-                  1000,
-                  "",
-                  "Transform Your Business with Modern Software Solutions.",
-                  1000,
-                  "",
-                ]}
-                className="typingText"
-                speed={50}
-                repeat={Infinity}
-              />
-            </motion.h1>
+      {/* BACKGROUND */}
+      <div className="gradientBg" />
+      <div className="gridOverlay" />
 
-            <motion.p
-              initial="hidden"
-              animate="show"
-              variants={fadeUp}
-              transition={{ delay: 0.2 }}
-              className="article"
-            >
-              UniSoft provides professional software development,
-              website design, SEO services, digital marketing,
-              and business automation solutions to help companies
-              grow faster and smarter in the digital world.
-            </motion.p>
-          </div>
+      {/* CONTENT */}
+      <div className="dashboardContainer">
 
-          {/* VIDEO */}
-          <video
-            className="bgVideo"
-            autoPlay
-            loop
-            muted
-            playsInline
-            preload="none"
-            poster="/assets/thumbnail.png"
-          >
-            <source
-              src="/assets/newVideo.mp4"
-              type="video/mp4"
+        {/* LEFT SIDE */}
+        <motion.div
+          className="leftSide"
+          initial="hidden"
+          animate="show"
+          variants={fadeUp}
+          transition={{ duration: 0.8 }}
+        >
+          <span className="dash-badge">
+            POWERING DIGITAL BUSINESSES 🚀
+          </span>
+
+          <h1 className="heroTitle">
+            <TypeAnimation
+              sequence={[
+                "Modern Software Solutions for Smart Businesses.",
+                1500,
+
+                "Web Development, SEO & Automation Experts.",
+                1500,
+
+                "Scale Faster with UniSoft Digital Solutions.",
+                1500,
+
+                "Professional Business Growth Technology.",
+                1500,
+              ]}
+              speed={50}
+              repeat={Infinity}
             />
-          </video>
+          </h1>
 
-          {/* OVERLAY */}
-          <div className="overlay" />
+          <p className="heroDescription">
+            UniSoft delivers enterprise-grade software development,
+            SEO optimization, business automation, website design,
+            and digital marketing solutions to help brands grow
+            faster in the modern digital world.
+          </p>
 
           {/* BUTTONS */}
-          <motion.div
-            className="buttons"
-            initial="hidden"
-            animate="show"
-            variants={fadeUp}
-            transition={{ delay: 0.4 }}
-          >
-            <p className="article">
-              UniSoft delivers scalable web development,
-              SEO optimization, digital marketing,
-              branding, and automation solutions for
-              startups and enterprises worldwide.
-            </p>
+          <div className="heroButtons">
+            <Link href="/pricing" className="primaryBtn">
+              Get Started
+              <i className="ri-arrow-right-line"></i>
+            </Link>
 
-            <button className="primary">
-              <Link href="/pricing" className="link">
-                Get Started
-              </Link>
-            </button>
+            <Link href="/services" className="secondaryBtn">
+              Explore Services
+            </Link>
+          </div>
 
-            <button className="secondary">
-              <Link href="/services" className="link">
-                View Services
-              </Link>
-            </button>
-          </motion.div>
-        </div>
-      </section>
-    </div>
+          {/* STATS */}
+          <div className="statsGrid">
+
+            <div className="statCard">
+              <h2>250+</h2>
+              <p>Projects Completed</p>
+            </div>
+
+            <div className="statCard">
+              <h2>120+</h2>
+              <p>Global Clients</p>
+            </div>
+
+            <div className="statCard">
+              <h2>99%</h2>
+              <p>Client Satisfaction</p>
+            </div>
+
+          </div>
+        </motion.div>
+
+        {/* RIGHT SIDE */}
+        <motion.div
+          className="rightSide"
+          initial={{ opacity: 0, x: 60 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 1 }}
+        >
+
+          {/* DASHBOARD CARD */}
+          <div className="dashboardCard">
+
+            <div className="dashboardTop">
+              <div className="circle red" />
+              <div className="circle yellow" />
+              <div className="circle green" />
+            </div>
+
+            <div className="dashboardContent">
+
+              {/* SERVICE CARD */}
+              <div className="serviceCard">
+                <i className="ri-code-s-slash-line serviceIcon"></i>
+
+                <div>
+                  <h3>Custom Software</h3>
+                  <p>Scalable modern applications</p>
+                </div>
+              </div>
+
+              <div className="serviceCard">
+                <i className="ri-line-chart-line serviceIcon"></i>
+
+                <div>
+                  <h3>SEO Optimization</h3>
+                  <p>Boost rankings & traffic</p>
+                </div>
+              </div>
+
+              <div className="serviceCard">
+                <i className="ri-computer-line serviceIcon"></i>
+
+                <div>
+                  <h3>Web Development</h3>
+                  <p>Modern responsive websites</p>
+                </div>
+              </div>
+
+              <div className="serviceCard">
+                <i className="ri-stack-line serviceIcon"></i>
+
+                <div>
+                  <h3>Automation</h3>
+                  <p>Smart workflow integration</p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+
+        </motion.div>
+      </div>
+    </main>
   );
 };
 
