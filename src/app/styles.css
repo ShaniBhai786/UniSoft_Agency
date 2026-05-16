@@ -11,7 +11,9 @@
   font-family: "Bpmf Huninn", Times, serif;
   color: white;
 }
-
+.hamBurger{
+  display: none;
+}
 .back-icon {
   display: block;
   position: absolute;
@@ -393,7 +395,12 @@
     font-size: 1.8rem;
     margin-bottom: 35px;
   }
-
+  .hamBurger{
+    display: block;
+    position: absolute;
+    top: 25px;
+    right: 20px;
+  }
   .dash-badge {
     top: 0;
   }
@@ -1870,6 +1877,7 @@
 }
 
 .closeBtn {
+  display: flex;
   position: absolute;
   top: 18px;
   right: 18px;
@@ -1877,7 +1885,10 @@
   height: 42px;
   border: none;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(142, 3, 3, 0.758);
+  text-align: center;
+  justify-content: center;
+  align-items: center;
   color: white;
   cursor: pointer;
   z-index: 10;
@@ -1923,7 +1934,9 @@
   justify-content: space-evenly;
   display: flex;
   flex-direction: row-reverse;
+  flex-wrap: wrap;
   gap: 80px;
+  overflow: auto;
   align-items: center;
 }
 
@@ -2461,7 +2474,19 @@
     text-transform: uppercase;
     gap: 5px;
   }
-
+  .closeBtnNav{
+    display: flex;
+    position: absolute;
+    top: 1.6rem;
+    justify-content: center;
+    align-items: center;
+    right: 10%;
+    background-color: #ef4444;
+    padding: 14px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+  }
   .navLinks {
     display: none;
   }
@@ -2574,6 +2599,9 @@
     position: absolute;
     top: 1.6rem;
     right: 5%;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
   }
 
   .article {

@@ -22,7 +22,7 @@ const NavBar = () => {
           <Link className='links' href="/contact">Contact</Link>
         </div>
         {nav && <div className="navLinksNav" onClick={() => setNav(!nav)}>
-          <i className='fa fa-close close' onClick={() => setNav(!nav)}></i>
+          <i className='fa fa-close closeBtnNav' onClick={() => setNav(!nav)}></i>
           <Link className='links' href="/"><i className='fa fa-home'></i><span>Home</span></Link>
           <Link className='links' href="/services"><i className='fa fa-mobile'></i><span>Services</span></Link>
           <Link className='links' href="/about"> <i className='fa fa-info-circle'></i><span>About</span></Link>
@@ -31,7 +31,7 @@ const NavBar = () => {
           <Link className='links' href="/contact"><i className='fa fa-phone'></i><span>Contact</span></Link>
         </div>}
         <Link href="quote"><button className="navBtn">Get Free Consultation</button></Link>
-        <div className="closeBtn" onClick={() => setNav(!nav)}><i className='fa fa-bars' id='bars'></i></div>
+        <div className="hamBurger" onClick={() => setNav(!nav)}><i className='fa fa-bars' id='bars'></i></div>
       </nav>
     </>
   )
