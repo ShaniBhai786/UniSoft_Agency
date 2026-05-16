@@ -404,6 +404,12 @@
   .dash-badge {
     top: 0;
   }
+  .badge{
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translateY(-3rem);
+  }
 
   .heroButtons {
     flex-direction: column;
