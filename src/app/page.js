@@ -1,5 +1,5 @@
 import Main from "./components/Main";
-import { serviceSchema } from "./lib/schema.js";
+import { organizationSchema } from "./lib/schema.js";
 
 export default function Home() {
   return (
@@ -7,7 +7,7 @@ export default function Home() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(serviceSchema),
+          __html: JSON.stringify(organizationSchema),
         }}
       />
       <Main />

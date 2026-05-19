@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { organizationSchema } from "../lib/schema";
 
 const teamMembers = [
   {
@@ -92,7 +93,12 @@ function Teams() {
 
   return (
     <section className="teamsSection" id="teams">
-
+       <script
+              type="application/ld+json"
+              dangerouslySetInnerHTML={{
+                __html: JSON.stringify(organizationSchema),
+              }}
+            />
       {/* BACKGROUND */}
       <div className="teamGradient" />
       <div className="teamGrid" />
