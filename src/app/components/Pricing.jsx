@@ -206,7 +206,33 @@ const Pricing = () => {
     setSelectedPackage(null)
     localStorage.removeItem("package-details")
   }
+const handleCheckout = async (plan) => {
+  try {
+    setLoading(true);
 
+    const res = await fetch("/api/checkout", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        planKey: plan.title.toLowerCase(),
+      }),
+    });
+
+    const data = await res.json();
+
+    if (data?.url) {
+      window.location.href = data.url;
+    } else {
+      alert("Stripe session not created");
+    }
+  } catch (err) {
+    console.error(err);
+  } finally {
+    setLoading(false);
+  }
+};
   const handleSelect = (plan) => {
     setSelectedPackage(plan)
     localStorage.setItem("package-details", JSON.stringify(plan))
@@ -306,7 +332,7 @@ const Pricing = () => {
             </div>
           </Form>
         </Formik>
-      </section>}
+      </section>} 
 
       <section className="pricing">
 
@@ -322,6 +348,15 @@ const Pricing = () => {
         </motion.div>
 
         <div className="pricing-cards">
+          <script async
+  src="https://js.stripe.com/v3/buy-button.js">
+</script>
+
+<stripe-buy-button
+  buy-button-id="buy_btn_1TZupGGuPNLWj41SwPIi68mq"
+  publishable-key="pk_live_51TLpI7GuPNLWj41Sggf2VtCWFtuh3Dr076DIFbKazLP4IlWEsGh2cSxROWfKt9OtwNubEnGZ5jxWSLgWJ81cfWDJ00LSmLNYkL"
+>
+</stripe-buy-button>
           {pricingPlans.map((plan, index) => (
             <motion.div
               key={index}
@@ -345,7 +380,7 @@ const Pricing = () => {
                 ))}
               </ul>
 
-              <button onClick={() => handleSelect(plan)}>
+              <button onClick={() => handleCheckout(plan)}>
                 {plan.title === "Enterprise" ? "Contact Us" : "Get Started"}
               </button>
             </motion.div>

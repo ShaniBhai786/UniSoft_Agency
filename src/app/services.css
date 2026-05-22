@@ -1,0 +1,300 @@
+/* =========================================
+   SERVICE DETAIL PAGE - PREMIUM ANIMATIONS
+========================================= */
+
+.servicePage {
+  padding: 90px 7%;
+  background:
+    radial-gradient(circle at top left, rgba(0,140,255,0.12), transparent 40%),
+    radial-gradient(circle at bottom right, rgba(120,0,255,0.12), transparent 40%),
+    #050816;
+
+  color: #fff;
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+
+  animation: pageFadeIn 0.8s ease;
+}
+
+/* PAGE LOAD ANIMATION */
+
+@keyframes pageFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.98);
+    filter: blur(10px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+    filter: blur(0);
+  }
+}
+
+/* FLOATING BACKGROUNDS */
+
+.servicePage::before,
+.servicePage::after {
+  content: "";
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.25;
+  z-index: 0;
+  animation: floatGlow 10s infinite ease-in-out;
+}
+
+.servicePage::before {
+  background: rgba(0,140,255,0.25);
+  top: -100px;
+  left: -120px;
+}
+
+.servicePage::after {
+  background: rgba(120,0,255,0.25);
+  bottom: -120px;
+  right: -120px;
+  animation-delay: 2s;
+}
+
+@keyframes floatGlow {
+  0%, 100% {
+    transform: translateY(0px) translateX(0px);
+  }
+  50% {
+    transform: translateY(30px) translateX(20px);
+  }
+}
+
+/* CONTAINER */
+
+.serviceContainer {
+  max-width: 1200px;
+  margin: auto;
+  position: relative;
+  z-index: 2;
+}
+
+/* ===============================
+   HERO SECTION
+================================ */
+
+.serviceHero {
+  animation: slideUp 0.9s ease;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.serviceBadge {
+  display: inline-block;
+  padding: 8px 16px;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.06);
+  border: 1px solid rgba(255,255,255,0.1);
+  color: #8ec5ff;
+  font-size: 0.85rem;
+  letter-spacing: 1.5px;
+
+  animation: fadeIn 1s ease;
+}
+
+.serviceHero h1 {
+  font-size: 3.8rem;
+  font-weight: 900;
+  margin: 20px 0;
+
+  background: linear-gradient(90deg, #fff, #8ec5ff, #5ab3ff);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+  animation: textGlow 3s infinite alternate;
+}
+
+@keyframes textGlow {
+  from {
+    filter: drop-shadow(0 0 5px rgba(0,140,255,0.2));
+  }
+  to {
+    filter: drop-shadow(0 0 18px rgba(0,140,255,0.4));
+  }
+}
+
+.serviceHero p {
+  font-size: 1.15rem;
+  line-height: 1.9;
+  color: rgba(255,255,255,0.72);
+
+  animation: fadeIn 1.2s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* ===============================
+   CONTENT SECTIONS
+================================ */
+
+.serviceSection {
+  margin-top: 70px;
+  display: grid;
+  gap: 25px;
+
+  animation: slideUp 1s ease;
+}
+
+/* FEATURE BOX */
+
+.serviceBox {
+  padding: 30px;
+  border-radius: 24px;
+
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.08);
+
+  backdrop-filter: blur(18px);
+
+  transition: 0.4s ease;
+
+  position: relative;
+  overflow: hidden;
+}
+
+/* HOVER GLOW */
+
+.serviceBox::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at top left, rgba(0,140,255,0.18), transparent 60%);
+  opacity: 0;
+  transition: 0.5s ease;
+}
+
+.serviceBox:hover::before {
+  opacity: 1;
+}
+
+.serviceBox:hover {
+  transform: translateY(-10px);
+  border-color: rgba(90,179,255,0.35);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.45);
+}
+
+/* ICON ANIMATION */
+
+.serviceIcon {
+  font-size: 2rem;
+  color: #7ec8ff;
+  margin-bottom: 15px;
+
+  animation: pulse 2.5s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+}
+
+/* LIST ANIMATION */
+
+.serviceList {
+  margin-top: 15px;
+}
+
+.serviceList li {
+  list-style: none;
+  margin-bottom: 12px;
+
+  padding-left: 20px;
+  position: relative;
+
+  color: rgba(255,255,255,0.75);
+
+  animation: fadeIn 1s ease;
+}
+
+.serviceList li::before {
+  content: "➤";
+  position: absolute;
+  left: 0;
+  color: #5ab3ff;
+}
+
+/* CTA BUTTON */
+
+.serviceCTA {
+  margin-top: 60px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 14px 26px;
+  border-radius: 999px;
+
+  background: linear-gradient(135deg, #008cff, #6a5cff);
+  color: #fff;
+  font-weight: 700;
+
+  transition: 0.3s ease;
+
+  animation: slideUp 1.2s ease;
+}
+
+.serviceCTA:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 40px rgba(0,140,255,0.25);
+}
+
+/* ===============================
+   RESPONSIVE
+================================ */
+
+@media (max-width: 992px) {
+  .serviceHero h1 {
+    font-size: 3rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .serviceHero h1 {
+    font-size: 2.3rem;
+  }
+}
+
+@media (max-width: 500px) {
+  .servicePage {
+    padding: 90px 6%;
+  }
+
+  .serviceBox {
+    padding: 22px;
+  }
+}

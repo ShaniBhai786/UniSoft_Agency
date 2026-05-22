@@ -93,12 +93,12 @@ function Teams() {
 
   return (
     <section className="teamsSection" id="teams">
-       <script
-              type="application/ld+json"
-              dangerouslySetInnerHTML={{
-                __html: JSON.stringify(organizationSchema),
-              }}
-            />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(organizationSchema),
+        }}
+      />
       {/* BACKGROUND */}
       <div className="teamGradient" />
       <div className="teamGrid" />
@@ -119,14 +119,11 @@ function Teams() {
             MEET OUR PROFESSIONAL TEAM 🚀
           </span>
 
-          <h1>
-            The Experts Behind UniSoft Innovation
-          </h1>
+          <h1>Professional Software Developers, SEO Experts & Digital Growth Team</h1>
 
           <p>
-            Our team consists of highly skilled professionals
-            specializing in software engineering, SEO, UI/UX,
-            automation, and digital growth solutions.
+            UniSoft is a professional software development and digital marketing company specializing in
+            web development, SEO optimization, UI/UX design, automation systems, and business growth solutions.
           </p>
 
           <a
@@ -218,46 +215,46 @@ function Teams() {
 
       {/* PROFILE MODAL */}
       <AnimatePresence>
-  {activeMember && (
-    <motion.div
-      className="profileModal"
-      onClick={() => setActiveMember(null)}
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-    >
-      <motion.div
-        className="profileCard"
-        onClick={(e) => e.stopPropagation()} 
-        initial={{ scale: 0.85, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        exit={{ scale: 0.85, opacity: 0 }}
-        transition={{ duration: 0.25 }}
-      >
+        {activeMember && (
+          <motion.div
+            className="profileModal"
+            onClick={() => setActiveMember(null)}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            <motion.div
+              className="profileCard"
+              onClick={(e) => e.stopPropagation()}
+              initial={{ scale: 0.85, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.85, opacity: 0 }}
+              transition={{ duration: 0.25 }}
+            >
 
-        {/* CLOSE BUTTON */}
-        <button
-          className="closeBtn"
-          onClick={() => setActiveMember(null)}
-        >
-          ✕
-        </button>
+              {/* CLOSE BUTTON */}
+              <button
+                className="closeBtn"
+                onClick={() => setActiveMember(null)}
+              >
+                ✕
+              </button>
 
-        <div className={`profileImage ${activeMember.img}`}></div>
+              <div className={`profileImage ${activeMember.img}`}></div>
 
-        <span className="profileRole">{activeMember.short}</span>
+              <span className="profileRole">{activeMember.short}</span>
 
-        <h2>{activeMember.name}</h2>
-        <h4>{activeMember.role}</h4>
+              <h2>{activeMember.name}</h2>
+              <h4>{activeMember.role}</h4>
 
-        <div className="profileBody">
-          <p>{activeMember.desc}</p>
-        </div>
+              <div className="profileBody">
+                <p>{activeMember.desc}</p>
+              </div>
 
-      </motion.div>
-    </motion.div>
-  )}
-</AnimatePresence>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }
