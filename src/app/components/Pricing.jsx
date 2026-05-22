@@ -15,7 +15,8 @@ const Pricing = () => {
   const pricingPlans = [
     {
       title: "Starter",
-      price: "$299",
+      priceTag: "$299",
+      price: 299,
       desc: "Best for small businesses",
       features: [
         "1-3 Page Website",
@@ -29,7 +30,8 @@ const Pricing = () => {
 
     {
       title: "Professional",
-      price: "$799",
+      priceTag: "$799",
+      price: 799,
       desc: "Perfect for growing brands",
       features: [
         "5-10 Page Website",
@@ -44,7 +46,8 @@ const Pricing = () => {
 
     {
       title: "Enterprise",
-      price: "$1499+",
+      priceTag: "$1499+",
+      price: 1499,
       desc: "For large scale businesses",
       features: [
         "Custom Web App",
@@ -59,7 +62,8 @@ const Pricing = () => {
 
     {
       title: "SEO Growth",
-      price: "$399/mo",
+      priceTag: "$399/mo",
+      price: 399,
       desc: "Improve rankings & organic traffic",
       features: [
         "Keyword Research",
@@ -74,7 +78,8 @@ const Pricing = () => {
 
     {
       title: "Meta Ads Pro",
-      price: "$499/mo",
+      priceTag: "$499/mo",
+      price: 499,
       desc: "High converting Facebook & Instagram ads",
       features: [
         "Meta Ads Campaign Setup",
@@ -89,7 +94,8 @@ const Pricing = () => {
 
     {
       title: "Google Ads Expert",
-      price: "$599/mo",
+      priceTag: "$599/mo",
+      price: 599,
       desc: "Generate leads through Google Ads",
       features: [
         "Google Search Ads",
@@ -104,7 +110,8 @@ const Pricing = () => {
 
     {
       title: "Business Management",
-      price: "$899/mo",
+      priceTag: "$899/mo",
+      price: 899,
       desc: "Complete digital business management",
       features: [
         "Client Management",
@@ -119,7 +126,8 @@ const Pricing = () => {
 
     {
       title: "Social Media Growth",
-      price: "$349/mo",
+      priceTag: "$349/mo",
+      price: 349,
       desc: "Grow your brand on social platforms",
       features: [
         "Content Creation",
@@ -134,7 +142,8 @@ const Pricing = () => {
 
     {
       title: "E-Commerce Boost",
-      price: "$999",
+      priceTag: "$999",
+      price: 999,
       desc: "Powerful online store solutions",
       features: [
         "Custom Online Store",
@@ -161,7 +170,8 @@ const Pricing = () => {
   const initialValues = {
     name: "",
     email: "",
-    package: selectedPackage?.packageName || ""
+    package: selectedPackage?.packageName || "",
+    priceTag: selectedPackage?.priceTag || ""
   }
 
   const validationSchema = Yup.object({
@@ -206,39 +216,47 @@ const Pricing = () => {
   const services = [
   {
     title: "Business Development",
-    price: "$300/month",
+    priceTag: "$300/month",
+    price: 300
   },
   {
     title: "UI/UX Design",
-    price: "$200 - $800",
+    priceTag: "$200 - $800",
+    price: 400
   },
   {
     title: "Graphic Design & Branding",
-    price: "$100 - $700",
+    priceTag: "$100 - $700",
+    price: 350
   },
   {
     title: "Video Ads & Editing",
-    price: "$150 - $1000",
+    priceTag: "$150 - $1000",
+    price: 500
   },
   {
     title: "Social Media Content Design",
-    price: "$100 - $500",
+    priceTag: "$100 - $500",
+    price: 300
   },
   {
     title: "AI Chatbots & AI Agents",
-    price: "$500 - $3000",
+    priceTag: "$500 - $3000",
+    price: 1500
   },
   {
     title: "Automation Solutions",
-    price: "$300 - $2000",
+    priceTag: "$300 - $2000",
+    price: 1000
   },
   {
     title: "Custom Software",
-    price: "$1000+",
+    priceTag: "$1000+",
+    price: 1000
   },
 ]
-  const handleAdditional = (title, price) => {
-    const addtionalServices = {title, price, packageName: `${title} - ${price}`}
+  const handleAdditional = (title, priceTag) => {
+    const addtionalServices = {title, priceTag, packageName: `${title} - ${priceTag}`}
     setSelectedPackage(addtionalServices)
     localStorage.setItem("package-details", JSON.stringify(addtionalServices))
     setIsPackageSelect(true)
@@ -254,25 +272,31 @@ const Pricing = () => {
           initialValues={initialValues}
           validationSchema={validationSchema}
           onSubmit={onSubmit}
-        >
-          <Form ref={formRef}>
-            <div className="inputs-div">
+          >
+          <Form ref={formRef} className='form'>
+          <h1>Get Started</h1>
+            <div className="inputs-pkg-div">
 
-              <div className="input">
+              <div className="pkg-input">
                 <Field type="text" name="name" className="input-field-pkg" placeholder=" " />
                 <label className='label'>Your Name</label>
                 <ErrorMessage name='name' component="div" className='error' />
               </div>
 
-              <div className="input">
+              <div className="pkg-input">
                 <Field type="email" name="email" className="input-field-pkg" placeholder="" />
                 <label className='label'>Your Email</label>
                 <ErrorMessage name='email' component="div" className='error' />
               </div>
 
-              <div className="input">
+              <div className="pkg-input">
                 <Field type="text" name="package" className="input-field-pkg" placeholder=" " readOnly />
                 <label className='label'>Selected Package</label>
+              </div>
+
+              <div className="pkg-input">
+                <Field type="text" name="priceTag" id="priceTag" className="input-field-pkg" placeholder=" " readOnly />
+                <label className='label'>Selected Package Price</label>
               </div>
 
             </div>
@@ -312,7 +336,7 @@ const Pricing = () => {
               {plan.popular && <span className="badge">Most Popular</span>}
 
               <h3>{plan.title}</h3>
-              <h2>{plan.price}</h2>
+              <h2>{plan.priceTag}</h2>
               <p>{plan.desc}</p>
 
               <ul>
@@ -333,9 +357,9 @@ const Pricing = () => {
 
   <div className="table">
   {services.map((service, index) => (
-    <div key={index} onClick={() => handleAdditional(service.title, service.price)}>
+    <div key={index} onClick={() => handleAdditional(service.title, service.priceTag)}>
       <span>{service.title}</span>
-      <span>{service.price}</span>
+      <span>{service.priceTag}</span>
     </div>
   ))}
 </div>
