@@ -207,31 +207,31 @@ const Pricing = () => {
     localStorage.removeItem("package-details")
   }
 const handleCheckout = async (plan) => {
-  try {
-    setLoading(true);
+  // try {
+  //   setLoading(true);
 
-    const res = await fetch("/api/checkout", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        planKey: plan.title.toLowerCase(),
-      }),
-    });
+  //   const res = await fetch("/api/checkout", {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify({
+  //       planKey: plan.title.toLowerCase(),
+  //     }),
+  //   });
 
-    const data = await res.json();
+  //   const data = await res.json();
 
-    if (data?.url) {
-      window.location.href = data.url;
-    } else {
-      alert("Stripe session not created");
-    }
-  } catch (err) {
-    console.error(err);
-  } finally {
-    setLoading(false);
-  }
+  //   if (data?.url) {
+  //     window.location.href = data.url;
+  //   } else {
+  //     alert("Stripe session not created");
+  //   }
+  // } catch (err) {
+  //   console.error(err);
+  // } finally {
+  //   setLoading(false);
+  // }
 };
   const handleSelect = (plan) => {
     setSelectedPackage(plan)
