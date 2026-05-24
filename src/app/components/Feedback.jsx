@@ -26,7 +26,7 @@ const Feedback = ({ setLoading }) => {
       setLoading(true)
 
       await emailjs.sendForm(
-        'service_3xs9iqc',
+        'service_gogxtrk',
         'template_u09iiy3',
         form.current,
         { publicKey: '5NYUNk6egOmHicaIZ' }

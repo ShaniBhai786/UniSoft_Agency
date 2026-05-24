@@ -242,13 +242,25 @@ const handleCheckout = async (plan) => {
         planId: plan.id.toLowerCase(),
       }),
     });
-
+    await emailjs.sendForm(
+      'service_x7b7qei',
+      'template_0ds7q6l',
+      formRef.current,
+      '5NYUNk6egOmHicaIZ'
+    )
+    alert(`Request Submitted Successfully`)
     const data = await res.json();
 
     if (data?.url) {
       window.location.href = data.url;
     } else {
       alert("Stripe session not created");
+      console.error("Email sending error:", error)
+      alert(
+        error?.text ||
+        error?.message ||
+        JSON.stringify(error)
+      )
     }
   } catch (err) {
     console.error(err);
