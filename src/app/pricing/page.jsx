@@ -12,6 +12,7 @@ const page = () => {
   const [isPackageSelect, setIsPackageSelect] = useState(false)
   const formRef = useRef(null)
   const [loading, setLoading] = useState(false)
+  const [packagePlane, setPackagePlane] = useState(null)
 
   const pricingPlans = [
     {
@@ -224,6 +225,7 @@ const page = () => {
     }
     finally {
       setLoading(false)
+      handleCheckout(packagePlane)
     }
     resetForm()
     setSelectedPackage(null)
@@ -242,25 +244,13 @@ const handleCheckout = async (plan) => {
         planId: plan.id.toLowerCase(),
       }),
     });
-    await emailjs.sendForm(
-      'service_x7b7qei',
-      'template_0ds7q6l',
-      formRef.current,
-      '5NYUNk6egOmHicaIZ'
-    )
-    alert(`Request Submitted Successfully`)
+    
     const data = await res.json();
 
     if (data?.url) {
       window.location.href = data.url;
     } else {
       alert("Stripe session not created");
-      console.error("Email sending error:", error)
-      alert(
-        error?.text ||
-        error?.message ||
-        JSON.stringify(error)
-      )
     }
   } catch (err) {
     console.error(err);
@@ -323,6 +313,13 @@ const handleCheckout = async (plan) => {
     setSelectedPackage(addtionalServices)
     localStorage.setItem("package-details", JSON.stringify(addtionalServices))
     setIsPackageSelect(true)
+  }
+  const handlePackage = (title, priceTag, plan) => {
+    const addtionalServices = { title, priceTag, packageName: `${title}` }
+    setSelectedPackage(addtionalServices)
+    localStorage.setItem("package-details", JSON.stringify(addtionalServices))
+    setIsPackageSelect(true)
+    setPackagePlane(plan)
   }
 
   return (
@@ -408,7 +405,7 @@ const handleCheckout = async (plan) => {
                 ))}
               </ul>
 
-              <button onClick={() => handleCheckout(plan)}>
+              <button onClick={() => handlePackage(plan.title, plan.price, plan)}>
                 {plan.title === "Enterprise" ? "Contact Us" : "Get Started"}
               </button>
             </motion.div>
