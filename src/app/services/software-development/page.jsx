@@ -1,51 +1,137 @@
-"use client"
-import React, {useEffect} from "react";
+import Link from "next/link";
 import SeoSchema from "../../components/SeoSchema";
 import "../../services.css";
+
 import { softwareSchema } from "../../lib/schema.js";
+import BackButton from "@/app/components/BackButton";
+
+export const metadata = {
+  title: "Custom Software Development Services | UniSoft",
+  description:
+    "Professional software development services by UniSoft including SaaS applications, enterprise systems, APIs, automation solutions, and scalable business software.",
+};
 
 export default function Page() {
-  useEffect(() => {
-    document.title = "Custom Software Development Services | UniSoft Agency";
-    window.scrollTo(0, 0);
-  })
+
   return (
-    <section className="servicePage">
-      <SeoSchema schema={softwareSchema} /> 
-      <div className="serviceContainer">
+    <>
+      {/* SEO SCHEMA */}
+      <SeoSchema schema={softwareSchema} />
+      <section className="servicePage">
+      <BackButton />
 
-        <div className="serviceHero">
-          <span className="serviceBadge">SOFTWARE DEVELOPMENT</span>
+        <div className="serviceContainer">
 
-          <h1>Custom Software Development Services</h1>
+          {/* HERO */}
+          <div className="serviceHero">
 
-          <p>
-            We build scalable SaaS, APIs, enterprise software,
-            and business automation systems.
-          </p>
-        </div>
+            <span className="serviceBadge">
+              SOFTWARE DEVELOPMENT 💻
+            </span>
 
-        <div className="serviceSection">
+            <h1>
+              Custom Software Development Solutions for Modern Businesses
+            </h1>
 
-          <div className="serviceBox">
-            <i className="ri-code-s-slash-line serviceIcon"></i>
-            <h2>What We Build</h2>
+            <p>
+              UniSoft builds powerful, scalable, and secure software
+              solutions designed to streamline operations, automate
+              workflows, and accelerate business growth in the digital era.
+            </p>
 
-            <ul className="serviceList">
-              <li>SaaS Applications</li>
-              <li>Enterprise Systems</li>
-              <li>Custom APIs</li>
-              <li>Automation Tools</li>
-            </ul>
+          </div>
+
+          {/* SERVICES GRID */}
+          <div className="serviceSection">
+
+            {/* BOX 1 */}
+            <div className="serviceBox">
+
+              <i className="ri-code-s-slash-line serviceIcon"></i>
+
+              <h2>Custom Software Solutions</h2>
+
+              <ul className="serviceList">
+                <li>Enterprise software systems</li>
+                <li>Custom business applications</li>
+                <li>Cloud-based solutions</li>
+                <li>Scalable architecture design</li>
+              </ul>
+
+            </div>
+
+            {/* BOX 2 */}
+            <div className="serviceBox">
+
+              <i className="ri-stack-line serviceIcon"></i>
+
+              <h2>SaaS Application Development</h2>
+
+              <ul className="serviceList">
+                <li>Modern SaaS platforms</li>
+                <li>Subscription-based systems</li>
+                <li>User authentication & dashboards</li>
+                <li>API-powered applications</li>
+              </ul>
+
+            </div>
+
+            {/* BOX 3 */}
+            <div className="serviceBox">
+
+              <i className="ri-links-line serviceIcon"></i>
+
+              <h2>API & System Integration</h2>
+
+              <ul className="serviceList">
+                <li>REST API development</li>
+                <li>Third-party integrations</li>
+                <li>Payment gateway integration</li>
+                <li>Automation workflow systems</li>
+              </ul>
+
+            </div>
+
+            {/* BOX 4 */}
+            <div className="serviceBox">
+
+              <i className="ri-cpu-line serviceIcon"></i>
+
+              <h2>Automation & AI Systems</h2>
+
+              <ul className="serviceList">
+                <li>Business automation tools</li>
+                <li>AI-powered workflows</li>
+                <li>CRM & ERP integrations</li>
+                <li>Process optimization systems</li>
+              </ul>
+
+            </div>
+
+          </div>
+
+          {/* CTA SECTION */}
+          <div className="serviceBottomArea">
+
+            <h3>
+              Ready to Build Your Next Software Solution?
+            </h3>
+
+            <p>
+              Let UniSoft transform your ideas into scalable,
+              high-performance digital products.
+            </p>
+
+            <Link href="/contact" className="serviceCTA">
+              Get Free Consultation
+              <i className="ri-arrow-right-line"></i>
+            </Link>
+
           </div>
 
         </div>
 
-        <a href="/contact" className="serviceCTA">
-          Get Free Consultation <i className="ri-arrow-right-line"></i>
-        </a>
-
-      </div>
-    </section>
+      </section>
+    </>
   );
 }

@@ -1,6 +1,9 @@
 import SeoSchema from "../../components/SeoSchema";
-import { automationSchema } from "@/app/lib/schema";
+import { automationSchema } from "../..//lib/schema";
 import "../../services.css"
+import BackButton from "@/app/components/BackButton";
+import Link from "next/link";
+import FramerMotion from "@/app/components/FramerMotion";
 
 export const metadata = {
   title: "Automation Solutions | UniSoft",
@@ -13,46 +16,47 @@ export default function Page() {
     <>
       {/* SEO SCHEMA */}
       <SeoSchema schema={automationSchema} />
-
       <section className="servicePage">
+        <BackButton />
         <div className="serviceContainer">
 
           {/* HERO */}
-          <div className="serviceHero">
-            <span className="serviceBadge">
-              AUTOMATION SOLUTIONS ⚙️
-            </span>
+            <FramerMotion className="serviceHero">
+              <span className="serviceBadge">
+                AUTOMATION SOLUTIONS ⚙️
+              </span>
+              <h1>
+                Smart Business Automation & AI Workflow Systems
+              </h1>
 
-            <h1>
-              Smart Business Automation & AI Workflow Systems
-            </h1>
-
-            <p>
-              We build intelligent automation systems that reduce manual work,
-              improve efficiency, and scale your business operations using AI
-              and modern cloud technologies.
-            </p>
-          </div>
+              <p>
+                We build intelligent automation systems that reduce manual work,
+                improve efficiency, and scale your business operations using AI
+                and modern cloud technologies.
+              </p>
+            </FramerMotion>
 
           {/* CONTENT GRID */}
           <div className="serviceSection">
 
             {/* BOX 1 */}
-            <div className="serviceBox">
-              <i className="ri-cpu-line serviceIcon"></i>
+            <Link href="/pricing">
+              <FramerMotion className="serviceBox">
+                <i className="ri-cpu-line serviceIcon"></i>
 
-              <h2>AI-Powered Automation</h2>
+                <h2>AI-Powered Automation</h2>
 
-              <ul className="serviceList">
-                <li>AI workflow automation</li>
-                <li>Smart decision systems</li>
-                <li>Task automation bots</li>
-                <li>Data processing automation</li>
-              </ul>
-            </div>
+                <ul className="serviceList">
+                  <li>AI workflow automation</li>
+                  <li>Smart decision systems</li>
+                  <li>Task automation bots</li>
+                  <li>Data processing automation</li>
+                </ul>
+              </FramerMotion>
+            </Link>
 
             {/* BOX 2 */}
-            <div className="serviceBox">
+            <FramerMotion className="serviceBox">
               <i className="ri-settings-3-line serviceIcon"></i>
 
               <h2>Business Process Optimization</h2>
@@ -63,10 +67,10 @@ export default function Page() {
                 <li>Lead management systems</li>
                 <li>Workflow optimization</li>
               </ul>
-            </div>
+            </FramerMotion>
 
             {/* BOX 3 */}
-            <div className="serviceBox">
+            <FramerMotion className="serviceBox">
               <i className="ri-cloud-line serviceIcon"></i>
 
               <h2>Cloud Integration Systems</h2>
@@ -77,15 +81,17 @@ export default function Page() {
                 <li>Real-time syncing systems</li>
                 <li>Third-party integrations</li>
               </ul>
-            </div>
+            </FramerMotion>
 
           </div>
 
           {/* CTA */}
-          <a href="/contact" className="serviceCTA">
-            Automate Your Business Now
-            <i className="ri-arrow-right-line"></i>
-          </a>
+          <FramerMotion>
+            <Link href="/contact" className="serviceCTA">
+              Automate Your Business Now
+              <i className="ri-arrow-right-line"></i>
+            </Link>
+          </FramerMotion>
 
         </div>
       </section>

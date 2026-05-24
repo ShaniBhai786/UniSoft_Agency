@@ -1,3 +1,4 @@
+import BackButton from "@/app/components/BackButton";
 import SeoSchema from "../../components/SeoSchema";
 import { uiuxSchema } from "../../lib/schema.js";
 import "../../services.css"
@@ -15,6 +16,7 @@ export default function Page() {
       <SeoSchema schema={uiuxSchema} />
 
       <section className="servicePage">
+        <BackButton />
         <div className="serviceContainer">
 
           {/* HERO */}

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import BackButton from "../components/BackButton";
 
 export const metadata = {
   title: "Our Services | UniSoft",
@@ -48,6 +49,7 @@ const services = [
 export default function ServicesPage() {
   return (
     <section className="srvSection">
+      <BackButton />
       <div className="srvContainer">
 
         {/* HEADER */}

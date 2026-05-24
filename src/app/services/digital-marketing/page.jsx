@@ -1,5 +1,8 @@
+import BackButton from "@/app/components/BackButton";
 import SeoSchema from "../../components/SeoSchema";
 import { digitalMarketingSchema } from "@/app/lib/schema";
+import Link from "next/link";
+import FramerMotion from "@/app/components/FramerMotion";
 
 export const metadata = {
   title: "Digital Marketing Services | UniSoft",
@@ -14,10 +17,11 @@ export default function Page() {
       <SeoSchema schema={digitalMarketingSchema} />
 
       <section className="servicePage">
+        <BackButton />
         <div className="serviceContainer">
 
           {/* HERO */}
-          <div className="serviceHero">
+          <FramerMotion className="serviceHero">
             <span className="serviceBadge">
               DIGITAL MARKETING 🚀
             </span>
@@ -31,13 +35,14 @@ export default function Page() {
               paid ads, SEO, branding, and conversion optimization systems
               that bring real customers — not just traffic.
             </p>
-          </div>
+          </FramerMotion>
 
           {/* CONTENT GRID */}
           <div className="serviceSection">
 
             {/* BOX 1 */}
-            <div className="serviceBox">
+            <Link href="/pricing">
+            <FramerMotion className="serviceBox">
               <i className="ri-megaphone-line serviceIcon"></i>
 
               <h2>Performance Marketing</h2>
@@ -48,10 +53,12 @@ export default function Page() {
                 <li>Conversion optimization</li>
                 <li>Retargeting campaigns</li>
               </ul>
-            </div>
+            </FramerMotion>
+            </Link>
 
             {/* BOX 2 */}
-            <div className="serviceBox">
+            <Link href="/pricing">
+            <FramerMotion className="serviceBox">
               <i className="ri-bar-chart-2-line serviceIcon"></i>
 
               <h2>SEO & Organic Growth</h2>
@@ -62,10 +69,12 @@ export default function Page() {
                 <li>Technical SEO fixes</li>
                 <li>Local SEO growth</li>
               </ul>
-            </div>
+            </FramerMotion>
+            </Link>
 
             {/* BOX 3 */}
-            <div className="serviceBox">
+            <Link href="/pricing">
+            <FramerMotion className="serviceBox">
               <i className="ri-user-star-line serviceIcon"></i>
 
               <h2>Brand & Social Media</h2>
@@ -76,15 +85,18 @@ export default function Page() {
                 <li>Content strategy</li>
                 <li>Engagement growth</li>
               </ul>
-            </div>
+            </FramerMotion>
+            </Link>
 
           </div>
 
           {/* CTA */}
-          <a href="/contact" className="serviceCTA">
-            Grow Your Business Today
-            <i className="ri-arrow-right-line"></i>
-          </a>
+          <FramerMotion className="serviceCTA">
+            <Link href="/contact">
+              Grow Your Business Today
+              <i className="ri-arrow-right-line"></i>
+            </Link>
+          </FramerMotion>
 
         </div>
       </section>

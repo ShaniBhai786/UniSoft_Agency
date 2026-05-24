@@ -1,5 +1,6 @@
 import SeoSchema from "@/app/components/SeoSchema";
 import { seoSchema } from "../../lib/schema.js";
+import BackButton from "@/app/components/BackButton.jsx";
 
 export const metadata = {
   title: "SEO Services Agency | UniSoft",
@@ -12,10 +13,9 @@ export default function Page() {
     <>
       {/* SEO SCHEMA */}
       <SeoSchema schema={seoSchema} />
-
       <section className="servicePage">
+        <BackButton />
         <div className="serviceContainer">
-
           {/* HERO */}
           <div className="serviceHero">
             <span className="serviceBadge">

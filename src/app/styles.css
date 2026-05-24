@@ -10,6 +10,7 @@
   text-decoration: none;
   font-family: "Bpmf Huninn", Times, serif;
   color: white;
+  scroll-behavior: smooth;
 }
 .hamBurger{
   display: none;
@@ -1584,7 +1585,7 @@
 
 /* HEADER */
 .teamsHeader {
-  text-align: center;
+  text-align: left;
   max-width: 900px;
   margin: auto auto 80px;
 }
@@ -1603,9 +1604,9 @@
 
 .teamsHeader h1 {
   color: white;
-  font-size: 4rem;
+  font-size: 3rem;
   line-height: 1.15;
-  margin-bottom: 25px;
+  margin-bottom: 0px;
   font-weight: 800;
 }
 
@@ -2902,7 +2903,7 @@
 ================================ */
 
 .srvSection {
-  padding: 60px 7%;
+  padding: 100px 7%;
   background:
     radial-gradient(circle at top left, rgba(0,140,255,0.12), transparent 40%),
     radial-gradient(circle at bottom right, rgba(120,0,255,0.12), transparent 40%),
@@ -2925,7 +2926,7 @@
 
 .srvHeader {
   max-width: 900px;
-  margin-bottom: 80px;
+  margin-bottom:30px;
 }
 
 .srvBadge {
@@ -2941,7 +2942,7 @@
 }
 
 .srvHeader h1 {
-  font-size: 3.8rem;
+  font-size: 3rem;
   line-height: 1.1;
   font-weight: 900;
   margin-bottom: 20px;

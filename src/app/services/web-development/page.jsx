@@ -1,3 +1,4 @@
+import BackButton from "@/app/components/BackButton";
 import SeoSchema from "../../components/SeoSchema";
 import { webDevelopmentSchema } from "../../lib/schema";
 import "../../services.css"
@@ -15,6 +16,7 @@ export default function Page() {
       <SeoSchema schema={webDevelopmentSchema} />
 
       <section className="servicePage">
+        <BackButton />
         <div className="serviceContainer">
 
           {/* HERO */}
