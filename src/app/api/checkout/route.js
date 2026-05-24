@@ -46,25 +46,25 @@ const plans = {
   },
 
   metaadspro: {
-    priceId: "price_XXXXXXXXXXXXXXXX",
+    priceId: "price_1TafzeGuPNLWj41SSMmZJlQJ",
     mode: "subscription",
     name: "Meta Ads Pro",
   },
 
   googleadsexpert: {
-    priceId: "price_XXXXXXXXXXXXXXXX",
+    priceId: "price_1Tag2kGuPNLWj41S4SimDnLK",
     mode: "subscription",
     name: "Google Ads Expert",
   },
 
   businessmanagement: {
-    priceId: "price_XXXXXXXXXXXXXXXX",
+    priceId: "price_1Tag4vGuPNLWj41SPp8sISDg",
     mode: "subscription",
     name: "Business Management",
   },
 
   socialmediagrowth: {
-    priceId: "price_XXXXXXXXXXXXXXXX",
+    priceId: "price_1Tag6lGuPNLWj41SvepnFMl8",
     mode: "subscription",
     name: "Social Media Growth",
   },
