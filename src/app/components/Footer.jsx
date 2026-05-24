@@ -1,131 +1,96 @@
-import React from "react";
-import Link from "next/link";
+import React from "react"
+import Link from "next/link"
 
-function Footer() {
+export default function Footer() {
+  const year = new Date().getFullYear()
+
+  const quickLinks = [
+    { name: "Home", path: "/", icon: "fa-house" },
+    { name: "About", path: "/about", icon: "fa-user" },
+    { name: "Services", path: "/services", icon: "fa-briefcase" },
+    { name: "Teams", path: "/teams", icon: "fa-users" },
+    { name: "Contact", path: "/contact", icon: "fa-phone" },
+    { name: "Pricing", path: "/pricing", icon: "fa-tags" },
+  ]
+
+  const services = [
+    "Web Development",
+    "App Development",
+    "SEO Optimization",
+    "Digital Marketing",
+    "Business Automation",
+  ]
+
+  const trustBadges = [
+    { name: "Google Ads Certified", icon: "fa-google", type: "fa-brands" },
+    { name: "Meta Ads Specialist", icon: "fa-facebook", type: "fa-brands" },
+    { name: "SEO Expert", icon: "fa-magnifying-glass-chart", type: "fa-solid" },
+    { name: "MERN Stack Developer", icon: "fa-react", type: "fa-brands" },
+    { name: "Stripe Payments Secured", icon: "fa-credit-card", type: "fa-solid" },
+  ]
+
   return (
     <footer className="footer">
-      <div className="trust-partise">
-        <h2>Supporting Businesses Worldwide with Digital Solutions</h2>
+      <div className="footer-top">
 
-        <p>
-          Certified Google Partner, Meta Ads Specialist, SEO Experts,
-          MERN Stack Developers, and Digital Growth Professionals helping
-          businesses scale globally.
-        </p>
-
-        <div className="trust-badges">
-
-  <div className="trust-badge">
-    <i className="fa-brands fa-google badge-icon"></i>
-    <span>Google Certified</span>
-  </div>
-
-  <div className="trust-badge">
-    <i className="fa-brands fa-meta badge-icon"></i>
-    <span>Meta Ads Specialist</span>
-  </div>
-
-  <div className="trust-badge">
-    <i className="fa-solid fa-magnifying-glass-chart badge-icon"></i>
-    <span>SEO Specialist</span>
-  </div>
-
-  <div className="trust-badge">
-    <i className="fa-brands fa-react badge-icon"></i>
-    <span>MERN Stack</span>
-  </div>
-
-  <div className="trust-badge">
-    <i className="fa-solid fa-code badge-icon"></i>
-    <span>Custom Web Apps</span>
-  </div>
-
-  <div className="trust-badge">
-    <i className="fa-solid fa-globe badge-icon"></i>
-    <span>Global Clients</span>
-  </div>
-
-  <div className="trust-badge">
-    <i className="fa-solid fa-mobile-screen-button badge-icon"></i>
-    <span>Responsive Design</span>
-  </div>
-
-  <div className="trust-badge">
-    <i className="fa-solid fa-server badge-icon"></i>
-    <span>Backend Development</span>
-  </div>
-
-  <div className="trust-badge">
-    <i className="fa-solid fa-bullhorn badge-icon"></i>
-    <span>Digital Marketing</span>
-  </div>
-
-  <div className="trust-badge">
-    <i className="fa-solid fa-chart-line badge-icon"></i>
-    <span>Business Growth</span>
-  </div>
-
-  <div className="trust-badge">
-    <i className="fa-solid fa-cart-shopping badge-icon"></i>
-    <span>E-Commerce Solutions</span>
-  </div>
-
-  <div className="trust-badge">
-    <i className="fa-brands fa-wordpress badge-icon"></i>
-    <span>WordPress Expert</span>
-  </div>
-
-</div>
-      </div>
-      <div className="footer-container">
-
-        <div className="footer-section">
-          <h2 className="logo">UniSoft</h2>
+        <div className="brand">
+          <h2>UniSoft</h2>
           <p>
-            UniSoft provides professional software development, website design, SEO services, digital marketing, and business automation solutions to help companies grow faster and smarter in the digital world.
+            We build high-performance websites, scalable web apps, and automation systems that help businesses grow globally.
           </p>
-        </div>
 
-        <div className="footer-section">
-          <h3>Quick Links</h3>
-          <ul>
-            <li><Link href="/">Home</Link></li>
-            <li><Link href="/tech">Tech</Link></li>
-            <li><Link href="/school">Institute</Link></li>
-            <li><Link href="/contact">Contact</Link></li>
-          </ul>
-        </div>
-
-        <div className="footer-section">
-          <h3>Services</h3>
-          <ul>
-            <li>Web Development</li>
-            <li>App Development</li>
-            <li>Graphic Designing</li>
-            <li>IT Training</li>
-          </ul>
-        </div>
-
-        <div className="footer-section">
-          <h3>Contact</h3>
-          <p> <i className="fa fa-location-dot"></i> Wyoming, USA</p>
-          <p><i className="fa fa-phone"></i> +1 (928) 4383214</p>
-          <p><i className="fa fa-envelope"></i> unisoftpvt@gmail.com</p>
-
-          <div className="social-icons">
-            <a href="https://www.facebook.com/share/1FkdLuFvcd/" target="_main" className="icons"><i className="fa-brands fa-facebook"></i></a>
-            <a href="#" className="icons"><i className="fa-brands fa-linkedin"></i></a>
-            <a href="#" className="icons"><i className="fa-brands fa-instagram"></i></a>
-            <a href="https://wa.me/19284383214" target="_main" className="icons"><i className="fa-brands fa-whatsapp"></i></a>
+          <div className="trust-tags">
+            {trustBadges.map((item, i) => (
+              <span key={i}>
+                <i className={`${item.type} ${item.icon}`}></i> {item.name}
+              </span>
+            ))}
           </div>
         </div>
+
+        <div className="column">
+          <h3>Quick Links</h3>
+          {quickLinks.map((link, i) => (
+            <Link key={i} href={link.path}>
+              <i className={`fa-solid ${link.icon}`}></i> {link.name}
+            </Link>
+          ))}
+        </div>
+
+        <div className="column">
+          <h3>Services</h3>
+          {services.map((service, i) => (
+            <span key={i}>
+              <i className="fa-solid fa-check"></i> {service}
+            </span>
+          ))}
+        </div>
+
+        <div className="column">
+          <h3>Contact</h3>
+
+          <p><i className="fa-solid fa-location-dot"></i> Wyoming, USA</p>
+          <p><i className="fa-solid fa-phone"></i> +1 (928) 4383214</p>
+          <p><i className="fa-solid fa-envelope"></i> unisoftpvt@gmail.com</p>
+
+          <div className="social">
+            <a href="#"><i className="fa-brands fa-facebook"></i></a>
+            <a href="#"><i className="fa-brands fa-instagram"></i></a>
+            <a href="#"><i className="fa-brands fa-linkedin"></i></a>
+            <a href="https://wa.me/19284383214">
+              <i className="fa-brands fa-whatsapp"></i>
+            </a>
+          </div>
+        </div>
+
       </div>
 
       <div className="footer-bottom">
-        <p>© {new Date().getFullYear()} UniSoftpvt. All Rights Reserved.</p>
+        <p>© {year} UniSoft. All Rights Reserved.</p>
+        <p className="stripe">
+          <i className="fa-brands fa-stripe"></i> Payments secured with Stripe & Google Pay
+        </p>
       </div>
     </footer>
-  );
+  )
 }
-
-export default Footer;

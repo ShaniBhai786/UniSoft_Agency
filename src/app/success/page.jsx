@@ -1,7 +1,7 @@
 "use client"
 
 import { motion } from "framer-motion"
-import "./success.css"
+import "../success.css"
 
 export default function SuccessPage() {
     return (
