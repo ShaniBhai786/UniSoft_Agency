@@ -78,7 +78,7 @@ const page = () => {
     },
 
     {
-      id:"seo-growth",
+      id:"seogrowth",
       title: "SEO Growth",
       priceTag: "$199/mo",
       price: 199,
@@ -95,7 +95,7 @@ const page = () => {
     },
 
     {
-      id:"meta-ads-pro",
+      id:"metaadspro",
       title: "Meta Ads Pro",
       priceTag: "$249/mo",
       price: 249,
@@ -112,7 +112,7 @@ const page = () => {
     },
 
     {
-      id:"google-ads-expert",
+      id:"googleadsexpert",
       title: "Google Ads Expert",
       priceTag: "$299/mo",
       price: 299,
@@ -129,7 +129,7 @@ const page = () => {
     },
 
     {
-      id:"business-management",
+      id:"businessmanagement",
       title: "Business Management",
       priceTag: "$399/mo",
       price: 399,
@@ -146,7 +146,7 @@ const page = () => {
     },
 
     {
-      id:"social-media-growth",
+      id:"socialmediagrowth",
       title: "Social Media Growth",
       priceTag: "$179/mo",
       price: 179,
@@ -163,9 +163,9 @@ const page = () => {
     },
 
     {
-      id:"ecommerce-boost",
+      id:"ecommerce",
       title: "E-Commerce Boost",
-      priceTag: "$799",
+      priceTag: "$799", 
       price: 799,
       desc: "Powerful online store solutions",
       features: [
@@ -239,7 +239,7 @@ const handleCheckout = async (plan) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        planId: plan.title.toLowerCase(),
+        planId: plan.id.toLowerCase(),
       }),
     });
 

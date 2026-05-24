@@ -5,67 +5,68 @@ const plans = {
   // -------------------------
   // ONE-TIME PACKAGES
   // -------------------------
+  free: {
+    amount: 100,
+    mode: "payment",
+    name: "Free Plan",
+  },
+
   starter: {
-    amount: 14900, // $149
+    amount: 14900,
     mode: "payment",
     name: "Starter Plan",
   },
 
   professional: {
-    amount: 39900, // $399
+    amount: 39900,
     mode: "payment",
     name: "Professional Plan",
   },
 
-  free: {
-    amount: 100, // $1 (for testing)
+  enterprise: {
+    amount: 89900,
     mode: "payment",
-    name: "Free Trial",
+    name: "Enterprise Plan",
   },
 
   ecommerce: {
-    amount: 79900, // $799
+    amount: 79900,
     mode: "payment",
     name: "E-Commerce Boost",
   },
 
   // -------------------------
-  // SUBSCRIPTIONS (MONTHLY)
+  // SUBSCRIPTIONS (FIXED)
   // -------------------------
 
-  "seo-growth": {
-    priceId: "price_xxxxxxxxxxxxx",
+  seogrowth: {
+    priceId: "price_1Taaw2GuPNLWj41S9LIsasUb",
     mode: "subscription",
     name: "SEO Growth Plan",
-    amount: 19900, // $199/mo (more competitive)
   },
 
-  "meta-ads-pro": {
-    priceId: "price_xxxxxxxxxxxxx",
+  metaadspro: {
+    priceId: "price_XXXXXXXXXXXXXXXX",
     mode: "subscription",
     name: "Meta Ads Pro",
-    amount: 24900, // $249/mo
   },
 
-  "google-ads-expert": {
-    priceId: "price_xxxxxxxxxxxxx",
+  googleadsexpert: {
+    priceId: "price_XXXXXXXXXXXXXXXX",
     mode: "subscription",
     name: "Google Ads Expert",
-    amount: 29900, // $299/mo
   },
 
-  "business-management": {
-    priceId: "price_xxxxxxxxxxxxx",
+  businessmanagement: {
+    priceId: "price_XXXXXXXXXXXXXXXX",
     mode: "subscription",
     name: "Business Management",
-    amount: 39900, // $399/mo
   },
 
-  "social-media-growth": {
-    priceId: "price_xxxxxxxxxxxxx",
+  socialmediagrowth: {
+    priceId: "price_XXXXXXXXXXXXXXXX",
     mode: "subscription",
     name: "Social Media Growth",
-    amount: 17900, // $179/mo (entry-level hook)
   },
 };
 
