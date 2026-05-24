@@ -15,9 +15,23 @@ const page = () => {
 
   const pricingPlans = [
     {
+      id: "free",
+      title: "Free",
+      priceTag: "$1",
+      price: 1,
+      desc: "Best for small businesses",
+      features: [
+        "1-3 Page Website",
+        "Responsive Design",
+      ],
+      packageName: "Starter Package",
+      popular: false
+    },
+    {
+      id:"starter",
       title: "Starter",
-      priceTag: "$299",
-      price: 299,
+      priceTag: "$149",
+      price: 149,
       desc: "Best for small businesses",
       features: [
         "1-3 Page Website",
@@ -30,9 +44,10 @@ const page = () => {
     },
 
     {
+      id:"professional",
       title: "Professional",
-      priceTag: "$799",
-      price: 799,
+      priceTag: "$399",
+      price: 399,
       desc: "Perfect for growing brands",
       features: [
         "5-10 Page Website",
@@ -46,9 +61,10 @@ const page = () => {
     },
 
     {
+      id:"enterprise",
       title: "Enterprise",
-      priceTag: "$1499+",
-      price: 1499,
+      priceTag: "$899+",
+      price: 899,
       desc: "For large scale businesses",
       features: [
         "Custom Web App",
@@ -62,9 +78,10 @@ const page = () => {
     },
 
     {
+      id:"seo-growth",
       title: "SEO Growth",
-      priceTag: "$399/mo",
-      price: 399,
+      priceTag: "$199/mo",
+      price: 199,
       desc: "Improve rankings & organic traffic",
       features: [
         "Keyword Research",
@@ -78,9 +95,10 @@ const page = () => {
     },
 
     {
+      id:"meta-ads-pro",
       title: "Meta Ads Pro",
-      priceTag: "$499/mo",
-      price: 499,
+      priceTag: "$249/mo",
+      price: 249,
       desc: "High converting Facebook & Instagram ads",
       features: [
         "Meta Ads Campaign Setup",
@@ -94,9 +112,10 @@ const page = () => {
     },
 
     {
+      id:"google-ads-expert",
       title: "Google Ads Expert",
-      priceTag: "$599/mo",
-      price: 599,
+      priceTag: "$299/mo",
+      price: 299,
       desc: "Generate leads through Google Ads",
       features: [
         "Google Search Ads",
@@ -110,9 +129,10 @@ const page = () => {
     },
 
     {
+      id:"business-management",
       title: "Business Management",
-      priceTag: "$899/mo",
-      price: 899,
+      priceTag: "$399/mo",
+      price: 399,
       desc: "Complete digital business management",
       features: [
         "Client Management",
@@ -126,9 +146,10 @@ const page = () => {
     },
 
     {
+      id:"social-media-growth",
       title: "Social Media Growth",
-      priceTag: "$349/mo",
-      price: 349,
+      priceTag: "$179/mo",
+      price: 179,
       desc: "Grow your brand on social platforms",
       features: [
         "Content Creation",
@@ -142,9 +163,10 @@ const page = () => {
     },
 
     {
+      id:"ecommerce-boost",
       title: "E-Commerce Boost",
-      priceTag: "$999",
-      price: 999,
+      priceTag: "$799",
+      price: 799,
       desc: "Powerful online store solutions",
       features: [
         "Custom Online Store",
@@ -217,7 +239,7 @@ const handleCheckout = async (plan) => {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        planKey: plan.title.toLowerCase(),
+        planId: plan.title.toLowerCase(),
       }),
     });
 
@@ -236,41 +258,49 @@ const handleCheckout = async (plan) => {
 };
   const services = [
   {
+    id: "business-development",
     title: "Business Development",
     priceTag: "$300/month",
     price: 300
   },
   {
+    id: "ui-ux-design",
     title: "UI/UX Design",
     priceTag: "$200 - $800",
     price: 400
   },
   {
+    id: "graphic-design-branding",
     title: "Graphic Design & Branding",
     priceTag: "$100 - $700",
     price: 350
   },
   {
+    id: "video-ads-editing",
     title: "Video Ads & Editing",
     priceTag: "$150 - $1000",
     price: 500
   },
   {
+    id: "social-media-content-design",
     title: "Social Media Content Design",
     priceTag: "$100 - $500",
     price: 300
   },
   {
+    id: "ai-chatbots-ai-agents",
     title: "AI Chatbots & AI Agents",
     priceTag: "$500 - $3000",
     price: 1500
   },
   {
+    id: "automation-solutions",
     title: "Automation Solutions",
     priceTag: "$300 - $2000",
     price: 1000
   },
   {
+    id: "custom-software",
     title: "Custom Software",
     priceTag: "$1000+",
     price: 1000
@@ -343,15 +373,6 @@ const handleCheckout = async (plan) => {
         </motion.div>
 
         <div className="pricing-cards">
-          <script async
-  src="https://js.stripe.com/v3/buy-button.js">
-</script>
-
-<stripe-buy-button
-  buy-button-id="buy_btn_1TZupGGuPNLWj41SwPIi68mq"
-  publishable-key="pk_live_51TLpI7GuPNLWj41Sggf2VtCWFtuh3Dr076DIFbKazLP4IlWEsGh2cSxROWfKt9OtwNubEnGZ5jxWSLgWJ81cfWDJ00LSmLNYkL"
->
-</stripe-buy-button>
           {pricingPlans.map((plan, index) => (
             <motion.div
               key={index}
