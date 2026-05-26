@@ -74,10 +74,16 @@ export default function Footer() {
           <p><i className="fa-solid fa-envelope"></i> unisoftpvt@gmail.com</p>
 
           <div className="social">
-            <a href="#"><i className="fa-brands fa-facebook"></i></a>
-            <a href="#"><i className="fa-brands fa-instagram"></i></a>
-            <a href="#"><i className="fa-brands fa-linkedin"></i></a>
-            <a href="https://wa.me/19284383214">
+            <a href="https://www.facebook.com/profile.php?id=61568003026936" target="_blank" rel="noopener noreferrer">
+              <i className="fa-brands fa-facebook"></i>
+            </a>
+            <a href="https://www.instagram.com/unisoftpvt" target="_blank" rel="noopener noreferrer">
+              <i className="fa-brands fa-instagram"></i>
+            </a>
+            <a href="#">
+              <i className="fa-brands fa-linkedin"></i>
+            </a>
+            <a href="https://wa.me/19284383214" target="_blank" rel="noopener noreferrer">
               <i className="fa-brands fa-whatsapp"></i>
             </a>
           </div>
