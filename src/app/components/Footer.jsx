@@ -88,7 +88,7 @@ export default function Footer() {
       <div className="footer-bottom">
         <p>© {year} UniSoft. All Rights Reserved.</p>
         <p className="stripe">
-          <i className="fa-brands fa-stripe"></i> Payments secured with Stripe & Google Pay
+          <i className="fa-brands fa-stripe"></i> Payments secured with Stripe.
         </p>
       </div>
     </footer>
