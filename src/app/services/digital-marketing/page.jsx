@@ -92,7 +92,7 @@ export default function Page() {
 
           {/* CTA */}
           <FramerMotion className="serviceCTA">
-            <Link href="/contact">
+            <Link href="/quote">
               Grow Your Business Today
               <i className="ri-arrow-right-line"></i>
             </Link>

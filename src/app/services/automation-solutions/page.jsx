@@ -87,7 +87,7 @@ export default function Page() {
 
           {/* CTA */}
           <FramerMotion>
-            <Link href="/contact" className="serviceCTA">
+            <Link href="/quote" className="serviceCTA">
               Automate Your Business Now
               <i className="ri-arrow-right-line"></i>
             </Link>

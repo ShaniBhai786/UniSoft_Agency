@@ -97,7 +97,7 @@ export default function Page() {
           </div>
 
           {/* CTA */}
-          <a href="/qoute" className="serviceCTA">
+          <a href="/quote" className="serviceCTA">
             Build My Website
             <i className="ri-arrow-right-line"></i>
           </a>

@@ -122,7 +122,7 @@ export default function Page() {
               high-performance digital products.
             </p>
 
-            <Link href="/contact" className="serviceCTA">
+            <Link href="/quote" className="serviceCTA">
               Get Free Consultation
               <i className="ri-arrow-right-line"></i>
             </Link>

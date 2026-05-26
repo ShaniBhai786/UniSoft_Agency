@@ -95,7 +95,7 @@ export default function Page() {
           </div>
 
           {/* CTA */}
-          <a href="/contact" className="serviceCTA">
+          <a href="/quote" className="serviceCTA">
             Improve My Google Ranking
             <i className="ri-arrow-right-line"></i>
           </a>

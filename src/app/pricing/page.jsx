@@ -17,7 +17,7 @@ const page = () => {
   const pricingPlans = [
     {
       id: "free",
-      title: "Free",
+      title: "Tester",
       priceTag: "$1",
       price: 1,
       desc: "Best for small businesses",
@@ -25,7 +25,7 @@ const page = () => {
         "1-3 Page Website",
         "Responsive Design",
       ],
-      packageName: "Starter Package",
+      packageName: "Tester Package",
       popular: false
     },
     {
@@ -223,6 +223,7 @@ const page = () => {
         JSON.stringify(error)
       )
     }
+    
     finally {
       setLoading(false)
       handleCheckout(packagePlane)
