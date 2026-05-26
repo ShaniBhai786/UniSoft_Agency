@@ -1,12 +1,14 @@
 import Link from "next/link";
 import BackButton from "../components/BackButton";
+import { servicesSchema } from "../lib/schema.js";
+import SeoSchema from "../components/SeoSchema";
 
 export const metadata = {
   title: "Our Services | UniSoft",
   description:
-    "UniSoft offers software development, SEO, web development, UI/UX design, automation, and digital marketing services to grow your business.",
+    "UniSoft offers software development, SEO services, web development, UI/UX design, automation, and digital marketing services to grow your business.",
 };
-
+<SeoSchema schema={servicesSchema} />
 const services = [
   {
     title: "Software Development",

@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { organizationSchema } from "../lib/schema";
+import { teamSchema } from "../lib/schema";
 
 const teamMembers = [
   {
@@ -96,7 +96,7 @@ function Teams() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(organizationSchema),
+          __html: JSON.stringify(teamSchema),
         }}
       />
       {/* BACKGROUND */}

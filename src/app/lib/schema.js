@@ -1,246 +1,31 @@
-// export const organizationSchema = {
-//   "@context": "https://schema.org",
-//   "@type": "Organization",
-
-//   "@id": "https://unisoftpvt.com/#organization",
-
-//   name: "UniSoft Pvt Ltd",
-
-//   alternateName: "UniSoft",
-
-//   url: "https://unisoftpvt.com",
-
-//   logo: {
-//     "@type": "ImageObject",
-//     url: "https://unisoftpvt.com/logo.png",
-//   },
-
-//   image: "https://unisoftpvt.com/og-image.png",
-
-//   description:
-//     "UniSoft Pvt Ltd is a global software development and digital transformation company specializing in MERN stack development, Next.js, React, SEO, UI/UX design, WordPress, Shopify, AI automation, and business growth solutions.",
-
-//   email: "mailto:unisoftpvt@gmail.com",
-
-//   telephone: "+1-928-438-3214",
-
-//   foundingDate: "2020",
-
-//   areaServed: [
-//     {
-//       "@type": "Country",
-//       name: "United States",
-//     },
-//     {
-//       "@type": "Country",
-//       name: "Pakistan",
-//     },
-//     {
-//       "@type": "Country",
-//       name: "United Kingdom",
-//     },
-//     {
-//       "@type": "Country",
-//       name: "Canada",
-//     },
-//   ],
-
-//   knowsAbout: [
-//   "Web Development",
-//   "Frontend Development",
-//   "Backend Development",
-//   "Full Stack Development",
-//   "Custom Software Development",
-//   "Enterprise Software Solutions",
-//   "Business Automation",
-//   "AI Automation",
-//   "AI Agents",
-//   "AI Chatbots",
-//   "CRM Development",
-//   "ERP Solutions",
-//   "SaaS Development",
-//   "Cloud Applications",
-//   "API Development",
-//   "REST API",
-//   "GraphQL",
-//   "Database Architecture",
-//   "MongoDB",
-//   "MySQL",
-//   "PostgreSQL",
-
-//   "React",
-//   "Next.js",
-//   "Node.js",
-//   "Express.js",
-//   "JavaScript",
-//   "TypeScript",
-//   "Python",
-//   "MERN Stack",
-//   "Tailwind CSS",
-
-//   "Responsive Web Design",
-//   "UI UX Design",
-//   "User Experience Design",
-//   "User Interface Design",
-//   "Figma Design",
-//   "Dashboard Design",
-
-//   "SEO",
-//   "Technical SEO",
-//   "On Page SEO",
-//   "Off Page SEO",
-//   "Local SEO",
-//   "Ecommerce SEO",
-//   "SEO Audits",
-//   "Google Search Console",
-//   "Google Analytics",
-
-//   "Digital Marketing",
-//   "Social Media Marketing",
-//   "Meta Ads",
-//   "Facebook Ads",
-//   "Instagram Ads",
-//   "Google Ads",
-//   "Lead Generation",
-//   "Conversion Optimization",
-//   "Brand Strategy",
-
-//   "Content Marketing",
-//   "Copywriting",
-//   "Email Marketing",
-//   "Marketing Funnels",
-//   "Performance Marketing",
-
-//   "WordPress",
-//   "Shopify",
-//   "Ecommerce Development",
-//   "WooCommerce",
-//   "Payment Gateway Integration",
-
-//   "Web Application Development",
-//   "Mobile App Development",
-//   "Progressive Web Apps",
-//   "Landing Page Development",
-
-//   "Cyber Security",
-//   "Website Optimization",
-//   "Website Speed Optimization",
-//   "Hosting Solutions",
-//   "Vercel Deployment",
-
-//   "Graphic Design",
-//   "Brand Identity Design",
-//   "Logo Design",
-//   "Video Editing",
-//   "Video Ads",
-
-//   "Software Company USA",
-//   "Software Company Pakistan",
-//   "Software Company UK",
-//   "Software Company Canada",
-
-//   "Web Development Agency",
-//   "SEO Agency",
-//   "Digital Agency",
-//   "Technology Solutions",
-
-//   "UniSoft",
-//   "UniSoft Pvt Ltd",
-//   "UniSoft SEO",
-//   "unisoft seo",
-//   "UniSoft Digital Marketing",
-//   "UniSoft Web Development",
-//   "UniSoft AI Automation",
-// ],
-//   sameAs: [
-//     "https://www.facebook.com/unisoftpvt",
-//     "https://www.linkedin.com/company/unisoft-pvt-ltd",
-//     "https://www.instagram.com/unisoftpvt",
-//   ],
-
-//   contactPoint: {
-//     "@type": "ContactPoint",
-//     telephone: "+1-928-438-3214",
-//     contactType: "customer support",
-//     areaServed: "Worldwide",
-//     availableLanguage: ["English"],
-//   },
-// };
-
-// export const websiteSchema = {
-//   "@context": "https://schema.org",
-
-//   "@type": "WebSite",
-
-//   "@id": "https://unisoftpvt.com/#website",
-
-//   url: "https://unisoftpvt.com",
-
-//   name: "UniSoft Pvt Ltd",
-
-//   description:
-//     "Professional software development, SEO, AI automation, and digital marketing solutions.",
-
-//   publisher: {
-//     "@id": "https://unisoftpvt.com/#organization",
-//   },
-
-//   inLanguage: "en-US",
-
-//   potentialAction: {
-//     "@type": "SearchAction",
-//     target:
-//       "https://unisoftpvt.com/search?q={search_term_string}",
-//     "query-input": "required name=search_term_string",
-//   },
-// };
-// export const faqSchema = {
-//   "@context": "https://schema.org",
-//   "@type": "FAQPage",
-//   "mainEntity": [
-//     {
-//       "@type": "Question",
-//       "name": "What services does UniSoft offer?",
-//       "acceptedAnswer": {
-//         "@type": "Answer",
-//         "text": "UniSoft offers software development, SEO services, UI/UX design, automation, and digital marketing solutions."
-//       }
-//     },
-//     {
-//       "@type": "Question",
-//       "name": "Is UniSoft a software development company?",
-//       "acceptedAnswer": {
-//         "@type": "Answer",
-//         "text": "Yes, UniSoft is a professional software development company building web applications, automation tools, and enterprise solutions."
-//       }
-//     }
-//   ]
-// };
-
-// export const softwareSchema = {
-//   "@context": "https://schema.org",
-//   "@type": "Service",
-//   serviceType: "Software Development",
-//   provider: {
-//     "@type": "Organization",
-//     name: "UniSoft",
-//   },
-// };
+/* =========================================================
+   GLOBAL SERVICE SCHEMA
+========================================================= */
 
 export const serviceSchema = {
   "@context": "https://schema.org",
 
   "@type": "ProfessionalService",
 
-  "@id": "https://unisoftpvt.com/#services",
+  "@id": "https://unisoftpvt.com/services",
 
   name: "UniSoft Digital Services",
 
+  url: "https://unisoftpvt.com/services",
+
   provider: {
-    "@id": "https://unisoftpvt.com/#organization",
+    "@id": "https://unisoftpvt.com/",
   },
 
-  areaServed: "Worldwide",
+  image: "https://unisoftpvt.com/logo.png",
+
+  description:
+    "UniSoft provides web development, SEO services, AI automation, digital marketing, UI UX design, and custom software development services worldwide.",
+
+  areaServed: {
+    "@type": "Place",
+    name: "Worldwide",
+  },
 
   serviceType: [
     "Web Development",
@@ -262,78 +47,135 @@ export const serviceSchema = {
     itemListElement: [
       {
         "@type": "Offer",
+
         itemOffered: {
           "@type": "Service",
           name: "MERN Stack Development",
+          description:
+            "Modern MERN stack applications using MongoDB, Express, React, and Node.js.",
         },
       },
+
       {
         "@type": "Offer",
+
         itemOffered: {
           "@type": "Service",
           name: "Next.js Development",
+          description:
+            "High-performance Next.js web applications with SEO optimization.",
         },
       },
+
       {
         "@type": "Offer",
+
         itemOffered: {
           "@type": "Service",
           name: "SEO Optimization Services",
+          description:
+            "Technical SEO, local SEO, on-page optimization, and ranking improvement services.",
         },
       },
+
       {
         "@type": "Offer",
+
         itemOffered: {
           "@type": "Service",
           name: "WordPress Development",
+          description:
+            "Custom WordPress websites, themes, and business solutions.",
         },
       },
+
       {
         "@type": "Offer",
+
         itemOffered: {
           "@type": "Service",
-          name: "Shopify Store Development",
+          name: "UI UX Design Services",
+          description:
+            "Modern user interface and user experience design services.",
         },
       },
+
       {
         "@type": "Offer",
+
         itemOffered: {
           "@type": "Service",
           name: "AI Automation Solutions",
+          description:
+            "AI-powered automation systems and workflow optimization solutions.",
         },
       },
     ],
   },
 };
-// lib/schema.js
 
 /* =========================================================
    GLOBAL SCHEMAS
 ========================================================= */
 
+/* =========================================================
+   ORGANIZATION SCHEMA
+========================================================= */
+
 export const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
+
+  "@id": "https://unisoftpvt.com/#organization",
+
   name: "UniSoft",
-  url: "https://unisoft.com",
-  logo: "https://unisoft.com/logo.png",
+
+  url: "https://unisoftpvt.com",
+
+  logo: {
+    "@type": "ImageObject",
+    url: "https://unisoftpvt.com/logo.png",
+  },
+
   description:
-    "UniSoft is a software development and digital marketing company specializing in web development, SEO, UI UX design, automation, and business growth solutions.",
+    "UniSoft is a software development and digital marketing company specializing in web development, SEO, AI automation, UI UX design, and business growth solutions.",
+
+  founder: {
+    "@type": "Person",
+    name: "Roshaan Ahmad",
+  },
+
   sameAs: [
-    "https://facebook.com/unisoft",
-    "https://linkedin.com/company/unisoft",
-    "https://instagram.com/unisoft",
+    "https://www.facebook.com/profile.php?id=61568003026936",
+    "https://linkedin.com/company/unisoftpvt",
+    "https://instagram.com/unisoftpvt",
   ],
+
+  areaServed: "Worldwide",
 };
+
+/* =========================================================
+   WEBSITE SCHEMA
+========================================================= */
 
 export const websiteSchema = {
   "@context": "https://schema.org",
+
   "@type": "WebSite",
+
+  "@id": "https://unisoftpvt.com/#website",
+
   name: "UniSoft",
-  url: "https://unisoft.com",
+
+  url: "https://unisoftpvt.com",
+
+  publisher: {
+    "@id": "https://unisoftpvt.com/#organization",
+  },
+
   potentialAction: {
     "@type": "SearchAction",
-    target: "https://unisoft.com/search?q={search_term_string}",
+    target: "https://unisoftpvt.com/search?q={search_term_string}",
     "query-input": "required name=search_term_string",
   },
 };
@@ -345,10 +187,11 @@ export const websiteSchema = {
 export const homepageSchema = {
   "@context": "https://schema.org",
   "@type": "WebPage",
+  "@id": "https://unisoftpvt.com",
   name: "UniSoft Home",
-  url: "https://unisoft.com",
+  url: "https://unisoftpvt.com",
   description:
-    "UniSoft provides software development, SEO, digital marketing, automation, and web development solutions.",
+    "UniSoft provides software development, SEO services, digital marketing, automation, and web development solutions.",
 };
 
 /* =========================================================
@@ -358,14 +201,16 @@ export const homepageSchema = {
 export const servicesSchema = {
   "@context": "https://schema.org",
   "@type": "Service",
+  "@id": "https://unisoftpvt.com/services",
   serviceType: "Digital Services",
   provider: {
     "@type": "Organization",
     name: "UniSoft",
+    url: "https://unisoftpvt.com/services",
   },
   areaServed: "Worldwide",
   description:
-    "UniSoft offers software development, SEO, UI UX design, automation, and digital marketing services.",
+    "UniSoft offers software development, SEO services, UI UX design, automation, and digital marketing services.",
 };
 
 /* =========================================================
@@ -375,10 +220,12 @@ export const servicesSchema = {
 export const softwareSchema = {
   "@context": "https://schema.org",
   "@type": "Service",
+  "@id": "https://unisoftpvt.com/services/software-development",
   serviceType: "Software Development",
   provider: {
     "@type": "Organization",
     name: "UniSoft",
+    url: "https://unisoftpvt.com/services/software-development",
   },
   areaServed: "Worldwide",
   description:
@@ -396,6 +243,7 @@ export const seoSchema = {
   provider: {
     "@type": "Organization",
     name: "UniSoft",
+    url: "https://unisoftpvt.com/services/seo",
   },
   areaServed: "Worldwide",
   description:
@@ -413,6 +261,7 @@ export const webDevelopmentSchema = {
   provider: {
     "@type": "Organization",
     name: "UniSoft",
+    url: "https://unisoftpvt.com/services/web-development",
   },
   areaServed: "Worldwide",
   description:
@@ -430,6 +279,7 @@ export const digitalMarketingSchema = {
   provider: {
     "@type": "Organization",
     name: "UniSoft",
+    url: "https://unisoftpvt.com/services/digital-marketing",
   },
   areaServed: "Worldwide",
   description:
@@ -447,6 +297,7 @@ export const uiuxSchema = {
   provider: {
     "@type": "Organization",
     name: "UniSoft",
+    url: "https://unisoftpvt.com/services/ui-ux-design",
   },
   areaServed: "Worldwide",
   description:
@@ -464,6 +315,7 @@ export const automationSchema = {
   provider: {
     "@type": "Organization",
     name: "UniSoft",
+    url: "https://unisoftpvt.com/services/automation",
   },
   areaServed: "Worldwide",
   description:
@@ -478,7 +330,7 @@ export const aboutSchema = {
   "@context": "https://schema.org",
   "@type": "AboutPage",
   name: "About UniSoft",
-  url: "https://unisoft.com/about",
+  url: "https://unisoftpvt.com/about",
   description:
     "Learn more about UniSoft, our mission, vision, technologies, and professional digital services.",
 };
@@ -491,9 +343,9 @@ export const contactSchema = {
   "@context": "https://schema.org",
   "@type": "ContactPage",
   name: "Contact UniSoft",
-  url: "https://unisoft.com/contact",
+  url: "https://unisoftpvt.com/contact",
   description:
-    "Contact UniSoft for software development, SEO, web development, automation, and digital marketing services.",
+    "Contact UniSoft for software development, SEO services, web development, automation, and digital marketing services.",
 };
 
 /* =========================================================
@@ -504,9 +356,16 @@ export const teamSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
   name: "UniSoft Team",
-  url: "https://unisoft.com/team",
+  url: "https://unisoftpvt.com/teams",
   description:
-    "Meet the professional software developers, SEO experts, designers, and strategists behind UniSoft.",
+    "Meet the CEOs, software developers, SEO experts, designers, and digital strategists behind UniSoft.",
+  founder: [
+    {
+      "@type": "Person",
+      name: "Roshaan Ahmad",
+      jobTitle: "CEO",
+    },
+  ],
 };
 
 /* =========================================================
@@ -571,12 +430,61 @@ export const articleSchema = ({
     name: "UniSoft",
     logo: {
       "@type": "ImageObject",
-      url: "https://unisoft.com/logo.png",
+      url: "https://unisoftpvt.com/logo.png",
     },
   },
   datePublished,
   mainEntityOfPage: {
     "@type": "WebPage",
-    "@id": `https://unisoft.com/blog/${slug}`,
+    "@id": `https://unisoftpvt.com/blog/${slug}`,
   },
 });
+
+export const pricingSchema = {
+  "@context": "https://schema.org",
+  "@type": "OfferCatalog",
+  name: "UniSoft Pricing Plans",
+  url: "https://unisoftpvt.com/pricing",
+  description:
+    "Affordable web development, SEO services, AI automation, and digital marketing pricing plans by UniSoft.",
+  provider: {
+    "@type": "Organization",
+    name: "UniSoft",
+    url: "https://unisoftpvt.com",
+  },
+
+  itemListElement: [
+    {
+      "@type": "Offer",
+      name: "Starter Plan",
+      description:
+        "Perfect for startups and small businesses looking to establish an online presence.",
+      price: "149",
+      priceCurrency: "USD",
+      availability: "https://schema.org/InStock",
+      url: "https://unisoftpvt.com/pricing",
+    },
+
+    {
+      "@type": "Offer",
+      name: "Business Plan",
+      description:
+        "Advanced business solutions with SEO optimization and automation features.",
+      price: "499",
+      priceCurrency: "USD",
+      availability: "https://schema.org/InStock",
+      url: "https://unisoftpvt.com/pricing",
+    },
+
+    {
+      "@type": "Offer",
+      name: "Enterprise Plan",
+      description:
+        "Custom enterprise-grade software, AI systems, and full-scale digital transformation.",
+      price: "999",
+      priceCurrency: "USD",
+      availability: "https://schema.org/InStock",
+      url: "https://unisoftpvt.com/pricing",
+    },
+  ],
+};

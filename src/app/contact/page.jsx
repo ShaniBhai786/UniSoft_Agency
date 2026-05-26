@@ -5,7 +5,10 @@ import ContactUs from '../components/ContactUs'
 import Loading from '../components/Loading';
 import "../styles.css"
 import { motion } from "framer-motion";
+import SeoSchema from '../components/SeoSchema';
+import { contactSchema } from '../lib/schema';
 
+<SeoSchema schema={contactSchema} />
 function Contact() {
   const [loading, setLoading] = useState(false)
 

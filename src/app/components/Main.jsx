@@ -5,7 +5,10 @@ import "../styles.css";
 import { motion } from "framer-motion";
 import { TypeAnimation } from "react-type-animation";
 import Link from "next/link";
+import SeoSchema from "./SeoSchema";
+import { homepageSchema } from "../lib/schema";
 
+<SeoSchema schema={homepageSchema} />
 const Main = () => {
   const fadeUp = {
     hidden: { opacity: 0, y: 40 },

@@ -3,7 +3,10 @@
 import Link from "next/link";
 import React, { useEffect } from "react";
 import { motion } from "framer-motion";
+import SeoSchema from "../components/SeoSchema";
+import { aboutSchema } from "../lib/schema";
 
+<SeoSchema schema={aboutSchema} />
 function About() {
   useEffect(() => {
     window.scrollTo(0, 0);

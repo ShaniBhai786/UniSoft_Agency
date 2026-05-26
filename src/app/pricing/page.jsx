@@ -6,7 +6,10 @@ import * as Yup from "yup"
 import emailjs from '@emailjs/browser';
 import Loading from '../components/Loading';
 import BackButton from '../components/BackButton';
+import SeoSchema from '../components/SeoSchema';
+import { pricingSchema } from '../lib/schema';
 
+<SeoSchema schema={pricingSchema} />
 const page = () => {
   const [selectedPackage, setSelectedPackage] = useState(null)
   const [isPackageSelect, setIsPackageSelect] = useState(false)

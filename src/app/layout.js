@@ -21,7 +21,7 @@ export default function RootLayout({ children }) {
     content="software development company, web development, SEO agency, digital marketing services, UI UX design, automation solutions, Next.js development, React developers"
   />
 
-  <link rel="canonical" href="https://unisoft.com" />
+  <link rel="canonical" href="https://unisoftpvt.com" />
 
   {/* Open Graph (Facebook / LinkedIn SEO) */}
   <meta property="og:type" content="website" />
@@ -30,7 +30,7 @@ export default function RootLayout({ children }) {
     property="og:description"
     content="We build scalable software, SEO systems, and automation tools to grow businesses globally."
   />
-  <meta property="og:url" content="https://unisoft.com" />
+  <meta property="og:url" content="https://unisoftpvt.com" />
   <meta property="og:image" content="/og-image.jpg" />
 
   {/* Twitter SEO */}
