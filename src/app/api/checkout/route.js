@@ -88,8 +88,8 @@ export async function POST(req) {
     let sessionConfig = {
       payment_method_types: ["card"],
       mode: selectedPlan.mode,
-      success_url: "/success",
-      cancel_url: "/cancel",
+      success_url: "http://unisoftpvt.com/success" || "http://localhost:3000/success",
+      cancel_url: "http://unisoftpvt.com/cancel" || "http://localhost:3000/cancel",
     }
 
     // -----------------------------
