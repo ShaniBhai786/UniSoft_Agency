@@ -30,3 +30,24 @@ export async function GET() {
     },
   });
 }
+
+import { blogs } from "./blogs/data";
+
+export default function sitemap() {
+  const blogUrls = blogs.map((blog) => ({
+    url: `https://unisoftpvt.com/blogs/${blog.slug}`,
+    lastModified: new Date(),
+  }));
+
+  return [
+    {
+      url: "https://unisoftpvt.com",
+      lastModified: new Date(),
+    },
+    {
+      url: "https://unisoftpvt.com/blogs",
+      lastModified: new Date(),
+    },
+    ...blogUrls,
+  ];
+}
