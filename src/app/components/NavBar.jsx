@@ -32,7 +32,7 @@ const NavBar = () => {
           <Link className='links' href="/contact"><i className='fa fa-phone'></i><span>Contact</span></Link>
           <Link className='links' href="/blogs"><i className='fa fa-blog'></i><span>Blogs</span></Link>
         </div>}
-        <Link href="quote"><button className="navBtn">Get Free Consultation</button></Link>
+        <Link href="/quote"><button className="navBtn">Get Free Consultation</button></Link>
         <div className="hamBurger" onClick={() => setNav(!nav)}><i className='fa fa-bars' id='bars'></i></div>
       </nav>
     </>
