@@ -19,7 +19,8 @@ const NavBar = () => {
           <Link className='links' href="/about">About</Link>
           <Link className='links' href="/teams">Teams</Link>
           <Link className='links' href="/pricing">Pricing</Link>
-          <Link className='links' href="/contact">Contact</Link>
+              <Link className='links' href="/contact">Contact</Link>
+              <Link className='links' href="/blogs">Blogs</Link>
         </div>
         {nav && <div className="navLinksNav" onClick={() => setNav(!nav)}>
           <i className='fa fa-close closeBtnNav' onClick={() => setNav(!nav)}></i>
@@ -29,6 +30,7 @@ const NavBar = () => {
           <Link className='links' href="/teams"><i className='fa fa-users'></i><span>Teams</span></Link>
           <Link className='links' href="/pricing"><i className='fa fa-dollar'></i><span>Pricing</span></Link>
           <Link className='links' href="/contact"><i className='fa fa-phone'></i><span>Contact</span></Link>
+          <Link className='links' href="/blogs"><i className='fa fa-blog'></i><span>Blogs</span></Link>
         </div>}
         <Link href="quote"><button className="navBtn">Get Free Consultation</button></Link>
         <div className="hamBurger" onClick={() => setNav(!nav)}><i className='fa fa-bars' id='bars'></i></div>
