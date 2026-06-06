@@ -64,6 +64,7 @@ export default async function BlogDetail({ params }) {
                     }),
                 }}
             />
+
             <div className="quoteGradient" />
             <div className="quoteGrid" />
 
