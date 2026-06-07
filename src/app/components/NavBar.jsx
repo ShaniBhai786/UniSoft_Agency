@@ -11,7 +11,7 @@ const NavBar = () => {
         <nav className="navbar">
         <div className="logo">
           <div className=""><Link href="/"><Image src="/assets/logo.jpeg" alt="logo" width={50} height={50} /></Link></div>
-          <div className="title"><Link href="/"><h1>UniSoft</h1></Link></div>
+          <div className="title"><Link href="/"><h2>UniSoft</h2></Link></div>
         </div>
         <div className="navLinks">
           <Link className='links' href="/">Home</Link>
@@ -32,7 +32,7 @@ const NavBar = () => {
           <Link className='links' href="/contact"><i className='fa fa-phone'></i><span>Contact</span></Link>
           <Link className='links' href="/blogs"><i className='fa fa-blog'></i><span>Blogs</span></Link>
         </div>}
-        <Link href="/quote"><button className="navBtn">Get Free Consultation</button></Link>
+            <Link href="/quote" aria-label="Get a free software consultation from UniSoft"><button className="navBtn">Get Free Consultation</button></Link>
         <div className="hamBurger" onClick={() => setNav(!nav)}><i className='fa fa-bars' id='bars'></i></div>
       </nav>
     </>
