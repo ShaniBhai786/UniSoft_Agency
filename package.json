@@ -17,6 +17,8 @@
     "@fortawesome/react-fontawesome": "^3.3.1",
     "@stripe/react-stripe-js": "^6.4.0",
     "@stripe/stripe-js": "^9.6.0",
+    "@vercel/analytics": "^2.0.1",
+    "@vercel/speed-insights": "^2.0.0",
     "axios": "^1.16.0",
     "bcrypt": "^6.0.0",
     "cloudinary": "^2.10.0",

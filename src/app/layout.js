@@ -1,6 +1,8 @@
 import Footer from "./components/Footer.jsx";
 import NavBar from "./components/NavBar.jsx";
 import { organizationSchema, websiteSchema } from "./lib/schema.js";
+import { SpeedInsights } from "@vercel/speed-insights/next"
+import { Analytics } from "@vercel/analytics/react";
 
 export default function RootLayout({ children }) {
   return (
@@ -71,6 +73,8 @@ export default function RootLayout({ children }) {
 
         <NavBar />
         {children}
+        <SpeedInsights />
+        <Analytics />
         <Footer />
       </body>
     </html>
