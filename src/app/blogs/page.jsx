@@ -3,26 +3,51 @@ import Link from "next/link";
 
 export default function BlogsPage() {
     return (
-        <section className="quoteSection">
-                {/* BACKGROUND */}
-                <div className="quoteGradient" />
-                <div className="quoteGrid" />
-            <div className="blog-container">
-                <h1 className="blog-title">UniSoft Blogs <span>Web Development, SEO & Software Insights</span></h1>
-                <div className="blog-list">
-                    {blogs.map((blog) => (
-                        <div key={blog.slug} className="blog-card">
+        <section className="blogSection">
+            
+            <div className="blogBgGlow"></div>
+
+            <div className="blogContainer">
+                <div className="blogHeader">
+                    <h1>
+                        UniSoft Blogs
+                    </h1>
+                    <p>
+                        Web Development, SEO & Software Insights
+                    </p>
+                </div>
+
+                <div className="blogGrid">
+                    {blogs.map((blog, index) => (
+                        <div
+                            key={blog.slug}
+                            className="blogCard"
+                            style={{ animationDelay: `${index * 0.05}s` }}
+                        >
                             <Link href={`/blogs/${blog.slug}`}>
-                                <h2>{blog.title}</h2>
-                                <p className="blog-excerpt">
-                                    {blog.content.slice(0, 100)}...
-                                </p>
-                                <span className="read-more">Read more →</span>
+                                <div className="blogCardInner">
+                                    <div className="blogTag">
+                                        Article
+                                    </div>
+
+                                    <h2>{blog.title}</h2>
+
+                                    <p>
+                                        {blog.content
+                                            .replace(/<[^>]*>/g, "")
+                                            .slice(0, 120)}
+                                        ...
+                                    </p>
+
+                                    <div className="blogFooter">
+                                        <span>Read article →</span>
+                                    </div>
+                                </div>
                             </Link>
                         </div>
                     ))}
                 </div>
             </div>
-       </section>
+        </section>
     );
 }
