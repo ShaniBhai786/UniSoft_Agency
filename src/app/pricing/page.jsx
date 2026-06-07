@@ -18,19 +18,19 @@ const page = () => {
   const [packagePlane, setPackagePlane] = useState(null)
 
   const pricingPlans = [
-    {
-      id: "free",
-      title: "Tester",
-      priceTag: "$1",
-      price: 1,
-      desc: "Best for small businesses",
-      features: [
-        "1-3 Page Website",
-        "Responsive Design",
-      ],
-      packageName: "Tester Package",
-      popular: false
-    },
+    // {
+    //   id: "free",
+    //   title: "Tester",
+    //   priceTag: "$1",
+    //   price: 1,
+    //   desc: "Best for small businesses",
+    //   features: [
+    //     "1-3 Page Website",
+    //     "Responsive Design",
+    //   ],
+    //   packageName: "Tester Package",
+    //   popular: false
+    // },
     {
       id:"starter",
       title: "Starter",
