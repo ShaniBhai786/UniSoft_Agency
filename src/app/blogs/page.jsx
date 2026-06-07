@@ -1,4 +1,4 @@
-import { blogs } from "./data";
+import { blogs } from "./data.js";
 import Link from "next/link";
 
 export default function BlogsPage() {
