@@ -1,6 +1,7 @@
 import SeoSchema from "@/app/components/SeoSchema";
 import { seoSchema } from "../../lib/schema.js";
 import BackButton from "@/app/components/BackButton.jsx";
+import "../../services.css"
 
 export const metadata = {
   title: "SEO Services Agency | UniSoft",
