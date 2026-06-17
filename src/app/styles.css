@@ -1411,6 +1411,7 @@
   max-width: 1400px;
   margin: auto;
   display: flex;
+  flex-direction: row-reverse;
   align-items: flex-start;
   justify-content: space-between;
   gap: 70px;
@@ -1975,61 +1976,28 @@
 
 .contact {
   position: relative;
-  min-height: 100vh;
-  padding: 20px 0;
-  background: #050816;
   overflow: hidden;
-  justify-content: space-evenly;
+  min-height: 100vh;
+  padding: 120px 7%;
   display: flex;
-  flex-direction: row-reverse;
-  flex-wrap: wrap;
-  gap: 80px;
-  overflow: auto;
-  align-items: center;
-}
-
-/* BACKGROUND EFFECT */
-.contact::before {
-  content: "";
-  position: absolute;
-  inset: 0;
+  gap: 50px;
+  justify-content: center;
+  align-items: stretch;
 
   background:
-    radial-gradient(circle at top left, rgba(79, 70, 229, 0.18), transparent 35%),
-    radial-gradient(circle at bottom right, rgba(0, 102, 255, 0.15), transparent 35%);
+    radial-gradient(circle at 20% 20%,
+      rgba(0, 123, 255, .15),
+      transparent 30%),
 
-  z-index: 1;
+    radial-gradient(circle at 80% 70%,
+      rgba(153, 69, 255, .18),
+      transparent 30%),
+
+    linear-gradient(135deg,
+      #07111f,
+      #0d1831,
+      #121f3b);
 }
-
-.contact::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-
-  background-image:
-    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-  background-size: 45px 45px;
-  z-index: 1;
-}
-
-.c,
-.f {
-  position: relative;
-  z-index: 2;
-}
-
-.c {
-  display: flex;
-  justify-content: center;
-}
-
-.f {
-  display: flex;
-  justify-content: center;
-}
-
-
 
 /* LOADING OVERLAY */
 .loadingOverlay {
