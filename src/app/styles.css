@@ -1598,7 +1598,7 @@
 /* RESPONSIVE */
 @media (max-width: 1100px) {
   .quoteContainer {
-    flex-direction: column;
+    flex-direction: column-reverse;
   }
 
   .quoteLeft {
@@ -1978,7 +1978,7 @@
   position: relative;
   overflow: hidden;
   min-height: 100vh;
-  padding: 120px 7%;
+  padding: 40px 7%;
   display: flex;
   gap: 50px;
   justify-content: center;
@@ -3180,5 +3180,83 @@
 
   .blogContent {
     font-size: 15px;
+  }
+}
+
+
+/* +====================== Privacy Policy=================== */
+/* PAGE BACKGROUND */
+.policy-page {
+  background: #f5f7fb;
+  min-height: 100vh;
+  font-family: system-ui, Arial;
+}
+
+/* HERO */
+.policy-hero {
+  background: linear-gradient(135deg, #0f172a, #1e3a8a);
+  color: white;
+  padding: 70px 20px;
+  text-align: center;
+}
+
+.policy-hero-content {
+  max-width: 800px;
+  margin: auto;
+}
+
+.policy-hero h1 {
+  font-size: 3rem;
+  margin-bottom: 10px;
+}
+
+.policy-hero p {
+  opacity: 0.85;
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+}
+
+.policy-hero span {
+  font-size: 0.9rem;
+  opacity: 0.7;
+}
+
+/* CONTENT WRAPPER */
+.policy-content {
+  max-width: 900px;
+  margin: -40px auto 60px;
+  padding: 0 20px;
+}
+
+/* CARD STYLE */
+.policy-card {
+  background: white;
+  padding: 25px;
+  margin-bottom: 18px;
+  border-radius: 14px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
+  border: 1px solid #eef2f7;
+}
+
+.policy-card h2 {
+  color: #1e3a8a;
+  margin-bottom: 10px;
+  font-size: 1.4rem;
+}
+
+.policy-card p,
+.policy-card li {
+  color: #475569;
+  line-height: 1.7;
+}
+
+.policy-card ul {
+  padding-left: 20px;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .policy-hero h1 {
+    font-size: 2.2rem;
   }
 }
