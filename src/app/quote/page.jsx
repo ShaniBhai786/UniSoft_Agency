@@ -3,7 +3,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import emailjs from "@emailjs/browser";
 import Loading from "../components/Loading";
 import { motion } from "framer-motion";
 
@@ -39,20 +38,26 @@ function Quote() {
     try {
       setLoading(true);
 
-      await emailjs.sendForm(
-        "service_3xs9iqc",
-        "template_0ds7q6l",
-        form.current,
-        {
-          publicKey: "5NYUNk6egOmHicaIZ",
-        }
-      );
+      const formData = new URLSearchParams();
+      formData.append("name", values.name);
+      formData.append("email", values.email);
+      formData.append("service", values.service);
+      formData.append("phone", values.phone);
+      formData.append("message", values.message);
+
+      const res = await fetch("https://script.google.com/macros/s/AKfycbzKf46lTECIQHORBjWx0bFhRk6V2YgqC0y1r8KFJBWHjfjJPVpy5QixjrgfCldlouSwHA/exec", {
+        method: "POST",
+        body: formData,
+      });
+
+      const text = await res.text();
+      console.log("Response:", text);
 
       resetForm();
-      alert("Quote request submitted successfully!");
+      alert("Submitted successfully!");
     } catch (error) {
       console.log(error);
-      alert("Failed to send request. Please try again.");
+      alert("Submission failed");
     } finally {
       setLoading(false);
     }
@@ -153,7 +158,7 @@ function Quote() {
               validationSchema={validationSchema}
               onSubmit={onSubmit}
             >
-              <Form className="quoteForm" ref={form}>
+              <Form className="quoteForm">
 
                 <div className="inputGroup">
                   <i className="ri-user-line"></i>
