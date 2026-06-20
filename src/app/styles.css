@@ -1411,7 +1411,6 @@
   max-width: 1400px;
   margin: auto;
   display: flex;
-  flex-direction: row-reverse;
   align-items: flex-start;
   justify-content: space-between;
   gap: 70px;
@@ -2189,7 +2188,7 @@
   line-height: 1.4;
 }
 
-.contact-info {
+fo {
   display: flex;
   gap: 10px;
   flex-direction: column;
