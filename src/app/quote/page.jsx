@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import Loading from "../components/Loading";
@@ -8,8 +8,6 @@ import { motion } from "framer-motion";
 
 function Quote() {
   const [loading, setLoading] = useState(false);
-
-  const form = useRef();
 
   const fadeUp = {
     hidden: { opacity: 0, y: 50 },
@@ -21,6 +19,7 @@ function Quote() {
     email: "",
     phone: "",
     service: "",
+    budget: "",
     message: "",
   };
 
@@ -31,6 +30,7 @@ function Quote() {
       .required("Email is required"),
     phone: Yup.string().required("Phone number is required"),
     service: Yup.string().required("Please select a service"),
+    budget: Yup.string().required("Please Enter Your Project Budget"),
     message: Yup.string().required("Please describe your project"),
   });
 
@@ -42,6 +42,7 @@ function Quote() {
       formData.append("name", values.name);
       formData.append("email", values.email);
       formData.append("service", values.service);
+      formData.append("budget", values.budget)
       formData.append("phone", values.phone);
       formData.append("message", values.message);
 

@@ -3,7 +3,6 @@
 import React, { useRef } from 'react'
 import { Formik, Form, Field, ErrorMessage } from 'formik'
 import * as Yup from 'yup'
-import emailjs from '@emailjs/browser';
 
 const Feedback = ({ setLoading }) => {
 
@@ -22,19 +21,18 @@ const Feedback = ({ setLoading }) => {
   })
 
   const onSubmit = async (values, { resetForm }) => {
-    try {
+    try { 
       setLoading(true)
 
-      await emailjs.sendForm(
-        'service_gogxtrk',
-        'template_u09iiy3',
-        form.current,
-        { publicKey: '5NYUNk6egOmHicaIZ' }
-      )
+      const formData = URLSearchParams()
+      formData.append("name", values.name)
+      formData.append("email", values.email)
+      formData.append("message", values.message)
 
-      alert("Feedback Sent Successfully!")
-      resetForm()
-      console.table(values)
+      const res = await fetch("https://script.google.com/macros/s/AKfycbzKf46lTECIQHORBjWx0bFhRk6V2YgqC0y1r8KFJBWHjfjJPVpy5QixjrgfCldlouSwHA/exec", {
+        method: "POST",
+        body: formData,
+      });
 
     } catch (error) {
       console.log(error)
