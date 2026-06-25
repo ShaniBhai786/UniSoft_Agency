@@ -24,7 +24,7 @@ const Feedback = ({ setLoading }) => {
     try { 
       setLoading(true)
 
-      const formData = URLSearchParams()
+      const formData = new URLSearchParams()
       formData.append("name", values.name)
       formData.append("email", values.email)
       formData.append("message", values.message)
