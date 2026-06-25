@@ -29,10 +29,11 @@ const Feedback = ({ setLoading }) => {
       formData.append("email", values.email)
       formData.append("message", values.message)
 
-      const res = await fetch("https://script.google.com/macros/s/AKfycbzKf46lTECIQHORBjWx0bFhRk6V2YgqC0y1r8KFJBWHjfjJPVpy5QixjrgfCldlouSwHA/exec", {
+      const res = await fetch("https://script.google.com/macros/s/AKfycbwLUGu_ayek_jYZG3sAAEiie2sXhTdgrhkQNlj-91hFsE8Jp3s0nagJ_9C7KYrvLrqqeQ/exec", {
         method: "POST",
         body: formData,
       });
+      alert("Feedback Submitted Sucessfully!")
       resetForm()
 
     } catch (error) {
