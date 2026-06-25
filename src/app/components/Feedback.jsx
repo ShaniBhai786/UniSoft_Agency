@@ -33,6 +33,8 @@ const Feedback = ({ setLoading }) => {
         method: "POST",
         body: formData,
       });
+      const text = await res.text();
+      console.log("Response:", text);
       alert("Feedback Submitted Sucessfully!")
       resetForm()
 
