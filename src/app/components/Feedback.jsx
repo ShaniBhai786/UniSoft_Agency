@@ -33,6 +33,7 @@ const Feedback = ({ setLoading }) => {
         method: "POST",
         body: formData,
       });
+      resetForm()
 
     } catch (error) {
       console.log(error)
