@@ -46,7 +46,7 @@ function Quote() {
       formData.append("phone", values.phone);
       formData.append("message", values.message);
 
-      const res = await fetch("https://script.google.com/macros/s/AKfycbzKf46lTECIQHORBjWx0bFhRk6V2YgqC0y1r8KFJBWHjfjJPVpy5QixjrgfCldlouSwHA/exec", {
+      const res = await fetch("https://script.google.com/macros/s/AKfycbzA9o9yjJM54UQ9p5jcp0xT9XIcr5GDQhcTP19S9SrcGTO1eeJCBJ1UdQWhqn50GtYCHQ/exec", {
         method: "POST",
         body: formData,
       });
@@ -254,6 +254,16 @@ function Quote() {
                   component="span"
                   className="error"
                 />
+
+                <div className="inputGroup textareaGroup">
+                  <i className="fa fa-dollar"></i>
+
+                  <Field
+                    type="text"
+                    name="budget"
+                    placeholder="What is your budget for this project?"
+                  />
+                </div>
 
                 <div className="inputGroup textareaGroup">
                   <i className="ri-chat-3-line"></i>
