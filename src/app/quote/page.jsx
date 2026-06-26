@@ -46,7 +46,7 @@ function Quote() {
       formData.append("phone", values.phone);
       formData.append("message", values.message);
 
-      const res = await fetch("https://script.google.com/macros/s/AKfycbzA9o9yjJM54UQ9p5jcp0xT9XIcr5GDQhcTP19S9SrcGTO1eeJCBJ1UdQWhqn50GtYCHQ/exec", {
+      const res = await fetch("https://script.google.com/macros/s/AKfycbwIezwX39_lFanqA-DdjTMJ7OSaiIvshkXjTMSipRjr6U76ReFhT5VCta9Wh9bVVU-9-g/exec", {
         method: "POST",
         body: formData,
       });
