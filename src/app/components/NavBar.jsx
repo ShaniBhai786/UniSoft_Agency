@@ -22,6 +22,7 @@ const NavBar = () => {
               <Link className='links' href="/contact">Contact</Link>
               <Link className='links' href="/blogs">Blogs</Link>
               <Link className='links' href="/privacy-policy">Privacy Policy</Link>
+              <Link className='links' href="/chatbot">ChatBot</Link>
             </div>
         {nav && <div className="navLinksNav" onClick={() => setNav(!nav)}>
           <i className='fa fa-close closeBtnNav' onClick={() => setNav(!nav)}></i>
