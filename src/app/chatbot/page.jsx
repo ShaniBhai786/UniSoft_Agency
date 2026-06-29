@@ -2,6 +2,8 @@
 
 import React, { useRef, useState, useEffect } from "react";
 import "../chatbot.css";
+import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm"; 
 
 export default function Page() {
   const [value, setValue] = useState("");
@@ -88,7 +90,13 @@ export default function Page() {
               className={`message ${msg.role}`}
             >
               <div className="bubble">
-                {msg.text}
+                <div className="markdown">
+                  <ReactMarkdown remarkPlugins={[remarkGfm]}>
+                    <div className="ai-response">
+                      {msg.text}
+                    </div>
+                  </ReactMarkdown>
+                </div>
               </div>
             </div>
           ))}

@@ -272,3 +272,59 @@ body {
     }
 
 }
+.markdown{
+    line-height:1.8;
+    color:#222;
+}
+
+.markdown h1{
+    font-size:32px;
+    margin:20px 0;
+}
+
+.markdown h2{
+    font-size:28px;
+    margin:18px 0;
+}
+
+.markdown h3{
+    font-size:22px;
+    margin:15px 0;
+}
+
+.markdown p{
+    margin:12px 0;
+}
+
+.markdown ul{
+    padding-left:25px;
+}
+
+.markdown li{
+    margin:8px 0;
+}
+
+.markdown strong{
+    color:#2563eb;
+}
+
+.markdown pre{
+    background:#0f172a;
+    color:white;
+    padding:20px;
+    border-radius:12px;
+    overflow:auto;
+}
+
+.markdown code{
+    background:#eef2ff;
+    padding:2px 6px;
+    border-radius:5px;
+}
+.ai-response {
+    white-space: pre-wrap;
+    line-height: 1.8;
+    font-size: 16px;
+    color: #1f2937;
+    font-family: "Inter", sans-serif;
+}
