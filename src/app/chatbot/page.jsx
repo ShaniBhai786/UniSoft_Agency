@@ -1,128 +1,130 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
+import "../chatbot.css";
 
-const Page = () => {
+export default function Page() {
   const [value, setValue] = useState("");
   const [chat, setChat] = useState([]);
+  const [loading, setLoading] = useState(false);
 
-  
+  const bottomRef = useRef(null);
+
+  useEffect(() => {
+    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [chat]);
+
   const onSubmit = async (e) => {
     e.preventDefault();
 
-    if (!value.trim()) return;
+    if (!value.trim() || loading) return;
 
     const userMessage = value;
 
-    setChat((prev) => [
-      ...prev,
-      { role: "user", text: userMessage },
-    ]);
+    setChat((prev) => [...prev, { role: "user", text: userMessage }]);
 
     setValue("");
+    setLoading(true);
 
-    const sessionId =
-      localStorage.getItem("sessionId") || crypto.randomUUID();
+    try {
+      const sessionId =
+        localStorage.getItem("sessionId") || crypto.randomUUID();
 
-    localStorage.setItem("sessionId", sessionId);
+      localStorage.setItem("sessionId", sessionId);
 
-    const res = await fetch("/api/chat", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        message: userMessage,
-        sessionId,
-      }),
-    });
+      const res = await fetch("/api/chat", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          message: userMessage,
+          sessionId,
+        }),
+      });
 
-    if (!res.ok) {
-      const errorText = await res.text();
-      console.error("API Error:", errorText);
-      return;
+      const data = await res.json();
+
+      setChat((prev) => [
+        ...prev,
+        {
+          role: "assistant",
+          text: data.reply || data[0]?.output || "No response received.",
+        },
+      ]);
+    } catch (err) {
+      setChat((prev) => [
+        ...prev,
+        {
+          role: "assistant",
+          text: "Something went wrong. Please try again.",
+        },
+      ]);
+
+      console.error(err);
     }
 
-    const text = await res.text();
-
-    console.log("Raw Response:", text);
-
-    if (!text) {
-      console.error("Empty response from API");
-      return;
-    }
-
-    const data = JSON.parse(text);
-
-    console.log(data);
-
-    setChat((prev) => [
-      ...prev,
-      {
-        role: "assistant",
-        text: data[0].output,
-      },
-    ]);
+    setLoading(false);
   };
 
   return (
-    <div className="container">
-      <h1>UniSoft ChatBot</h1>
+    <div className="chatPage">
 
-      <div className="formDiv">
-        <form onSubmit={onSubmit}>
+      <div className="chatCard">
+
+        <div className="header">
+          <h1>🤖 UniSoft AI</h1>
+          <p>Powered by n8n + OpenAI</p>
+        </div>
+
+        <div className="messages">
+
+          {chat.length === 0 && (
+            <div className="welcome">
+              Ask me anything...
+            </div>
+          )}
+
+          {chat.map((msg, index) => (
+            <div
+              key={index}
+              className={`message ${msg.role}`}
+            >
+              <div className="bubble">
+                {msg.text}
+              </div>
+            </div>
+          ))}
+
+          {loading && (
+            <div className="message assistant">
+              <div className="bubble typing">
+                Thinking...
+              </div>
+            </div>
+          )}
+
+          <div ref={bottomRef} />
+
+        </div>
+
+        <form onSubmit={onSubmit} className="inputArea">
+
           <input
             type="text"
-            name="chat"
-            id="chat"
+            placeholder="Ask UniSoft AI..."
             value={value}
             onChange={(e) => setValue(e.target.value)}
-            placeholder="Reply to Chat with AI..."
-            style={{ color: "black" }}
           />
 
-          <div className="buttons">
-            <button
-              type="button"
-              onClick={() => {
-                setValue("");
-                setChat([]);
-              }}
-            >
-              Reset
-            </button>
+          <button disabled={loading}>
+            {loading ? "..." : "Send"}
+          </button>
 
-            <button type="submit">
-              Submit
-            </button>
-          </div>
         </form>
+
       </div>
 
-      <div className="chat">
-        {chat.map((msg, index) => (
-          <div
-            key={index}
-            style={{
-              textAlign:
-                msg.role === "user"
-                  ? "right"
-                  : "left",
-              margin: "10px 0",
-            }}
-          >
-            <strong>
-              {msg.role === "user"
-                ? "You"
-                : "AI"}
-            </strong>
-
-            <p>{msg.text}</p>
-          </div>
-        ))}
-      </div>
     </div>
   );
-};
-
-export default Page;
+}
