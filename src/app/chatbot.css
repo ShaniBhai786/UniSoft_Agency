@@ -321,7 +321,7 @@ body {
     padding:2px 6px;
     border-radius:5px;
 }
-.ai-response {
+.ai-response * {
     white-space: pre-wrap;
     line-height: 1.8;
     font-size: 16px;
