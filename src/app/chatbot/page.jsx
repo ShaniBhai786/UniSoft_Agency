@@ -90,12 +90,8 @@ export default function Page() {
               className={`message ${msg.role}`}
             >
               <div className="bubble">
-                <div className="markdown">
-                  <ReactMarkdown remarkPlugins={[remarkGfm]}>
-                    <div className="ai-response">
-                      {msg.text}
-                    </div>
-                  </ReactMarkdown>
+                <div className="ai-response">
+                  {msg.text}
                 </div>
               </div>
             </div>
