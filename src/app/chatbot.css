@@ -328,3 +328,36 @@ body {
     color: #1f2937;
     font-family: "Inter", sans-serif;
 }
+
+.copyBtn {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 14px;
+    color: #666;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    white-space: nowrap;
+    transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.copyBtn:hover {
+    background-color: #eef2ff;
+    color: #2563eb;
+    transform: translateY(-1px);
+}
+
+.copyBtn:active {
+    transform: translateY(0);
+    background-color: #dbeafe;
+    color: #1d4ed8;
+}
+
+.copyBtn:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.3);
+}
+
