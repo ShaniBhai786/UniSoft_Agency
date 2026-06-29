@@ -142,7 +142,103 @@
   color: #ffff;
   box-shadow: 1px 1px 10px white;
 }
+.navLinks {
+  display: flex;
+  align-items: center;
+  gap: 2.2rem;
+}
 
+.navItem {
+  position: relative;
+  text-decoration: none;
+  color: #fff;
+  font-weight: 500;
+  transition: .3s;
+  cursor: pointer;
+}
+
+.navItem:hover {
+  color: #3B82F6;
+}
+
+/* underline animation */
+
+.navItem::after {
+  content: "";
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background: #3B82F6;
+  transition: 0.1s ease;
+}
+
+.navItem:hover::after {
+  width: 100%;
+}
+
+/* dropdown */
+
+.navDropdown {
+  position: relative;
+}
+
+.navDropdown .navItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.megaMenu {
+  position: absolute;
+  top: 55px;
+  left: -120px;
+  display: flex;
+  gap: 55px;
+  padding: 25px 75px;
+  background: #111827;
+  border: 1px solid rgba(255, 255, 255, .08);
+  border-radius: 18px;
+  box-shadow: 0 20px 45px rgba(0, 0, 0, .25);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+  transition: 0.35s ease;
+  min-width: 540px;
+  z-index: 999;
+}
+
+.navDropdown:hover .megaMenu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.menuColumn {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.menuColumn h4 {
+  color: #3B82F6;
+  margin-bottom: 8px;
+  font-size: 15px;
+  font-weight: 700;
+}
+
+.menuColumn a {
+  color: #d1d5db;
+  text-decoration: none;
+  transition: .25s;
+  white-space: nowrap;
+}
+
+.menuColumn a:hover {
+  color: #fff;
+  padding-left: 8px;
+}
 .dashboardHero {
   position: relative;
   min-height: 100vh;
@@ -1982,6 +2078,7 @@
   gap: 50px;
   justify-content: center;
   align-items: stretch;
+  flex-wrap: wrap;
 
   background:
     radial-gradient(circle at 20% 20%,
