@@ -43,14 +43,24 @@ const Page = () => {
       return;
     }
 
-    const data = await res.json();
+    const text = await res.text();
+
+    console.log("Raw Response:", text);
+
+    if (!text) {
+      console.error("Empty response from API");
+      return;
+    }
+
+    const data = JSON.parse(text);
+
     console.log(data);
 
     setChat((prev) => [
       ...prev,
       {
         role: "assistant",
-        text: data.reply,
+        text: data[0].output,
       },
     ]);
   };

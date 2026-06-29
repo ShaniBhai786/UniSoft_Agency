@@ -2,7 +2,7 @@ export async function POST(req) {
     try {
         const { message, sessionId } = await req.json();
 
-        const response = await fetch("https://unisoftagency.app.n8n.cloud/webhook/chat", {
+        const response = await fetch(process.env.N8N_WEBHOOK_URL, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -13,20 +13,25 @@ export async function POST(req) {
             }),
         });
 
+        console.log("Status:", response.status);
+        console.log("Content-Type:", response.headers.get("content-type"));
+
         const text = await response.text();
+
+        console.log("Response:", text);
 
         return new Response(text, {
             status: response.status,
             headers: {
-                "Content-Type": "application/json",
+                "Content-Type": response.headers.get("content-type") || "application/json",
             },
         });
-    } catch (err) {
-        console.error(err);
+    } catch (error) {
+        console.error(error);
 
         return Response.json(
             {
-                error: err.message,
+                error: error.message,
             },
             {
                 status: 500,
