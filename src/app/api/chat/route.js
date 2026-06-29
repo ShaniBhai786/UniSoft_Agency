@@ -2,7 +2,7 @@ export async function POST(req) {
     try {
         const { message, sessionId } = await req.json();
 
-        const response = await fetch(process.env.N8N_WEBHOOK_URL, {
+        const response = await fetch(process.env.N8N_WEBHOOK_URL || "https://unisoftagency.app.n8n.cloud/webhook/chat", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
