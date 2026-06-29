@@ -10,9 +10,6 @@ export default function Page() {
 
   const bottomRef = useRef(null);
 
-  useEffect(() => {
-    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [chat]);
 
   const onSubmit = async (e) => {
     e.preventDefault();
@@ -49,7 +46,7 @@ export default function Page() {
         ...prev,
         {
           role: "assistant",
-          text: data.reply || data[0]?.output || "No response received.",
+          text: data[0]?.output || "No response received.",
         },
       ]);
     } catch (err) {
