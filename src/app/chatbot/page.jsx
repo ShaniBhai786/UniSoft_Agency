@@ -70,8 +70,8 @@ export default function Page() {
       <div className="chatCard">
 
         <div className="header">
-          <h1>🤖 UniSoft AI</h1>
-          <p>Powered by n8n + OpenAI</p>
+          <h1>🤖 UniBot</h1>
+          <p>Your Intelligent AI Assistant • Powered by UniSoft</p>
         </div>
 
         <div className="messages">
