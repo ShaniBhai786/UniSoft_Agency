@@ -4,25 +4,45 @@ import React, { useEffect, useRef, useState } from "react";
 import "../chatbot.css";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
+import ChatbotLeft from "../components/ChatbotLeft";
 
 export default function Page() {
   const [value, setValue] = useState("");
-  const [chat, setChat] = useState([]);
+  // const [chat, setChat] = useState([]);
   const [loading, setLoading] = useState(false);
 
   const bottomRef = useRef(null);
+  const messagesRef = useRef(null);
 
-  // Auto Scroll
+  const [chat, setChat] = useState(() => {
+    if (typeof window === "undefined") return [];
+
+    const storedChat = localStorage.getItem("chat");
+    return storedChat ? JSON.parse(storedChat) : [];
+  });
+
   useEffect(() => {
-    bottomRef.current?.scrollIntoView({
+    messagesRef.current?.scrollTo({
+      top: messagesRef.current.scrollHeight,
       behavior: "smooth",
     });
   }, [chat, loading]);
 
-  const copy = async (text) => {
+  useEffect(() => {
+    localStorage.setItem("chat", JSON.stringify(chat));
+  }, [chat]);
+
+
+  const [copiedIndex, setCopiedIndex] = useState(null);
+  const copy = async (text, index) => {
     try {
       await navigator.clipboard.writeText(text);
-      alert("Copied!");
+
+      setCopiedIndex(index);
+
+      setTimeout(() => {
+        setCopiedIndex(null);
+      }, 2000);
     } catch (err) {
       console.error(err);
     }
@@ -103,98 +123,107 @@ export default function Page() {
       setLoading(false);
     }
   };
-
+const clearChat = () => {
+  localStorage.removeItem("chat")
+  setChat([])
+}
   return (
-    <div className="chatPage">
-      <div className="chatCard">
+    <div className="chatbot">
+      <ChatbotLeft />
+      <div className="chatPage">
+        <div className="chatCard">
+          <div className="messages" ref={messagesRef}>
 
-        <div className="header">
-          <h1>🤖 UniSoft AI (UniBot)</h1>
-          <p>Your Intelligent AI Assistant</p>
-        </div>
+            {chat.length === 0 && (
+              <div className="welcome">
+                <p>👋 Welcome to UniBot</p>
+                <p>Ask me anything about UniSoft or technology.</p>
+              </div>
+            )}
 
-        <div className="messages">
+            {chat.map((msg, index) => (
+              <div
+                key={index}
+                className={`message ${msg.role}`}
+              >
+                <div className="bubble">
 
-          {chat.length === 0 && (
-            <div className="welcome">
-              👋 Welcome to UniBot
-              <br />
-              Ask me anything about UniSoft or technology.
-            </div>
-          )}
+                  <div className="messageHeader">
+                    <strong>
+                      {msg.role === "user"
+                        ? "You"
+                        : "🤖 UniBot"}
+                    </strong>
 
-          {chat.map((msg, index) => (
-            <div
-              key={index}
-              className={`message ${msg.role}`}
-            >
-              <div className="bubble">
+                    <div className="ai-response">
+                      <ReactMarkdown remarkPlugins={[remarkGfm]} >
+                        {typeof msg.text === "string"
+                          ? msg.text
+                          : JSON.stringify(msg.text, null, 2)}
+                      </ReactMarkdown>
+                    </div>
 
-                <div className="messageHeader" ref={bottomRef}>
-                  <strong>
-                    {msg.role === "user"
-                      ? "You"
-                      : "🤖 UniBot"}
-                  </strong>
-
-                  <div className="ai-response">
-                    <ReactMarkdown remarkPlugins={[remarkGfm]} >
-                      {typeof msg.text === "string"
-                        ? msg.text
-                        : JSON.stringify(msg.text, null, 2)}
-                    </ReactMarkdown>
+                    <button
+                      className={`copyBtn ${copiedIndex === index ? "active" : ""}`}
+                      onClick={() => copy(msg.text, index)}
+                    >
+                      {copiedIndex === index ? "✅ Copied!" : "📋 Copy"}
+                    </button>
                   </div>
 
-                  {msg.role === "assistant" && (
-                    <button
-                      className="copyBtn"
-                      onClick={() => copy(msg.text)}
-                    >
-                      📋 Copy
-                    </button>
-                  )}
+
                 </div>
-
-
               </div>
-            </div>
-          ))}
+            ))}
 
-          {loading && (
-            <div className="message assistant">
-              <div className="bubble typing">
-                <span></span>
-                <span></span>
-                <span></span>
+            {loading && (
+              <div className="message assistant">
+                <div className="bubble typing">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </div>
               </div>
-            </div>
-          )}
+            )}
 
-          <div />
+            <div ref={bottomRef} />
+
+          </div>
+
+          <form
+            onSubmit={onSubmit}
+            className="inputArea"
+          >
+            <textarea
+              className="input"
+              value={value}
+              onChange={(e) => setValue(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" && !e.shiftKey) {
+                  e.preventDefault();
+                  onSubmit(e);
+                }
+              }}
+              placeholder="Ask from UniBot..."
+            />
+
+            <button
+              type="submit"
+              disabled={loading}
+            >
+              {loading ? "please wait..." : "Send"}
+            </button>
+            <button
+              type="button"
+              className="deleteBtn"
+              onClick={clearChat}
+              disabled={loading}
+            >
+              🗑️ Delete
+            </button>
+          </form>
 
         </div>
-
-        <form
-          onSubmit={onSubmit}
-          className="inputArea"
-        >
-          <input
-            value={value}
-            placeholder="Ask UniBot..."
-            onChange={(e) =>
-              setValue(e.target.value)
-            }
-            disabled={loading}
-          />
-
-          <button
-            type="submit"
-            disabled={loading}
-          >
-            {loading ? "..." : "Send"}
-          </button>
-        </form>
-
       </div>
     </div>
   );
