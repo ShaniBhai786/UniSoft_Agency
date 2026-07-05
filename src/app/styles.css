@@ -239,6 +239,302 @@
   color: #fff;
   padding-left: 8px;
 }
+
+/* ==========================
+   Mobile Navigation
+========================== */
+@media (max-width: 768px) {
+
+  /* ============================
+     MOBILE NAVIGATION
+  ============================ */
+  
+    .navLinksNav {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 320px;
+      max-width: 100%;
+      height: 100vh;
+  
+      background: linear-gradient(180deg, #07111f 0%, #0b1730 100%);
+      box-shadow: -15px 0 45px rgba(0, 0, 0, .45);
+  
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+  
+      padding: 80px 18px 30px;
+  
+      overflow-y: auto;
+      z-index: 9999;
+  
+      animation: slideMenu .35s ease;
+    }
+  
+    /* Scrollbar */
+  
+    .navLinksNav::-webkit-scrollbar {
+      width: 5px;
+    }
+  
+    .navLinksNav::-webkit-scrollbar-thumb {
+      background: #2563eb;
+      border-radius: 20px;
+    }
+  
+    /* Close Button */
+  
+    .closeBtnNav {
+  
+      position: absolute;
+      top: 20px;
+      right: 20px;
+  
+      width: 42px;
+      height: 42px;
+  
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  
+      border-radius: 50%;
+  
+      background: rgba(255, 255, 255, .08);
+  
+      color: #fff;
+  
+      cursor: pointer;
+  
+      transition: .3s;
+    }
+  
+    .closeBtnNav:hover {
+  
+      background: #2563eb;
+  
+      transform: rotate(90deg);
+  
+    }
+  
+    /* Main Items */
+  
+    .navItem {
+  
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+  
+      width: 100%;
+  
+      padding: 16px 18px;
+  
+      margin-bottom: 10px;
+  
+      border-radius: 12px;
+  
+      color: #fff;
+  
+      text-decoration: none;
+  
+      font-size: 16px;
+  
+      font-weight: 500;
+  
+      background: rgba(255, 255, 255, .04);
+  
+      border: 1px solid rgba(255, 255, 255, .08);
+  
+      transition: .3s;
+  
+      cursor: pointer;
+  
+    }
+  
+    .navItem:hover {
+  
+      background: #2563eb;
+  
+      transform: translateX(6px);
+  
+    }
+  
+    .navItem::after {
+  
+      display: none;
+  
+    }
+  
+    /* Dropdown */
+  
+    .navDropdown {
+  
+      width: 100%;
+  
+    }
+  
+    .navDropdown i {
+  
+      transition: .3s;
+  
+    }
+  
+    .navDropdown.active i {
+  
+      transform: rotate(180deg);
+  
+    }
+  
+    /* Mega Menu */
+  
+    .megaMenu {
+  
+      display: none;
+  
+      margin: 5px 0 15px;
+  
+      padding: 12px;
+  
+      background: #101d35;
+  
+      border-radius: 12px;
+  
+      border: 1px solid rgba(255, 255, 255, .06);
+      
+      animation: fadeDown .3s ease;
+      
+      justify-content: center;
+      align-items: center;
+    }
+  
+    .navDropdown:hover .megaMenu {
+      display: flex;
+      width: 100%;
+    }
+  
+    /* If using React */
+  
+    .navDropdown.active .megaMenu {
+  
+      display: flex;
+  
+    }
+  
+    /* Columns */
+  
+    .menuColumn {
+  
+      padding-bottom: 15px;
+  
+    }
+  
+    .menuColumn:last-child {
+  
+      padding-bottom: 0;
+  
+    }
+  
+    .menuColumn h4 {
+  
+      color: #3b82f6;
+  
+      font-size: 15px;
+  
+      letter-spacing: 1px;
+  
+      margin: 8px 0 10px;
+  
+      text-transform: uppercase;
+  
+    }
+  
+    /* Links */
+  
+    .menuColumn a {
+  
+      display: block;
+  
+      color: #d6dce8;
+  
+      text-decoration: none;
+  
+      padding: 12px 14px;
+  
+      border-radius: 8px;
+  
+      transition: .3s;
+  
+      font-size: 15px;
+      margin-bottom: 4px;
+  
+    }
+  
+    .menuColumn a:hover {
+  
+      background: #2563eb;
+  
+      color: #fff;
+  
+      padding-left: 22px;
+  
+    }
+  
+    /* Animations */
+  
+    @keyframes slideMenu {
+  
+      from {
+  
+        transform: translateX(100%);
+  
+        opacity: 0;
+  
+      }
+  
+      to {
+  
+        transform: translateX(0);
+  
+        opacity: 1;
+  
+      }
+  
+    }
+  
+    @keyframes fadeDown {
+  
+      from {
+  
+        opacity: 0;
+  
+        transform: translateY(-10px);
+  
+      }
+  
+      to {
+  
+        opacity: 1;
+  
+        transform: translateY(0);
+  
+      }
+  
+    }
+  
+    /* Hide on Desktop */
+  
+    @media(min-width:769px) {
+  
+      .navLinksNav {
+  
+        display: none;
+  
+      }
+  
+    }
+}
+
 .dashboardHero {
   position: relative;
   min-height: 100vh;

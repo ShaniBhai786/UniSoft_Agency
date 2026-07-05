@@ -33,7 +33,7 @@
   width: 90%;
   max-width: 1300px;
   margin: auto;
-  padding: 60px 0 80px;
+  padding: 0px 0 80px;
 }
 
 /* ── HERO ── */
@@ -45,6 +45,7 @@
 }
 
 .ceoHeroLeft {
+  margin-top: 40px;
   flex: 1.2;
 }
 
@@ -159,7 +160,9 @@
 .ceoHeroRight {
   flex: 1;
   display: flex;
+  position: relative;
   justify-content: center;
+  align-items: flex-start;
 }
 
 .ceoImgWrapper {
