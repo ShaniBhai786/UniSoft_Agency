@@ -13,6 +13,7 @@ const NavBar = () => {
           <div className=""><Link href="/"><Image src="/assets/logo.jpeg" alt="logo" width={50} height={50} /></Link></div>
           <div className="title"><Link href="/"><h2>UniSoft</h2></Link></div>
         </div>
+<<<<<<< Updated upstream
             <div className="navLinks">
               <Link className="navItem" href="/">Home</Link>
               <Link className="navItem" href="/about">About</Link>
@@ -44,6 +45,18 @@ const NavBar = () => {
                 </div>
               </div>
 
+=======
+        <div className="navLinks">
+          <Link className='links' href="/">Home</Link>
+          <Link className='links' href="/services">Services</Link>
+          <Link className='links' href="/about">About</Link>
+          <Link className='links' href="/teams">Teams</Link>
+          <Link className='links' href="/ceo">CEO</Link>
+          <Link className='links' href="/pricing">Pricing</Link>
+              <Link className='links' href="/contact">Contact</Link>
+              <Link className='links' href="/blogs">Blogs</Link>
+              <Link className='links' href="/privacy-policy">Privacy Policy</Link>
+>>>>>>> Stashed changes
             </div>
         {nav && <div className="navLinksNav" onClick={() => setNav(!nav)}>
           <i className='fa fa-close closeBtnNav' onClick={() => setNav(!nav)}></i>
@@ -51,6 +64,7 @@ const NavBar = () => {
           <Link className='links' href="/services"><i className='fa fa-mobile'></i><span>Services</span></Link>
           <Link className='links' href="/about"> <i className='fa fa-info-circle'></i><span>About</span></Link>
           <Link className='links' href="/teams"><i className='fa fa-users'></i><span>Teams</span></Link>
+          <Link className='links' href="/ceo"><i className='fa fa-user-tie'></i><span>CEO</span></Link>
           <Link className='links' href="/pricing"><i className='fa fa-dollar'></i><span>Pricing</span></Link>
           <Link className='links' href="/contact"><i className='fa fa-phone'></i><span>Contact</span></Link>
               <Link className='links' href="/blogs"><i className='fa fa-blog'></i><span>Blogs</span></Link>

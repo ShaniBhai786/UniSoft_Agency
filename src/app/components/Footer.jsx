@@ -9,6 +9,7 @@ export default function Footer() {
     { name: "About", path: "/about", icon: "fa-user" },
     { name: "Services", path: "/services", icon: "fa-briefcase" },
     { name: "Teams", path: "/teams", icon: "fa-users" },
+    { name: "CEO", path: "/ceo", icon: "fa-user-tie" },
     { name: "Contact", path: "/contact", icon: "fa-phone" },
     { name: "Pricing", path: "/pricing", icon: "fa-tags" },
   ]
