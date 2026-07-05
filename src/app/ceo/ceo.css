@@ -917,7 +917,7 @@
 /* ── RESPONSIVE ── */
 @media (max-width: 1024px) {
   .ceoHero {
-    flex-direction: column-reverse;
+    flex-direction: column;
     text-align: center;
   }
 
@@ -947,45 +947,141 @@
 }
 
 @media (max-width: 768px) {
+  .ceoHero {
+    flex-direction: column;
+    gap: 36px;
+    margin-bottom: 60px;
+  }
+
   .ceoHeroLeft h1 {
-    font-size: 2.2rem;
+    font-size: 2rem;
+  }
+
+  .ceoBadge {
+    font-size: 11px;
+    padding: 8px 14px;
+  }
+
+  .ceoTagline {
+    font-size: 0.9rem;
+  }
+
+  .ceoIntro {
+    font-size: 0.95rem;
+  }
+
+  .ceoSocials {
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .socialBtn {
+    padding: 10px 16px;
+    font-size: 13px;
+  }
+
+  .ceoStats {
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .ceoStatItem {
+    min-width: 80px;
+    padding: 14px 16px;
+  }
+
+  .ceoStatItem strong {
+    font-size: 1.4rem;
+  }
+
+  .ceoPhoto {
+    max-width: 260px;
   }
 
   .sectionTitle {
-    font-size: 1.8rem;
+    font-size: 1.6rem;
   }
 
   .ceoCTA h2 {
-    font-size: 1.8rem;
+    font-size: 1.6rem;
   }
 
   .timeline {
-    padding-left: 10px;
+    padding-left: 0;
   }
 
   .timeline::before {
-    left: 55px;
+    left: 52px;
   }
 
   .missionVisionGrid {
     flex-direction: column;
   }
 
-  .ceoPhoto {
-    max-width: 300px;
+  .speakingCard {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .researchCard {
+    flex-wrap: wrap;
   }
 }
 
 @media (max-width: 500px) {
   .ceoContainer {
     width: 95%;
+    padding: 40px 0 60px;
+  }
+
+  .ceoHeroLeft h1 {
+    font-size: 1.7rem;
+  }
+
+  .ceoPhoto {
+    max-width: 220px;
   }
 
   .bioCard {
-    padding: 24px;
+    padding: 20px;
   }
 
   .ceoCTA {
-    padding: 40px 20px;
+    padding: 36px 18px;
+  }
+
+  .ctaBtns {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .ctaPrimary,
+  .ctaSecondary {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .timelineItem {
+    gap: 12px;
+  }
+
+  .timelineYear {
+    min-width: 44px;
+    font-size: 0.75rem;
+  }
+
+  .timelineContent {
+    padding: 16px 18px;
+  }
+
+  .expGrid,
+  .skillsGrid,
+  .achieveGrid,
+  .certGrid,
+  .projectsGrid,
+  .awardsGrid,
+  .mediaGrid,
+  .testimonialsGrid {
+    grid-template-columns: 1fr;
   }
 }
