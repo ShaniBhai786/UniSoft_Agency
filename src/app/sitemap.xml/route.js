@@ -33,6 +33,11 @@ export async function GET() {
       priority: "0.7",
     },
     {
+      loc: `${baseUrl}/ceo`,
+      changefreq: "monthly",
+      priority: "0.8",
+    },
+    {
       loc: `${baseUrl}/blogs`,
       changefreq: "daily",
       priority: "0.9",
