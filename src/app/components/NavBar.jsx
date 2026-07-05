@@ -6,46 +6,14 @@ import "../styles.css"
 
 const NavBar = () => {
   const [nav, setNav] = useState(false)
-      return (
+  return (
     <>
-        <nav className="navbar">
+      <nav className="navbar">
         <div className="logo">
           <div className=""><Link href="/"><Image src="/assets/logo.jpeg" alt="logo" width={50} height={50} /></Link></div>
           <div className="title"><Link href="/"><h2>UniSoft</h2></Link></div>
         </div>
-<<<<<<< Updated upstream
-            <div className="navLinks">
-              <Link className="navItem" href="/">Home</Link>
-              <Link className="navItem" href="/about">About</Link>
-              <Link className="navItem" href="/services">Services</Link>
 
-              <div className="navDropdown">
-                <span className="navItem">
-                  More <i className="fa fa-chevron-down"></i>
-                </span>
-                <div className="megaMenu">
-                  <div className="menuColumn">
-                    <h4>Company</h4>
-                    <Link href="/teams">Our Team</Link>
-                    <Link href="/pricing">Pricing</Link>
-                  </div>
-
-                  <div className="menuColumn">
-                    <h4>Resources</h4>
-                    <Link href="/blogs">Blogs</Link>
-                    <Link href="/chatbot">AI ChatBot</Link>
-                  </div>
-
-                  <div className="menuColumn">
-                    <h4>Legal</h4>
-                    <Link href="/privacy-policy">Privacy Policy</Link>
-                    <Link href="/contact">Contact</Link>
-                  </div>
-
-                </div>
-              </div>
-
-=======
         <div className="navLinks">
           <Link className='links' href="/">Home</Link>
           <Link className='links' href="/services">Services</Link>
@@ -53,26 +21,32 @@ const NavBar = () => {
           <Link className='links' href="/teams">Teams</Link>
           <Link className='links' href="/ceo">CEO</Link>
           <Link className='links' href="/pricing">Pricing</Link>
-              <Link className='links' href="/contact">Contact</Link>
-              <Link className='links' href="/blogs">Blogs</Link>
-              <Link className='links' href="/privacy-policy">Privacy Policy</Link>
->>>>>>> Stashed changes
-            </div>
-        {nav && <div className="navLinksNav" onClick={() => setNav(!nav)}>
-          <i className='fa fa-close closeBtnNav' onClick={() => setNav(!nav)}></i>
-          <Link className='links' href="/"><i className='fa fa-home'></i><span>Home</span></Link>
-          <Link className='links' href="/services"><i className='fa fa-mobile'></i><span>Services</span></Link>
-          <Link className='links' href="/about"> <i className='fa fa-info-circle'></i><span>About</span></Link>
-          <Link className='links' href="/teams"><i className='fa fa-users'></i><span>Teams</span></Link>
-          <Link className='links' href="/ceo"><i className='fa fa-user-tie'></i><span>CEO</span></Link>
-          <Link className='links' href="/pricing"><i className='fa fa-dollar'></i><span>Pricing</span></Link>
-          <Link className='links' href="/contact"><i className='fa fa-phone'></i><span>Contact</span></Link>
-              <Link className='links' href="/blogs"><i className='fa fa-blog'></i><span>Blogs</span></Link>
-              <Link className='links' href="/privacy-policy"><i className='fa fa-blog'></i><span>Privacy Policy</span></Link>
-              <Link className='links' href="/chatbot"><i className='fa fa-message'></i><span>ChatBot</span></Link>
-        </div>}
-            <Link href="/quote" aria-label="Get a free software consultation from UniSoft"><button className="navBtn">Get Free Consultation</button></Link>
-        <div className="hamBurger" onClick={() => setNav(!nav)}><i className='fa fa-bars' id='bars'></i></div>
+          <Link className='links' href="/contact">Contact</Link>
+          <Link className='links' href="/blogs">Blogs</Link>
+          <Link className='links' href="/privacy-policy">Privacy Policy</Link>
+        </div>
+
+        {nav && (
+          <div className="navLinksNav" onClick={() => setNav(!nav)}>
+            <i className='fa fa-close closeBtnNav' onClick={() => setNav(!nav)}></i>
+            <Link className='links' href="/"><i className='fa fa-home'></i><span>Home</span></Link>
+            <Link className='links' href="/services"><i className='fa fa-mobile'></i><span>Services</span></Link>
+            <Link className='links' href="/about"><i className='fa fa-info-circle'></i><span>About</span></Link>
+            <Link className='links' href="/teams"><i className='fa fa-users'></i><span>Teams</span></Link>
+            <Link className='links' href="/ceo"><i className='fa fa-user-tie'></i><span>CEO</span></Link>
+            <Link className='links' href="/pricing"><i className='fa fa-dollar'></i><span>Pricing</span></Link>
+            <Link className='links' href="/contact"><i className='fa fa-phone'></i><span>Contact</span></Link>
+            <Link className='links' href="/blogs"><i className='fa fa-blog'></i><span>Blogs</span></Link>
+            <Link className='links' href="/privacy-policy"><i className='fa fa-blog'></i><span>Privacy Policy</span></Link>
+          </div>
+        )}
+
+        <Link href="/quote" aria-label="Get a free software consultation from UniSoft">
+          <button className="navBtn">Get Free Consultation</button>
+        </Link>
+        <div className="hamBurger" onClick={() => setNav(!nav)}>
+          <i className='fa fa-bars' id='bars'></i>
+        </div>
       </nav>
     </>
   )
