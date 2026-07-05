@@ -168,13 +168,12 @@
 }
 
 .ceoPhoto {
-  border-radius: 28px;
+  border-radius: 100%;
   object-fit: cover;
   border: 2px solid rgba(79, 70, 229, 0.3);
   box-shadow: 0 30px 80px rgba(0, 0, 0, 0.6);
-  width: 100%;
-  max-width: 400px;
-  height: auto;
+  width: 380px;
+  height: 380px;
 }
 
 .ceoImgGlow {
@@ -995,7 +994,8 @@
   }
 
   .ceoPhoto {
-    max-width: 260px;
+    width: 260px;
+    height: 260px;
   }
 
   .sectionTitle {
@@ -1039,7 +1039,8 @@
   }
 
   .ceoPhoto {
-    max-width: 220px;
+    width: 220px;
+    height: 220px;
   }
 
   .bioCard {
