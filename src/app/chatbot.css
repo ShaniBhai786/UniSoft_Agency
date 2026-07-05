@@ -391,7 +391,7 @@
     }
 }
 
-@media(max-width:600px) {
+@media(max-width:700px) {
     .chatPage {
         padding: 80px 10px 15px;
     }
@@ -411,10 +411,13 @@
     .bubble {
         padding: 18px;
     }
+    .left-window{
+        width: 0;
+        min-width: 0;
+    }
 }
 .left-window {
     width: 300px;
-    min-width: 300px;
     height: 100vh;
 
     display: flex;
