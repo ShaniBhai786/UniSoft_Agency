@@ -8,7 +8,7 @@ export const metadata = {
   description:
     "UniSoft offers software development, SEO services, web development, UI/UX design, automation, and digital marketing services to grow your business.",
 };
-<SeoSchema schema={servicesSchema} />
+
 const services = [
   {
     title: "Software Development",
