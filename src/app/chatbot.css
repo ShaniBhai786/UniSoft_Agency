@@ -389,33 +389,12 @@
         width: 100%;
         min-height: 55px;
     }
-}
-
-@media(max-width:700px) {
-    .chatPage {
-        padding: 80px 10px 15px;
-    }
-
-    .messages {
-        padding: 18px;
-    }
-
-    .header {
-        padding: 20px;
-    }
-
-    .header h1 {
-        font-size: 1.35rem;
-    }
-
-    .bubble {
-        padding: 18px;
-    }
-    .left-window{
-        width: 0;
-        min-width: 0;
+    .chatCard{
+        height: 100vh;
     }
 }
+
+
 .left-window {
     width: 300px;
     height: 100vh;
@@ -529,4 +508,31 @@
     background: #ef4444;
     color: white;
     transform: translateY(-2px);
+}
+
+@media(max-width:700px) {
+    .chatPage {
+        padding: 10px 10px 15px;
+    }
+
+    .messages {
+        padding: 18px;
+    }
+
+    .header {
+        padding: 20px;
+    }
+
+    .header h1 {
+        font-size: 1.35rem;
+    }
+
+    .bubble {
+        padding: 18px;
+    }
+
+    .left-window {
+        width: 0;
+        min-width: 0;
+    }
 }

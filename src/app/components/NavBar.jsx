@@ -87,7 +87,7 @@ const NavBar = () => {
             </div>
         {nav && <div className="navLinksNav" >
           <i className='fa fa-close closeBtnNav' onClick={() => setNav(!nav)}></i>
-          <Link className="navItem" href="/">Home</Link>
+              <Link className="navItem" href="/" onClick={() => setNav(!nav)}>Home</Link>
               <div className="navDropdown">
                 <span className="navItem">
                   About <i className="ri-arrow-down-s-line navArrow" />
