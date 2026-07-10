@@ -85,7 +85,7 @@ const NavBar = () => {
               </div>
 
             </div>
-        {nav && <div className="navLinksNav" onClick={() => setNav(!nav)}>
+        {nav && <div className="navLinksNav" >
           <i className='fa fa-close closeBtnNav' onClick={() => setNav(!nav)}></i>
           <Link className="navItem" href="/">Home</Link>
               <div className="navDropdown">
@@ -93,44 +93,38 @@ const NavBar = () => {
                   About <i className="ri-arrow-down-s-line navArrow" />
                 </span>
                 <div className="megaMenu">
-                  <div className="menuColumn">
+                  <div className="menuColumn" onClick={() => setNav(!nav)}>
                     <Link href="/about">About UniSoft</Link>
                     <Link href="/ceo">About CEO</Link>
                   </div>
                   </div>
               </div>
-              <div className="navDropdownWrapper">
-                <Link className='links navDropTrigger' href="/services">
-                  Services <i className="ri-arrow-down-s-line navArrow" />
-                </Link>
-                <div className="navDropdownMenu">
-                  {services.map((s) => (
-                    <Link key={s.href} href={s.href} className="navDropdownItem">
-                      <i className={s.icon} />
-                      <span>{s.name}</span>
-                    </Link>
-                  ))}
-                </div>
-              </div>
+                <Link className='links' href="/services"><i className='ri-briefcase-line'></i><span>All Services</span></Link>
+                {services.map((s) => (
+                  <Link key={s.href} className='links' href={s.href}>
+                    <i className={s.icon}></i><span>{s.name}</span>
+                  </Link>
+                ))}
+
 
               <div className="navDropdown">
                 <span className="navItem">
                   More <i className="fa fa-chevron-down"></i>
                 </span>
                 <div className="megaMenu">
-                  <div className="menuColumn">
+                  <div className="menuColumn" onClick={() => setNav(!nav)}>
                     <h4>Company</h4>
                     <Link href="/teams">Our Team</Link>
                     <Link href="/pricing">Pricing</Link>
                   </div>
 
-                  <div className="menuColumn">
+                  <div className="menuColumn" onClick={() => setNav(!nav)}>
                     <h4>Resources</h4>
                     <Link href="/blogs">Blogs</Link>
                     <Link href="/chatbot">AI ChatBot</Link>
                   </div>
 
-                  <div className="menuColumn">
+                  <div className="menuColumn" onClick={() => setNav(!nav)}>
                     <h4>Legal</h4>
                     <Link href="/privacy-policy">Privacy Policy</Link>
                     <Link href="/contact">Contact</Link>
