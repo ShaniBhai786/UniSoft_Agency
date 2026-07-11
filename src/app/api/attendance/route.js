@@ -3,17 +3,21 @@ export async function POST(req) {
         const body = await req.json();
 
         const response = await fetch(
-            "https://script.google.com/macros/s/AKfycbx33GF6M1ohj3DDmF1iM_AbPYnhi6KkF9rtpdTFMpr-Yah60TwXYrYmIYLIgEynpqHn/exec",
+            "https://script.google.com/macros/s/AKfycbyBKF3k5aYKI_AezRAMn7noXM0UVcmQHUuwO4G0RbhX9Dn9nW2ENW1d1yMoTE4VgNeJ/exec",
             {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify(body),
+                redirect: "follow",
             }
         );
 
         const text = await response.text();
+
+        console.log("Status:", response.status);
+        console.log("Response:", text);
 
         return new Response(text, {
             status: 200,
@@ -22,12 +26,11 @@ export async function POST(req) {
             },
         });
     } catch (err) {
-        return Response.json(
-            {
-                success: false,
-                message: err.message,
-            },
-            { status: 500 }
-        );
+        console.error(err);
+
+        return Response.json({
+            success: false,
+            message: err.message,
+        });
     }
 }

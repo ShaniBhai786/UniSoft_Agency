@@ -41,13 +41,7 @@ export default function Scanner() {
                             `${data.name} (${data.class}) - Attendance Marked`
                         );
 
-                        // Pause for 2 seconds so the same QR isn't scanned repeatedly
-                        scanner.pause(true);
-
-                        setTimeout(() => {
-                            setMessage("");
-                            scanner.resume();
-                        }, 2000);
+                        scanner.clear().catch(console.error);
                     } else {
                         setSuccess(false);
                         setMessage(data.message);
