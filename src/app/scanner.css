@@ -1,0 +1,129 @@
+/* Scanner Page */
+.scannerPage {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #07111f, #0f172a);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+/* Scanner Card */
+.scannerCard {
+    width: 100%;
+    max-width: 500px;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 24px;
+    padding: 30px;
+    text-align: center;
+    box-shadow:
+        0 15px 40px rgba(0, 0, 0, 0.35),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.scannerCard h1 {
+    color: #fff;
+    margin-bottom: 10px;
+    font-size: 2rem;
+}
+
+.scannerCard p {
+    color: #94a3b8;
+    margin-bottom: 30px;
+}
+
+/* Scanner Container */
+#reader {
+    width: 100% !important;
+    overflow: hidden;
+    border-radius: 20px;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    background: #000;
+    position: relative;
+}
+
+/* Remove library styles */
+#reader img {
+    display: none !important;
+}
+
+#reader__dashboard_section button {
+    background: #3b82f6 !important;
+    color: #fff !important;
+    border: none !important;
+    padding: 12px 20px !important;
+    border-radius: 12px !important;
+    cursor: pointer;
+    font-weight: 600;
+    margin-top: 15px;
+}
+
+#reader__dashboard_section button:hover {
+    transform: translateY(-2px);
+}
+
+#reader__scan_region {
+    min-height: 320px;
+    position: relative;
+}
+
+/* Scanning Line Animation */
+#reader__scan_region::after {
+    content: "";
+    position: absolute;
+    left: 10%;
+    width: 80%;
+    height: 3px;
+    background: #00ff88;
+    box-shadow: 0 0 20px #00ff88;
+    animation: scan 2s linear infinite;
+}
+
+@keyframes scan {
+    from {
+        top: 20%;
+    }
+
+    to {
+        top: 80%;
+    }
+}
+
+/* Success Message */
+.scanSuccess {
+    margin-top: 20px;
+    background: rgba(34, 197, 94, 0.15);
+    border: 1px solid #22c55e;
+    color: #22c55e;
+    padding: 14px;
+    border-radius: 12px;
+    font-weight: 600;
+}
+
+/* Error Message */
+.scanError {
+    margin-top: 20px;
+    background: rgba(239, 68, 68, 0.15);
+    border: 1px solid #ef4444;
+    color: #ef4444;
+    padding: 14px;
+    border-radius: 12px;
+    font-weight: 600;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    .scannerCard {
+        padding: 20px;
+    }
+
+    .scannerCard h1 {
+        font-size: 1.6rem;
+    }
+
+    #reader__scan_region {
+        min-height: 280px;
+    }
+}
