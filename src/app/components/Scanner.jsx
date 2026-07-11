@@ -1,9 +1,12 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Html5QrcodeScanner } from "html5-qrcode";
 
 export default function Scanner() {
+    const scannerRef = useRef(null);
+    const processingRef = useRef(false);
+
     const [message, setMessage] = useState("");
     const [success, setSuccess] = useState(false);
     const [loading, setLoading] = useState(false);
@@ -14,15 +17,22 @@ export default function Scanner() {
             {
                 fps: 10,
                 qrbox: 250,
+                rememberLastUsedCamera: true,
             },
             false
         );
 
+        scannerRef.current = scanner;
+
         scanner.render(
             async (decodedText) => {
-                try {
-                    setLoading(true);
+                // Prevent multiple scans
+                if (processingRef.current) return;
 
+                processingRef.current = true;
+                setLoading(true);
+
+                try {
                     const res = await fetch("/api/attendance", {
                         method: "POST",
                         headers: {
@@ -41,17 +51,33 @@ export default function Scanner() {
                             `${data.name} (${data.class}) - Attendance Marked`
                         );
 
-                        scanner.clear().catch(console.error);
+                        // Stop scanning for 5 seconds
+                        setTimeout(() => {
+                            setMessage("");
+                            setSuccess(false);
+                            processingRef.current = false;
+                        }, 5000);
                     } else {
                         setSuccess(false);
                         setMessage(data.message);
+
+                        setTimeout(() => {
+                            setMessage("");
+                            processingRef.current = false;
+                        }, 3000);
                     }
                 } catch (err) {
+                    console.error(err);
+
                     setSuccess(false);
                     setMessage(
                         "Unable to mark attendance. Please try again."
                     );
-                    console.error(err);
+
+                    setTimeout(() => {
+                        setMessage("");
+                        processingRef.current = false;
+                    }, 3000);
                 } finally {
                     setLoading(false);
                 }
@@ -60,7 +86,11 @@ export default function Scanner() {
         );
 
         return () => {
-            scanner.clear().catch(() => { });
+            if (scannerRef.current) {
+                scannerRef.current
+                    .clear()
+                    .catch(() => { });
+            }
         };
     }, []);
 
