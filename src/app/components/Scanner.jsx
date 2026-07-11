@@ -23,18 +23,15 @@ export default function Scanner() {
                 try {
                     setLoading(true);
 
-                    const res = await fetch(
-                        "https://script.google.com/macros/s/AKfycbx33GF6M1ohj3DDmF1iM_AbPYnhi6KkF9rtpdTFMpr-Yah60TwXYrYmIYLIgEynpqHn/exec",
-                        {
-                            method: "POST",
-                            headers: {
-                                "Content-Type": "application/json",
-                            },
-                            body: JSON.stringify({
-                                studentId: decodedText,
-                            }),
-                        }
-                    );
+                    const res = await fetch("/api/attendance", {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify({
+                            studentId: decodedText,
+                        }),
+                    });
 
                     const data = await res.json();
 
