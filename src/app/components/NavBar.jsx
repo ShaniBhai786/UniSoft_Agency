@@ -15,6 +15,9 @@ const services = [
 
 const NavBar = () => {
   const [nav, setNav] = useState(false)
+  const [aboutOpen, setAboutOpen] = useState(false)
+  const [servicesOpen, setServicesOpen] = useState(false)
+  const [moreOpen, setMoreOpen] = useState(false)
       return (
     <>
         <nav className="navbar">
@@ -86,52 +89,69 @@ const NavBar = () => {
 
             </div>
         {nav && <div className="navLinksNav" >
-          <i className='fa fa-close closeBtnNav' onClick={() => setNav(!nav)}></i>
-              <Link className="navItem" href="/" onClick={() => setNav(!nav)}>Home</Link>
-              <div className="navDropdown">
-                <span className="navItem">
-                  About <i className="ri-arrow-down-s-line navArrow" />
-                </span>
-                <div className="megaMenu">
-                  <div className="menuColumn" onClick={() => setNav(!nav)}>
-                    <Link href="/about">About UniSoft</Link>
-                    <Link href="/ceo">About CEO</Link>
-                  </div>
-                  </div>
+          <i className='fa fa-close closeBtnNav' onClick={() => setNav(false)}></i>
+
+          <Link className="mobileNavItem" href="/" onClick={() => setNav(false)}>Home</Link>
+
+          {/* About Dropdown */}
+          <div className="mobileDropdown">
+            <div className="mobileDropdownTrigger" onClick={() => setAboutOpen(!aboutOpen)}>
+              <span>About</span>
+              <i className={`ri-arrow-down-s-line ${aboutOpen ? 'rotated' : ''}`} />
+            </div>
+            {aboutOpen && (
+              <div className="mobileDropdownMenu">
+                <Link href="/about" className="mobileDropdownItem" onClick={() => setNav(false)}>
+                  <i className="fa-solid fa-building"></i><span>UniSoft Agency</span>
+                </Link>
+                <Link href="/ceo" className="mobileDropdownItem" onClick={() => setNav(false)}>
+                  <i className="fa-solid fa-user-tie"></i><span>CEO</span>
+                </Link>
               </div>
-                <Link className='links' href="/services"><i className='ri-briefcase-line'></i><span>All Services</span></Link>
+            )}
+          </div>
+
+          {/* Services Dropdown */}
+          <div className="mobileDropdown">
+            <div className="mobileDropdownTrigger" onClick={() => setServicesOpen(!servicesOpen)}>
+              <span>Services</span>
+              <i className={`ri-arrow-down-s-line ${servicesOpen ? 'rotated' : ''}`} />
+            </div>
+            {servicesOpen && (
+              <div className="mobileDropdownMenu">
+                <Link href="/services" className="mobileDropdownItem" onClick={() => setNav(false)}>
+                  <i className="ri-briefcase-line"></i><span>All Services</span>
+                </Link>
                 {services.map((s) => (
-                  <Link key={s.href} className='links' href={s.href}>
+                  <Link key={s.href} href={s.href} className="mobileDropdownItem" onClick={() => setNav(false)}>
                     <i className={s.icon}></i><span>{s.name}</span>
                   </Link>
                 ))}
-
-
-              <div className="navDropdown">
-                <span className="navItem">
-                  More <i className="fa fa-chevron-down"></i>
-                </span>
-                <div className="megaMenu">
-                  <div className="menuColumn" onClick={() => setNav(!nav)}>
-                    <h4>Company</h4>
-                    <Link href="/teams">Our Team</Link>
-                    <Link href="/pricing">Pricing</Link>
-                  </div>
-
-                  <div className="menuColumn" onClick={() => setNav(!nav)}>
-                    <h4>Resources</h4>
-                    <Link href="/blogs">Blogs</Link>
-                    <Link href="/chatbot">AI ChatBot</Link>
-                  </div>
-
-                  <div className="menuColumn" onClick={() => setNav(!nav)}>
-                    <h4>Legal</h4>
-                    <Link href="/privacy-policy">Privacy Policy</Link>
-                    <Link href="/contact">Contact</Link>
-                  </div>
-
-                </div>
               </div>
+            )}
+          </div>
+
+          {/* More Dropdown */}
+          <div className="mobileDropdown">
+            <div className="mobileDropdownTrigger" onClick={() => setMoreOpen(!moreOpen)}>
+              <span>More</span>
+              <i className={`ri-arrow-down-s-line ${moreOpen ? 'rotated' : ''}`} />
+            </div>
+            {moreOpen && (
+              <div className="mobileDropdownMenu">
+                <Link href="/teams" className="mobileDropdownItem" onClick={() => setNav(false)}><i className="ri-team-line"></i><span>Our Team</span></Link>
+                <Link href="/pricing" className="mobileDropdownItem" onClick={() => setNav(false)}><i className="ri-price-tag-3-line"></i><span>Pricing</span></Link>
+                <Link href="/blogs" className="mobileDropdownItem" onClick={() => setNav(false)}><i className="ri-article-line"></i><span>Blogs</span></Link>
+                <Link href="/chatbot" className="mobileDropdownItem" onClick={() => setNav(false)}><i className="ri-robot-line"></i><span>AI ChatBot</span></Link>
+                <Link href="/privacy-policy" className="mobileDropdownItem" onClick={() => setNav(false)}><i className="ri-shield-line"></i><span>Privacy Policy</span></Link>
+                <Link href="/contact" className="mobileDropdownItem" onClick={() => setNav(false)}><i className="ri-mail-line"></i><span>Contact</span></Link>
+              </div>
+            )}
+          </div>
+
+          <Link href="/quote" className="mobileConsultBtn" onClick={() => setNav(false)}>
+            <i className="ri-customer-service-2-line"></i> Get Free Consultation
+          </Link>
         </div>}
             <Link href="/quote" aria-label="Get a free software consultation from UniSoft"><button className="navBtn">Get Free Consultation</button></Link>
         <div className="hamBurger" onClick={() => setNav(!nav)}><i className='fa fa-bars' id='bars'></i></div>
