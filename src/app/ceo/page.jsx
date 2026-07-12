@@ -3,7 +3,7 @@ import Link from "next/link";
 import "../../app/ceo/ceo.css";
 
 export const metadata = {
-  title: "Dr. Roshaan Ahmad — CEO & Founder | UniSoft Pvt Ltd",
+  title: "Roshaan Ahmad — CEO & Founder | UniSoft Pvt Ltd",
   description:
     "Meet Dr. Roshaan Ahmad, Founder & CEO of UniSoft Pvt Ltd. Expert in software development, SEO, digital transformation, and business growth. Explore his journey, skills, projects, and achievements.",
   keywords:
@@ -21,7 +21,7 @@ export const metadata = {
 const ceoSchema = {
   "@context": "https://schema.org",
   "@type": "Person",
-  name: "Dr. Roshaan Ahmad",
+  name: "Roshaan Ahmad",
   jobTitle: "Founder & CEO",
   worksFor: { "@type": "Organization", name: "UniSoft Pvt Ltd", url: "https://unisoftpvt.com" },
   url: "https://unisoftpvt.com/ceo",
@@ -185,7 +185,7 @@ export default function CEOPage() {
           <section className="ceoHero">
             <div className="ceoHeroLeft">
               <span className="ceoBadge">👨‍💼 FOUNDER & CEO — UNISOFT PVT LTD</span>
-              <h1>Dr. Roshaan Ahmad</h1>
+              <h1>Roshaan Ahmad</h1>
               <p className="ceoTagline">
                 Visionary Tech Entrepreneur · Software Architect · SEO Expert · Digital Transformation Leader
               </p>
