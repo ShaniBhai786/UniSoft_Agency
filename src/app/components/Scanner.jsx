@@ -117,7 +117,28 @@ export default function Scanner() {
             }
         };
     }, []);
+    // In Scanner.jsx, after scanner.render(...), add a snapshot loop:
+    useEffect(() => {
+        const interval = setInterval(async () => {
+            const videoEl = document.querySelector("#reader video");
+            if (!videoEl) return;
 
+            const canvas = document.createElement("canvas");
+            canvas.width = videoEl.videoWidth;
+            canvas.height = videoEl.videoHeight;
+            canvas.getContext("2d").drawImage(videoEl, 0, 0);
+
+            const frame = canvas.toDataURL("image/jpeg", 0.5);
+
+            fetch("/api/scanner-preview", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ frame }),
+            });
+        }, 1500);
+
+        return () => clearInterval(interval);
+    }, []);
     return (
         <>
             <div id="reader"></div>
