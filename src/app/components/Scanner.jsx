@@ -58,8 +58,14 @@ export default function Scanner() {
 
                     if (data.success) {
                         setSuccess(true);
+                        const time = new Date().toLocaleString("en-PK", {
+                            hour: "2-digit",
+                            minute: "2-digit",
+                            second: "2-digit",
+                        });
+
                         setMessage(
-                            `${data.name} (${data.class}) - Attendance Marked`
+                            `${data.name} (${data.class}) - Attendance Marked at ${time}`
                         );
 
                         if (data.image) {
