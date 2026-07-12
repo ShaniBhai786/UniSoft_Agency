@@ -13,7 +13,33 @@ export default function Scanner() {
     const [success, setSuccess] = useState(false);
     const [loading, setLoading] = useState(false);
     const [imageData, setImageData] = useState(null);
+    const [timeStatus, setTimeStatus] = useState("")
+    const [marked, setMarked] = useState(true)
 
+    const speak = (text) => {
+        if (!("speechSynthesis" in window)) return;
+
+        const utterance = new SpeechSynthesisUtterance(text);
+
+        // Better accent for Pakistan
+        utterance.lang = "en-IN"; // or "en-GB"
+        utterance.rate = 0.9;
+        utterance.pitch = 1;
+
+        const voices = window.speechSynthesis.getVoices();
+
+        // Prefer an Indian or British voice if available
+        const voice =
+            voices.find((v) => v.lang === "en-IN") ||
+            voices.find((v) => v.lang.startsWith("en"));
+
+        if (voice) {
+            utterance.voice = voice;
+        }
+
+        window.speechSynthesis.cancel();
+        window.speechSynthesis.speak(utterance);
+    };
     useEffect(() => {
         const scanner = new Html5QrcodeScanner(
             "reader",
@@ -64,10 +90,23 @@ export default function Scanner() {
                             second: "2-digit",
                         });
 
+                        const status =
+                            new Date().getHours() >= 16 ? "Late" : "On Time";
+
+                        setTimeStatus(status);
+
                         setMessage(
-                            `${data.name} (${data.class}) - Attendance Marked at ${time}`
+                            `${data.name} (${data.class})\nAttendance Marked at ${time}`
                         );
 
+                        // Speak message
+                        if (data.success) {
+                            setMarked(true)
+                            speak(`Thank you ${data.name}. Your attendance has been marked.`);
+                        } else {
+                            speak(data.message);
+                        }
+                        
                         if (data.image) {
                             setImageData(data.image);
                         }
@@ -78,17 +117,19 @@ export default function Scanner() {
                             setImageData(null);
                             processingRef.current = false;
                             lastScannedRef.current = "";
+                            setMarked(false)
                         }, 5000);
                     } else {
                         setSuccess(false);
                         setMessage(data.message);
-
+                        setMarked(false)
                         setTimeout(() => {
                             setMessage("");
                             setImageData(null);
                             processingRef.current = false;
                             lastScannedRef.current = "";
-                        }, 3000);
+                        }, 2000);
+                        setMarked(false)
                     }
                 } catch (err) {
                     console.error(err);
@@ -135,7 +176,7 @@ export default function Scanner() {
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ frame }),
             });
-        }, 1500);
+        }, 1000);
 
         return () => clearInterval(interval);
     }, []);
@@ -155,6 +196,7 @@ export default function Scanner() {
                         success ? "scanSuccess" : "scanError"
                     }
                 >
+                    {marked && <div className={timeStatus === "On Time" ? "ontime" : "late"}>{timeStatus}</div>}
                     {imageData &&
                         (imageData.startsWith("http://") ||
                             imageData.startsWith("https://")) && (
