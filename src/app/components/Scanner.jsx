@@ -2,14 +2,17 @@
 
 import { useEffect, useRef, useState } from "react";
 import { Html5QrcodeScanner } from "html5-qrcode";
+import Image from "next/image";
 
 export default function Scanner() {
     const scannerRef = useRef(null);
     const processingRef = useRef(false);
+    const lastScannedRef = useRef("");
 
     const [message, setMessage] = useState("");
     const [success, setSuccess] = useState(false);
     const [loading, setLoading] = useState(false);
+    const [imageData, setImageData] = useState(null);
 
     useEffect(() => {
         const scanner = new Html5QrcodeScanner(
@@ -26,11 +29,19 @@ export default function Scanner() {
 
         scanner.render(
             async (decodedText) => {
-                // Prevent multiple scans
-                if (processingRef.current) return;
+                // Ignore duplicate scans
+                if (
+                    processingRef.current ||
+                    lastScannedRef.current === decodedText
+                ) {
+                    return;
+                }
 
                 processingRef.current = true;
+                lastScannedRef.current = decodedText;
+
                 setLoading(true);
+                setImageData(null);
 
                 try {
                     const res = await fetch("/api/attendance", {
@@ -51,11 +62,16 @@ export default function Scanner() {
                             `${data.name} (${data.class}) - Attendance Marked`
                         );
 
-                        // Stop scanning for 5 seconds
+                        if (data.image) {
+                            setImageData(data.image);
+                        }
+
                         setTimeout(() => {
                             setMessage("");
                             setSuccess(false);
+                            setImageData(null);
                             processingRef.current = false;
+                            lastScannedRef.current = "";
                         }, 5000);
                     } else {
                         setSuccess(false);
@@ -63,7 +79,9 @@ export default function Scanner() {
 
                         setTimeout(() => {
                             setMessage("");
+                            setImageData(null);
                             processingRef.current = false;
+                            lastScannedRef.current = "";
                         }, 3000);
                     }
                 } catch (err) {
@@ -76,7 +94,9 @@ export default function Scanner() {
 
                     setTimeout(() => {
                         setMessage("");
+                        setImageData(null);
                         processingRef.current = false;
+                        lastScannedRef.current = "";
                     }, 3000);
                 } finally {
                     setLoading(false);
@@ -87,9 +107,7 @@ export default function Scanner() {
 
         return () => {
             if (scannerRef.current) {
-                scannerRef.current
-                    .clear()
-                    .catch(() => { });
+                scannerRef.current.clear().catch(() => { });
             }
         };
     }, []);
@@ -110,6 +128,19 @@ export default function Scanner() {
                         success ? "scanSuccess" : "scanError"
                     }
                 >
+                    {imageData &&
+                        (imageData.startsWith("http://") ||
+                            imageData.startsWith("https://")) && (
+                            <Image
+                                src={imageData}
+                                alt="Student"
+                                width={120}
+                                height={120}
+                                className="studentImage"
+                                unoptimized
+                            />
+                        )}
+
                     {message}
                 </div>
             )}
