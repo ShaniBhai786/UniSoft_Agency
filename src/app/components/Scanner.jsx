@@ -200,7 +200,7 @@ export default function Scanner() {
                     {imageData &&
                         (imageData.startsWith("http://") ||
                             imageData.startsWith("https://")) && (
-                            <Image
+                            <img
                                 src={imageData}
                                 alt="Student"
                                 width={120}
