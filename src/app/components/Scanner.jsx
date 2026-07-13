@@ -108,6 +108,7 @@ export default function Scanner() {
                         }
                         
                         if (data.image) {
+                            console.log("Image URL:", data.image);
                             setImageData(data.image);
                         }
 
@@ -202,11 +203,10 @@ export default function Scanner() {
                             imageData.startsWith("https://")) && (
                             <img
                                 src={imageData}
-                                alt="Student"
+                                alt="Student Image"
                                 width={120}
                                 height={120}
                                 className="studentImage"
-                                unoptimized
                             />
                         )}
 
