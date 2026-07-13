@@ -81,6 +81,8 @@ export default function Scanner() {
                     });
 
                     const data = await res.json();
+                    console.log("Attendance Response:", data);
+                    console.log("Image URL:", data.image);
 
                     if (data.success) {
                         setSuccess(true);
