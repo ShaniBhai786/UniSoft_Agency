@@ -87,11 +87,20 @@ export default function Page() {
         }),
       });
 
+      console.log("API Status:", res.status);
+
+      const responseText = await res.text();
+      console.log("API Response:", responseText);
+
+      if (!res.ok) {
+        throw new Error(`Request Failed (${res.status})`);
+      }
+
+      const data = JSON.parse(responseText);
+
       if (!res.ok) {
         throw new Error("Request Failed");
       }
-
-      const data = await res.json();
 
       let aiMessage =
         data?.[0]?.output ??
