@@ -1,5 +1,7 @@
 export async function POST(req) {
     try {
+        console.log("N8N URL:", process.env.N8N_WEBHOOK_URL);
+
         const { message, sessionId } = await req.json();
 
         const response = await fetch(process.env.N8N_WEBHOOK_URL, {
@@ -12,22 +14,20 @@ export async function POST(req) {
 
         const text = await response.text();
 
-        console.log({
-            status: response.status,
-            body: text,
-        });
+        console.log("Status:", response.status);
+        console.log("Body:", text);
 
         return Response.json({
             status: response.status,
             body: text,
         });
-
-    } catch (error) {
-        console.error(error);
+    } catch (err) {
+        console.error("API ERROR:", err);
 
         return Response.json(
             {
-                error: error.message,
+                message: err.message,
+                stack: err.stack,
             },
             {
                 status: 500,
