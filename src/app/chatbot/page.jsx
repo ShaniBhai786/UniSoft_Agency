@@ -14,12 +14,14 @@ export default function Page() {
   const bottomRef = useRef(null);
   const messagesRef = useRef(null);
 
-  const [chat, setChat] = useState(() => {
-    if (typeof window === "undefined") return [];
+  const [chat, setChat] = useState([]);
 
+  useEffect(() => {
     const storedChat = localStorage.getItem("chat");
-    return storedChat ? JSON.parse(storedChat) : [];
-  });
+    if (storedChat) {
+      setChat(JSON.parse(storedChat));
+    }
+  }, []);
 
   useEffect(() => {
     messagesRef.current?.scrollTo({
