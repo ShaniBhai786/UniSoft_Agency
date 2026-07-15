@@ -1,17 +1,17 @@
 import { twiml } from "twilio";
 
-const N8N_WEBHOOK = process.env.N8N_WEBHOOK_URL;
+const WEBHOOK = process.env.N8N_WEBHOOK_URL;
 
 export async function POST(req) {
     try {
-        const formData = await req.formData();
+        const form = await req.formData();
 
-        const callSid = formData.get("CallSid");
-        const speech = formData.get("SpeechResult");
+        const speech = form.get("SpeechResult");
+        const callSid = form.get("CallSid");
 
         const response = new twiml.VoiceResponse();
 
-        // First interaction
+        // First time the caller connects
         if (!speech) {
             response.say(
                 {
@@ -23,6 +23,7 @@ export async function POST(req) {
             response.gather({
                 input: ["speech"],
                 speechTimeout: "auto",
+                language: "en-US",
                 action: "/api/voice",
                 method: "POST",
             });
@@ -34,35 +35,35 @@ export async function POST(req) {
             });
         }
 
-        let aiReply = "I'm sorry, I couldn't process your request.";
+        console.log("Caller Said:", speech);
 
-        if (N8N_WEBHOOK) {
-            const ai = await fetch(N8N_WEBHOOK, {
+        let aiReply = "Sorry, I didn't understand that.";
+
+        if (WEBHOOK) {
+            const ai = await fetch(WEBHOOK, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json",
                 },
                 body: JSON.stringify({
-                    callSid,
                     message: speech,
+                    sessionId: callSid,
                 }),
             });
 
-            if (ai.ok) {
-                const text = await ai.text();
+            const text = await ai.text();
 
-                try {
-                    const json = JSON.parse(text);
+            try {
+                const json = JSON.parse(text);
 
-                    aiReply =
-                        json?.output ||
-                        json?.message ||
-                        json?.text ||
-                        json?.[0]?.output ||
-                        aiReply;
-                } catch {
-                    aiReply = text;
-                }
+                aiReply =
+                    json?.output ||
+                    json?.message ||
+                    json?.text ||
+                    json?.[0]?.output ||
+                    aiReply;
+            } catch {
+                aiReply = text;
             }
         }
 
@@ -76,6 +77,7 @@ export async function POST(req) {
         response.gather({
             input: ["speech"],
             speechTimeout: "auto",
+            language: "en-US",
             action: "/api/voice",
             method: "POST",
         });
@@ -91,7 +93,7 @@ export async function POST(req) {
         const response = new twiml.VoiceResponse();
 
         response.say(
-            "Sorry. An unexpected error occurred. Please call again later."
+            "Sorry. An unexpected error occurred."
         );
 
         return new Response(response.toString(), {
@@ -105,12 +107,7 @@ export async function POST(req) {
 export async function GET() {
     const response = new twiml.VoiceResponse();
 
-    response.say(
-        {
-            voice: "alice",
-        },
-        "UniSoft AI Voice API is running."
-    );
+    response.say("UniSoft AI Voice API is running.");
 
     return new Response(response.toString(), {
         headers: {
