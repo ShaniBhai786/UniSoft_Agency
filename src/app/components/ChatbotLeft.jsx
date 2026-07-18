@@ -9,7 +9,7 @@ const ChatbotLeft = ({ clearChat }) => {
                 <p>Your Intelligent AI Assistant</p>
             </div>
 
-            <button className="new-chat-btn" onClick={() => clearChat}>
+            <button className="new-chat-btn" onClick={() => clearChat()}>
                 ➕ New Chat
             </button>
 
