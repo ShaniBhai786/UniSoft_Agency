@@ -18,7 +18,7 @@ function ContactUs() {
 
         <div className="contact-card">
           <h3>Phone</h3>
-          <a href="tel:+19284383214">+1 (928) 4383214 </a>
+          <a href="tel:+923148588707">+92 (314) 8588707 </a>
         </div>
       </div>
     </div>
