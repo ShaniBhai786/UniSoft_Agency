@@ -71,7 +71,7 @@ export default function Footer() {
           <h3>Contact</h3>
 
           <p><i className="fa-solid fa-location-dot"></i> Wyoming, USA</p>
-          <p><i className="fa-solid fa-phone"></i> +1 (928) 4383214</p>
+          <p><i className="fa-solid fa-phone"></i> +92 (314) 8588707</p>
           <p><i className="fa-solid fa-envelope"></i> unisoftpvt@gmail.com</p>
 
           <div className="social">
@@ -84,7 +84,7 @@ export default function Footer() {
             <a href="#">
               <i className="fa-brands fa-linkedin"></i>
             </a>
-            <a href="https://wa.me/19284383214" target="_blank" rel="noopener noreferrer">
+            <a href="https://wa.me/923148588707" target="_blank" rel="noopener noreferrer">
               <i className="fa-brands fa-whatsapp"></i>
             </a>
           </div>
