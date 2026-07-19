@@ -11,15 +11,19 @@ export async function POST(req) {
                 headers: {
                     "Content-Type": "application/json",
                 },
-                body: JSON.stringify({
-                    query,
-                }),
+                body: JSON.stringify({ query }),
             }
         );
 
-        const data = await response.json();
+        const text = await response.text();
 
-        return NextResponse.json(data);
+        return new NextResponse(text, {
+            status: response.status,
+            headers: {
+                "Content-Type": "text/html",
+            },
+        });
+
     } catch (error) {
         return NextResponse.json(
             {

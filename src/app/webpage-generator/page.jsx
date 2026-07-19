@@ -14,32 +14,24 @@ export default function Home() {
         setLoading(true);
 
         try {
-            const response = await fetch(
-                "api/webpage-generator",
-                {
-                    method: "POST",
-                    headers: {
-                        "Content-Type": "application/json",
-                    },
-                    body: JSON.stringify({
-                        query: prompt,
-                    }),
-                }
-            );
+            const response = await fetch("/api/webpage-generator", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json",
+                },
+                body: JSON.stringify({
+                    query: prompt,
+                }),
+            });
 
             if (!response.ok) {
                 throw new Error(await response.text());
             }
 
-            const text = await response.text();
+            const html = await response.text();
 
-            console.log(text);
-            alert(text);
+            setHtml(html);
 
-            // If n8n returns { html: "<div>...</div>" }
-            setHtml(text.html || "");
-
-            console.log(text);
         } catch (error) {
             console.error(error);
             alert(error.message);
