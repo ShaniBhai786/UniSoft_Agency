@@ -15,7 +15,7 @@ export default function Home() {
 
         try {
             const response = await fetch(
-                "https://n8n-production-15a5.up.railway.app/webhook/generate-webpage",
+                "api/webpage-generator",
                 {
                     method: "POST",
                     headers: {
