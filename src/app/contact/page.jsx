@@ -26,8 +26,8 @@ const validationSchema = Yup.object({
 
 const infoCards = [
   { icon: "ri-mail-send-line", label: "Email Us", value: "unisoftpvt@gmail.com", href: "mailto:unisoftpvt@gmail.com", color: "#38bdf8" },
-  { icon: "ri-phone-line", label: "Call Us", value: "+1 (928) 438-3214", href: "tel:+19284383214", color: "#22c55e" },
-  { icon: "ri-map-pin-line", label: "Location", value: "Remote — Worldwide", href: "#", color: "#a855f7" },
+  { icon: "ri-phone-line", label: "Call Us", value: "+92 (314) 8588707", href: "tel:+923148588707", color: "#22c55e" },
+  { icon: "ri-map-pin-line", label: "Location", value: "Wyoming, USA —Worldwide", href: "#", color: "#a855f7" },
   { icon: "ri-time-line", label: "Working Hours", value: "Mon–Sat, 9am–8pm", href: "#", color: "#f59e0b" },
 ]
 
@@ -220,9 +220,9 @@ function Contact() {
                 <div className="ctSocials">
                   {[
                     { icon: "ri-linkedin-fill", label: "LinkedIn", color: "#0077b5", href: "#" },
-                    { icon: "ri-facebook-fill", label: "Facebook", color: "#1877f2", href: "#" },
-                    { icon: "ri-instagram-line", label: "Instagram", color: "#e1306c", href: "#" },
-                    { icon: "ri-github-fill", label: "GitHub", color: "#fff", href: "#" },
+                    { icon: "ri-facebook-fill", label: "Facebook", color: "#1877f2", href: "https://www.facebook.com/profile.php?id=61568003026936" },
+                    { icon: "ri-instagram-line", label: "Instagram", color: "#e1306c", href: "https://www.instagram.com/unisoftpvt" },
+                    { icon: "ri-github-fill", label: "GitHub", color: "#fff", href: "https://github.com/unisoftpvt" },
                   ].map((s) => (
                     <a key={s.label} href={s.href} className="ctSocialBtn" style={{ borderColor: `${s.color}40` }}>
                       <i className={s.icon} style={{ color: s.color }}></i>
