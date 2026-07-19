@@ -26,8 +26,8 @@ const validationSchema = Yup.object({
 
 const infoCards = [
   { icon: "ri-mail-send-line", label: "Email Us", value: "unisoftpvt@gmail.com", href: "mailto:unisoftpvt@gmail.com", color: "#38bdf8" },
-  { icon: "ri-phone-line", label: "Call Us", value: "+1 (928) 438-3214", href: "tel:+19284383214", color: "#22c55e" },
-  { icon: "ri-map-pin-line", label: "Location", value: "Remote — Worldwide", href: "#", color: "#a855f7" },
+  { icon: "ri-phone-line", label: "Call Us", value: "+92 (314) 8588707", href: "tel:+923148588707", color: "#22c55e" },
+  { icon: "ri-map-pin-line", label: "Location", value: "Wyoming, USA —Worldwide", href: "#", color: "#a855f7" },
   { icon: "ri-time-line", label: "Working Hours", value: "Mon–Sat, 9am–8pm", href: "#", color: "#f59e0b" },
 ]
 

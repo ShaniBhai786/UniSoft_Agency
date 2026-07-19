@@ -255,7 +255,7 @@ const Main = () => {
                   <span className="mainDot red"></span>
                   <span className="mainDot yellow"></span>
                   <span className="mainDot green"></span>
-                  <span className="mainImgBarText">unisoft.dev</span>
+                  <span className="mainImgBarText">unisoftpvt.com</span>
                 </div>
                 <div className="mainImgSlider">
                   {heroImages.map((img, i) => (
@@ -389,22 +389,23 @@ const Main = () => {
             className="mainPortfolioGrid"
           >
             {[
-              { image: "https://images.unsplash.com/photo-1501504905252-473c47e087f8?auto=format&fit=crop&w=600&q=80", title: "School Management System", type: "Web Application", icon: "ri-school-line", desc: "A complete school ERP with attendance, grades, fee management and parent portal." },
-              { image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=600&q=80", title: "Online Examination System", type: "Web Application", icon: "ri-file-list-3-line", desc: "Secure online exam platform with auto-grading, timer, and result analytics." },
-              { image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80", title: "E-commerce Website", type: "Web Development", icon: "ri-shopping-cart-line", desc: "Full-featured online store with payments, inventory, and order tracking." },
-              { image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=600&q=80", title: "Smart Chatbot Solution", type: "Automation", icon: "ri-chat-3-line", desc: "AI-powered chatbot for customer support, lead capture, and 24/7 automation." },
+              { image: "https://images.unsplash.com/photo-1501504905252-473c47e087f8?auto=format&fit=crop&w=600&q=80", title: "School Management System", type: "Web Application", icon: "ri-school-line", desc: "A complete school ERP with attendance, grades, fee management and parent portal.", href: "#" },
+              { image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=600&q=80", title: "Online Examination System", type: "Web Application", icon: "ri-file-list-3-line", desc: "Secure online exam platform with auto-grading, timer, and result analytics.", href: "#" },
+              { image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80", title: "E-commerce Website", type: "Web Development", icon: "ri-shopping-cart-line", desc: "Full-featured online store with payments, inventory, and order tracking.", href: "#" },
+              { image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=600&q=80", title: "Smart Chatbot Solution", type: "Automation", icon: "ri-chat-3-line", desc: "AI-powered chatbot for customer support, lead capture, and 24/7 automation.", href: "/chatbot" },
             ].map((p) => (
               <motion.div key={p.title} variants={fadeUp} className="mainPortfolioCard">
-                <div className="mainPortfolioImg" style={{ backgroundImage: `url(${p.image})` }}>
-                  <div className="mainPortfolioOverlay" />
-                  <span className="mainPortfolioTag">
-                    <i className={p.icon}></i> {p.type}
-                  </span>
-                </div>
-                <div className="mainPortfolioInfo">
-                  <h3>{p.title}</h3>
-                  <p>{p.desc}</p>
-                </div>
+                <Link href={p.href} className="mainPortfolioLink">
+                  <div className="mainPortfolioImg" style={{ backgroundImage: `url(${p.image})` }}>
+                    <div className="mainPortfolioOverlay" />
+                    <span className="mainPortfolioTag">
+                      <i className={p.icon}></i> {p.type}
+                    </span>
+                  </div>
+                  <div className="mainPortfolioInfo">
+                    <h3>{p.title}</h3>
+                    <p>{p.desc}</p>
+                  </div></Link>
               </motion.div>
             ))}
           </motion.div>
@@ -493,10 +494,10 @@ const Main = () => {
               </div>
               <div className="mainFounderSocials">
                 {[
-                  ["ri-linkedin-fill", "#"],
-                  ["ri-facebook-fill", "#"],
-                  ["ri-instagram-line", "#"],
-                  ["ri-github-fill", "#"],
+                  ["ri-whatsapp-fill", "https://wa.me/923148588707"],
+                  ["ri-facebook-fill", "https://www.facebook.com/profile.php?id=61568003026936"],
+                  ["ri-instagram-line", "https://www.instagram.com/unisoftpvt"],
+                  ["ri-github-fill", "https://github.com/unisoftpvt"],
                 ].map(([icon, href]) => (
                   <a key={icon} href={href} className="mainSocialBtn">
                     <i className={icon}></i>
