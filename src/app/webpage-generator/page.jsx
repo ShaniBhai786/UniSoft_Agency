@@ -37,9 +37,9 @@ export default function Home() {
             alert(text);
 
             // If n8n returns { html: "<div>...</div>" }
-            setHtml(data.html || "");
+            setHtml(text.html || "");
 
-            console.log(data);
+            console.log(text);
         } catch (error) {
             console.error(error);
             alert(error.message);
