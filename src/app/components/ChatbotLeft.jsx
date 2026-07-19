@@ -1,7 +1,7 @@
 import React from "react";
 import "../chatbot.css";
 
-const ChatbotLeft = () => {
+const ChatbotLeft = ({ clearChat }) => {
     return (
         <aside className="left-window">
             <div className="header">
@@ -9,11 +9,11 @@ const ChatbotLeft = () => {
                 <p>Your Intelligent AI Assistant</p>
             </div>
 
-            <button className="new-chat-btn">
+            <button className="new-chat-btn" onClick={() => clearChat()}>
                 ➕ New Chat
             </button>
 
-            <div className="chat-history">
+            {/* <div className="chat-history">
                 <div className="history-item active">
                     AI Automation
                 </div>
@@ -29,7 +29,7 @@ const ChatbotLeft = () => {
                 <div className="history-item">
                     n8n Workflow
                 </div>
-            </div>
+            </div> */}
         </aside>
     );
 };

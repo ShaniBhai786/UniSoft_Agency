@@ -140,7 +140,7 @@ const clearChat = () => {
 }
   return (
     <div className="chatbot">
-      <ChatbotLeft />
+      <ChatbotLeft clearChat={clearChat} />
       <div className="chatPage">
         <div className="chatCard">
           <div className="messages" ref={messagesRef}>

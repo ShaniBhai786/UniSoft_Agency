@@ -145,7 +145,7 @@ const NavBar = () => {
                 <Link href="/chatbot" className="mobileDropdownItem" onClick={() => setNav(false)}><i className="ri-robot-line"></i><span>AI ChatBot</span></Link>
                 <Link href="/privacy-policy" className="mobileDropdownItem" onClick={() => setNav(false)}><i className="ri-shield-line"></i><span>Privacy Policy</span></Link>
                     <Link href="/contact" className="mobileDropdownItem" onClick={() => setNav(false)}><i className="ri-mail-line"></i><span>Contact</span></Link>
-                    <Link href="/scanner" className="mobileDropdownItem" onClick={() => setNav(false)}><i className="ri-mail-line"></i><span>Attendance Scanner</span></Link>
+                    {/* <Link href="/scanner" className="mobileDropdownItem" onClick={() => setNav(false)}><i className="ri-mail-line"></i><span>Attendance Scanner</span></Link> */}
               </div>
             )}
           </div>

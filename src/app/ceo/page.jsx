@@ -198,7 +198,7 @@ export default function CEOPage() {
                 <a href="https://linkedin.com/in/roshaan-ahmad" target="_blank" className="socialBtn linkedin">
                   <i className="ri-linkedin-fill" /> LinkedIn
                 </a>
-                <a href="https://github.com/roshaan-ahmad" target="_blank" className="socialBtn github">
+                <a href="https://github.com/unisoftpvt" target="_blank" className="socialBtn github">
                   <i className="ri-github-fill" /> GitHub
                 </a>
                 <a href="https://unisoftpvt.com" target="_blank" className="socialBtn portfolio">
