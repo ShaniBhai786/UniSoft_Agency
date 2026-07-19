@@ -31,7 +31,10 @@ export default function Home() {
                 throw new Error(await response.text());
             }
 
-            const data = await response.json();
+            const text = await response.text();
+
+            console.log(text);
+            alert(text);
 
             // If n8n returns { html: "<div>...</div>" }
             setHtml(data.html || "");
