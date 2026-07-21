@@ -48,6 +48,7 @@ const projects = [
     color: "#6366f1",
     icon: "ri-file-list-3-line",
     year: "2024",
+    link: "https://exam-elevator.unisoftpvt.com/",
   },
   {
     id: 3,
@@ -219,31 +220,33 @@ export default function Portfolio() {
         >
           <AnimatePresence>
             {filtered.map((p) => (
-              <motion.div
-                key={p.id}
-                variants={fadeUp}
-                className="pfCard"
-                layout
-              >
-                <div className="pfCardImg" style={{ backgroundImage: `url(${p.image})` }}>
-                  <div className="pfCardOverlay" />
-                  <div className="pfCardTopRow">
-                    <span className="pfCardCat" style={{ background: `${p.color}20`, border: `1px solid ${p.color}40`, color: p.color }}>
-                      <i className={p.icon}></i> {p.category}
-                    </span>
-                    <span className="pfCardYear">{p.year}</span>
+              <Link href={p.link || "#"} target="_blank" rel="noopener noreferrer" key={p.id}>
+                <motion.div
+                  key={p.id}
+                  variants={fadeUp}
+                  className="pfCard"
+                  layout
+                >
+                  <div className="pfCardImg" style={{ backgroundImage: `url(${p.image})` }}>
+                    <div className="pfCardOverlay" />
+                    <div className="pfCardTopRow">
+                      <span className="pfCardCat" style={{ background: `${p.color}20`, border: `1px solid ${p.color}40`, color: p.color }}>
+                        <i className={p.icon}></i> {p.category}
+                      </span>
+                      <span className="pfCardYear">{p.year}</span>
+                    </div>
                   </div>
-                </div>
-                <div className="pfCardBody">
-                  <h3 className="pfCardTitle">{p.title}</h3>
-                  <p className="pfCardDesc">{p.desc}</p>
-                  <div className="pfCardTags">
-                    {p.tags.map((t) => (
-                      <span key={t} className="pfTag">{t}</span>
-                    ))}
+                  <div className="pfCardBody">
+                    <h3 className="pfCardTitle">{p.title}</h3>
+                    <p className="pfCardDesc">{p.desc}</p>
+                    <div className="pfCardTags">
+                      {p.tags.map((t) => (
+                        <span key={t} className="pfTag">{t}</span>
+                      ))}
+                    </div>
                   </div>
-                </div>
-              </motion.div>
+                </motion.div>
+              </Link>
             ))}
           </AnimatePresence>
         </motion.div>
