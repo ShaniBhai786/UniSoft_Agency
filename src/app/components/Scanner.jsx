@@ -203,7 +203,7 @@ export default function Scanner() {
                         (imageData.startsWith("http://") ||
                             imageData.startsWith("https://")) && (
                             <Image
-                                src={imageData}
+                                src={imageData || "../"}
                                 alt="Student Image"
                                 width={120}
                                 height={120}
