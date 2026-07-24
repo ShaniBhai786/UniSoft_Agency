@@ -98,7 +98,7 @@ export default function Scanner() {
                         setTimeStatus(status);
 
                         setMessage(
-                            `${data.name} (${data.class})\nAttendance Marked at ${time}`
+                            `${data.name} (${data.class})\nAttendance Marked at ${time}\n Fee Status: ${data.Fee}`
                         );
 
                         // Speak message
@@ -203,7 +203,7 @@ export default function Scanner() {
                     {imageData &&
                         (imageData.startsWith("http://") ||
                             imageData.startsWith("https://")) && (
-                            <img
+                            <Image
                                 src={imageData}
                                 alt="Student Image"
                                 width={120}
