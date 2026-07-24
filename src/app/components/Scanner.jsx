@@ -79,7 +79,6 @@ export default function Scanner() {
                             studentId: decodedText,
                         }),
                     });
-
                     const data = await res.json();
                     console.log("Attendance Response:", data);
                     console.log("Image URL:", data.image);
@@ -98,7 +97,7 @@ export default function Scanner() {
                         setTimeStatus(status);
 
                         setMessage(
-                            `${data.name} (${data.class})\nAttendance Marked at ${time}\n Fee Status: ${data.Fee}`
+                            `${data.name} (${data.class})\nAttendance Marked at ${time}\n Fee Status: ${data.fee ? "✅Paid" : `❌Unpaid ${data.fee}` }`
                         );
 
                         // Speak message
