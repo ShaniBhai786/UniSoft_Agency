@@ -43,7 +43,7 @@ const projects = [
     title: "Online Examination Platform",
     category: "Web App",
     image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=700&q=80",
-    tags: ["React", "Express", "MySQL"],
+    tags: ["React", "Express", "MongoDB"],
     desc: "Secure exam platform with auto-grading, timer, anti-cheat, and detailed result analytics.",
     color: "#6366f1",
     icon: "ri-file-list-3-line",
@@ -220,7 +220,8 @@ export default function Portfolio() {
         >
           <AnimatePresence>
             {filtered.map((p) => (
-              <Link href={p.link || "#"} target="_blank" rel="noopener noreferrer" key={p.id}>
+              // External link opens in new tab
+              <Link href={p.link || "#"} target="_blank" rel="noopener noreferrer" key={p.id}> 
                 <motion.div
                   key={p.id}
                   variants={fadeUp}
