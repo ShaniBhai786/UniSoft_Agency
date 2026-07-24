@@ -97,7 +97,7 @@ export default function Scanner() {
                         setTimeStatus(status);
 
                         setMessage(
-                            `${data.name} (${data.class})\nAttendance Marked at ${time}\n Fee Status: ${data.fee ? "✅Paid" : `❌Unpaid ${data.fee}` }`
+                            `${data.name} (${data.class})\nAttendance Marked at ${time}\n Fee Status: ${data.fee ? `❌Unpaid ${data.fee}` : "✅Paid" }`
                         );
 
                         // Speak message
@@ -202,8 +202,8 @@ export default function Scanner() {
                     {imageData &&
                         (imageData.startsWith("http://") ||
                             imageData.startsWith("https://")) && (
-                            <Image
-                                src={imageData || "../"}
+                            <img
+                                src={imageData || "../../public/assets/pic.jpg"}
                                 alt="Student Image"
                                 width={120}
                                 height={120}
