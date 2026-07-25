@@ -85,31 +85,47 @@ export default function Scanner() {
 
                     if (data.success) {
                         setSuccess(true);
-                        const time = new Date().toLocaleString("en-PK", {
+
+                        const now = new Date();
+
+                        const currentTime = now.toLocaleTimeString("en-PK", {
                             hour: "2-digit",
                             minute: "2-digit",
                             second: "2-digit",
+                            hour12: true,
                         });
 
-                        const status =
-                            new Date().getHours() >= 16 ? "Late" : "On Time";
+                        let status = "On Time";
+
+                        if (data.reportingTime) {
+                            const [timePart, period] = data.reportingTime.split(" ");
+
+                            let [hours, minutes] = timePart.split(":").map(Number);
+
+                            if (period === "PM" && hours !== 12) hours += 12;
+                            if (period === "AM" && hours === 12) hours = 0;
+
+                            const reportingTime = new Date();
+                            reportingTime.setHours(hours, minutes, 0, 0);
+
+                            status = now <= reportingTime ? "On Time" : "Late";
+                        }
 
                         setTimeStatus(status);
 
+                        const feeMessage =
+                            Number(data.fee) > 0
+                                ? `❌ Fee Due: Rs. ${Number(data.fee).toLocaleString()}/-`
+                                : "✅ Fee Paid";
+
                         setMessage(
-                            `${data.name} (${data.class})\nAttendance Marked at ${time}\n Fee Status: ${data.fee ? `❌Unpaid ${data.fee}` : "✅Paid" }`
+                            `${data.name} (${data.class})\n✅ Attendance Marked \n🕒 ${currentTime} \n${feeMessage}`
                         );
 
-                        // Speak message
-                        if (data.success) {
-                            setMarked(true)
-                            speak(`Thank you ${data.name}. Your attendance has been marked.`);
-                        } else {
-                            speak(data.message);
-                        }
-                        
+                        setMarked(true);
+                        speak(`Thank you ${data.name}. Your attendance has been marked.`);
+
                         if (data.image) {
-                            console.log("Image URL:", data.image);
                             setImageData(data.image);
                         }
 
@@ -119,7 +135,7 @@ export default function Scanner() {
                             setImageData(null);
                             processingRef.current = false;
                             lastScannedRef.current = "";
-                            setMarked(false)
+                            setMarked(false);
                         }, 5000);
                     } else {
                         setSuccess(false);
