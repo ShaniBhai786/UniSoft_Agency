@@ -114,9 +114,9 @@ export default function Scanner() {
                         setTimeStatus(status);
 
                         const feeMessage =
-                            Number(data.fee) > 0
+                            data.fee ? Number(data.fee) > 0
                                 ? `❌ Fee Due: Rs. ${Number(data.fee).toLocaleString()}/-`
-                                : "✅ Fee Paid";
+                                : "✅ Fee Paid" : "";
 
                         setMessage(
                             `${data.name} (${data.class})\n✅ Attendance Marked \n🕒 ${currentTime} \n${feeMessage}`
