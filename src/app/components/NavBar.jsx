@@ -70,6 +70,7 @@ const NavBar = () => {
                     <h4>Company</h4>
                     <Link href="/teams">Our Team</Link>
                     <Link href="/portfolio">Portfolio</Link>
+                    <Link href="/solutions">Solutions</Link>
                     <Link href="/pricing">Pricing</Link>
                   </div>
 
@@ -141,6 +142,7 @@ const NavBar = () => {
             {moreOpen && (
               <div className="mobileDropdownMenu">
                 <Link href="/portfolio" className="mobileDropdownItem" onClick={() => setNav(false)}><i className="ri-briefcase-4-line"></i><span>Portfolio</span></Link>
+                <Link href="/solutions" className="mobileDropdownItem" onClick={() => setNav(false)}><i className="ri-tools-line"></i><span>Solutions</span></Link>
                 <Link href="/teams" className="mobileDropdownItem" onClick={() => setNav(false)}><i className="ri-team-line"></i><span>Our Team</span></Link>
                 <Link href="/pricing" className="mobileDropdownItem" onClick={() => setNav(false)}><i className="ri-price-tag-3-line"></i><span>Pricing</span></Link>
                 <Link href="/blogs" className="mobileDropdownItem" onClick={() => setNav(false)}><i className="ri-article-line"></i><span>Blogs</span></Link>
