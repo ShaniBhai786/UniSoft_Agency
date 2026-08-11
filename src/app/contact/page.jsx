@@ -30,7 +30,7 @@ const infoCards = [
   { icon: "ri-map-pin-line", label: "Location", value: "Wyoming, USA —Worldwide", href: "#", color: "#a855f7" },
   { icon: "ri-time-line", label: "Working Hours", value: "Mon–Sat, 9am–8pm", href: "#", color: "#f59e0b" },
 ]
-
+ 
 function Contact() {
   const [loading, setLoading] = useState(false)
   const [submitted, setSubmitted] = useState(false)
