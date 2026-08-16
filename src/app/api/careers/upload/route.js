@@ -11,6 +11,7 @@ export async function POST(request) {
 
         const resume = formData.get("resume");
 
+        // Validate file
         if (!resume || typeof resume === "string") {
             return NextResponse.json(
                 {
@@ -21,6 +22,7 @@ export async function POST(request) {
             );
         }
 
+        // PDF only
         if (resume.type !== "application/pdf") {
             return NextResponse.json(
                 {
@@ -31,6 +33,7 @@ export async function POST(request) {
             );
         }
 
+        // Maximum 5 MB
         if (resume.size > 5 * 1024 * 1024) {
             return NextResponse.json(
                 {
@@ -41,19 +44,17 @@ export async function POST(request) {
             );
         }
 
+        // --------------------------------
+        // Create multipart/form-data
+        // --------------------------------
+
         const n8nFormData = new FormData();
 
         const buffer = await resume.arrayBuffer();
 
         const blob = new Blob([buffer], {
-            type: resume.type,
+            type: "application/pdf",
         });
-
-        /*
-         * IMPORTANT:
-         * Field name MUST match
-         * "Input Binary Field" in n8n.
-         */
 
         n8nFormData.append(
             "resume",
@@ -76,6 +77,10 @@ export async function POST(request) {
             new Date().toISOString()
         );
 
+        // --------------------------------
+        // Call n8n
+        // --------------------------------
+
         const n8nResponse = await fetch(
             N8N_WEBHOOK,
             {
@@ -84,8 +89,14 @@ export async function POST(request) {
             }
         );
 
+        // --------------------------------
+        // Handle n8n error
+        // --------------------------------
+
         if (!n8nResponse.ok) {
-            const errorText = await n8nResponse.text();
+
+            const errorText =
+                await n8nResponse.text();
 
             console.error(
                 "n8n Webhook Error:",
@@ -95,20 +106,36 @@ export async function POST(request) {
             return NextResponse.json(
                 {
                     success: false,
-                    message: "n8n webhook failed.",
+                    message:
+                        "Resume analysis workflow failed.",
+                    details: errorText,
                 },
                 { status: 502 }
             );
         }
 
-        return NextResponse.json({
-            success: true,
-            message: "CV uploaded successfully.",
-            event: "CV_UPLOADED",
-            fileName: resume.name,
-        });
+        // --------------------------------
+        // Get n8n response
+        // --------------------------------
+
+        const n8nData =
+            await n8nResponse.json();
+
+        console.log(
+            "n8n Analysis Response:",
+            n8nData
+        );
+
+        // --------------------------------
+        // Return n8n result to frontend
+        // --------------------------------
+
+        return NextResponse.json(
+            n8nData
+        );
 
     } catch (error) {
+
         console.error(
             "Resume Upload Error:",
             error
@@ -118,7 +145,8 @@ export async function POST(request) {
             {
                 success: false,
                 message:
-                    "Something went wrong while uploading the CV.",
+                    "Something went wrong while analyzing the CV.",
+                error: error.message,
             },
             { status: 500 }
         );
