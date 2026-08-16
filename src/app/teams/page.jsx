@@ -134,6 +134,13 @@ function Teams() {
             Join UniSoft Team
             <i className="ri-arrow-right-line"></i>
           </a>
+          <button
+            className="joinBtn"
+            onClick={() => (window.location.href = '/teams/resume-audit')}
+          >
+            Get Your Resume Audited by AI
+            <i className="ri-arrow-right-line"></i>
+          </button>
         </motion.div>
 
         {/* TEAM MEMBERS */}
