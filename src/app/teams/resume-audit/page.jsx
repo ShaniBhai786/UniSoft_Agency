@@ -1,42 +1,835 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import styles from "./ResumeAudit.module.css";
 
+const API_ENDPOINT = "/api/careers/upload";
+
+/* =========================================================
+   HELPERS
+========================================================= */
+
+function formatLabel(value) {
+    if (!value) return "";
+
+    return String(value)
+        .replace(/_/g, " ")
+        .replace(/-/g, " ")
+        .replace(/\b\w/g, (char) => char.toUpperCase());
+}
+
+function safeArray(value) {
+    if (Array.isArray(value)) {
+        return value;
+    }
+
+    if (value === null || value === undefined) {
+        return [];
+    }
+
+    return [value];
+}
+
+function getInitial(name) {
+    if (!name) return "R";
+
+    return String(name)
+        .trim()
+        .charAt(0)
+        .toUpperCase();
+}
+
+function getScore(value) {
+    const number = Number(value);
+
+    if (Number.isNaN(number)) {
+        return 0;
+    }
+
+    return Math.max(0, Math.min(100, number));
+}
+
+function isPrimitive(value) {
+    return (
+        typeof value === "string" ||
+        typeof value === "number" ||
+        typeof value === "boolean"
+    );
+}
+
+function cleanText(value) {
+    if (value === null || value === undefined) {
+        return "";
+    }
+
+    return String(value);
+}
+
+/* =========================================================
+   SCORE RING
+========================================================= */
+
+function ScoreRing({
+    score = 0,
+    label,
+    description,
+    primary = false,
+}) {
+    const safeScore = getScore(score);
+
+    return (
+        <div
+            className={`${styles.scoreCard} ${primary ? styles.primaryScore : ""
+                }`}
+        >
+            <div className={styles.scoreCardTop}>
+                <span className={styles.scoreLabel}>
+                    {label}
+                </span>
+
+                {primary && (
+                    <span className={styles.primaryBadge}>
+                        PRIMARY
+                    </span>
+                )}
+            </div>
+
+            <div className={styles.scoreMain}>
+                <div
+                    className={styles.scoreRing}
+                    style={{
+                        "--score": `${safeScore * 3.6}deg`,
+                    }}
+                >
+                    <div className={styles.scoreRingInner}>
+                        <strong>{safeScore}</strong>
+                        <span>/100</span>
+                    </div>
+                </div>
+
+                <div className={styles.scoreInfo}>
+                    <div className={styles.scoreBar}>
+                        <div
+                            className={styles.scoreBarFill}
+                            style={{
+                                width: `${safeScore}%`,
+                            }}
+                        />
+                    </div>
+
+                    {description && (
+                        <p>{description}</p>
+                    )}
+                </div>
+            </div>
+        </div>
+    );
+}
+
+/* =========================================================
+   SECTION HEADER
+========================================================= */
+
+function SectionHeader({
+    number,
+    title,
+    description,
+}) {
+    return (
+        <div className={styles.sectionHeader}>
+            <span className={styles.sectionNumber}>
+                {number}
+            </span>
+
+            <div>
+                <h2>{title}</h2>
+
+                {description && (
+                    <p>{description}</p>
+                )}
+            </div>
+        </div>
+    );
+}
+
+/* =========================================================
+   SIMPLE TAG LIST
+========================================================= */
+
+function TagList({
+    items,
+    emptyText = "No information available.",
+}) {
+    const values = safeArray(items)
+        .flatMap((item) => {
+            if (isPrimitive(item)) {
+                return [item];
+            }
+
+            return [];
+        })
+        .filter(Boolean);
+
+    if (!values.length) {
+        return (
+            <p className={styles.emptyText}>
+                {emptyText}
+            </p>
+        );
+    }
+
+    return (
+        <div className={styles.tagList}>
+            {values.map((item, index) => (
+                <span
+                    className={styles.tag}
+                    key={`${item}-${index}`}
+                >
+                    {cleanText(item)}
+                </span>
+            ))}
+        </div>
+    );
+}
+
+/* =========================================================
+   GENERIC VALUE RENDERER
+========================================================= */
+
+function ValueRenderer({
+    value,
+    fieldName = "",
+}) {
+    if (
+        value === null ||
+        value === undefined ||
+        value === ""
+    ) {
+        return null;
+    }
+
+    if (isPrimitive(value)) {
+        return (
+            <p className={styles.valueText}>
+                {cleanText(value)}
+            </p>
+        );
+    }
+
+    if (Array.isArray(value)) {
+        return (
+            <div className={styles.nestedList}>
+                {value.map((item, index) => (
+                    <div
+                        key={index}
+                        className={styles.nestedItem}
+                    >
+                        {isPrimitive(item) ? (
+                            <span>{cleanText(item)}</span>
+                        ) : (
+                            <ValueRenderer
+                                value={item}
+                                fieldName={fieldName}
+                            />
+                        )}
+                    </div>
+                ))}
+            </div>
+        );
+    }
+
+    if (typeof value === "object") {
+        return (
+            <div className={styles.objectFields}>
+                {Object.entries(value).map(
+                    ([key, val]) => {
+                        if (
+                            val === null ||
+                            val === undefined ||
+                            val === ""
+                        ) {
+                            return null;
+                        }
+
+                        return (
+                            <div
+                                className={styles.objectField}
+                                key={key}
+                            >
+                                <span>
+                                    {formatLabel(key)}
+                                </span>
+
+                                <ValueRenderer
+                                    value={val}
+                                    fieldName={key}
+                                />
+                            </div>
+                        );
+                    }
+                )}
+            </div>
+        );
+    }
+
+    return null;
+}
+
+/* =========================================================
+   GENERIC OBJECT CARD
+========================================================= */
+
+function ObjectCard({
+    item,
+    index,
+}) {
+    if (!item || typeof item !== "object") {
+        return null;
+    }
+
+    const entries = Object.entries(item).filter(
+        ([, value]) =>
+            value !== null &&
+            value !== undefined &&
+            value !== ""
+    );
+
+    return (
+        <article
+            className={styles.objectCard}
+            style={{
+                animationDelay: `${index * 80}ms`,
+            }}
+        >
+            <div className={styles.objectCardAccent} />
+
+            <div className={styles.objectCardBody}>
+                {entries.map(([key, value]) => {
+                    if (
+                        key.toLowerCase() === "id"
+                    ) {
+                        return null;
+                    }
+
+                    return (
+                        <div
+                            className={styles.detailBlock}
+                            key={key}
+                        >
+                            <span className={styles.detailLabel}>
+                                {formatLabel(key)}
+                            </span>
+
+                            {isPrimitive(value) ? (
+                                <p className={styles.detailValue}>
+                                    {cleanText(value)}
+                                </p>
+                            ) : Array.isArray(value) ? (
+                                <div
+                                    className={
+                                        styles.inlineTags
+                                    }
+                                >
+                                    {value.map(
+                                        (
+                                            element,
+                                            elementIndex
+                                        ) =>
+                                            isPrimitive(
+                                                element
+                                            ) ? (
+                                                <span
+                                                    className={
+                                                        styles.smallTag
+                                                    }
+                                                    key={
+                                                        elementIndex
+                                                    }
+                                                >
+                                                    {cleanText(
+                                                        element
+                                                    )}
+                                                </span>
+                                            ) : (
+                                                <ValueRenderer
+                                                    key={
+                                                        elementIndex
+                                                    }
+                                                    value={
+                                                        element
+                                                    }
+                                                />
+                                            )
+                                    )}
+                                </div>
+                            ) : (
+                                <ValueRenderer
+                                    value={value}
+                                    fieldName={key}
+                                />
+                            )}
+                        </div>
+                    );
+                })}
+            </div>
+        </article>
+    );
+}
+
+/* =========================================================
+   OBJECT COLLECTION
+========================================================= */
+
+function ObjectCollection({
+    data,
+    emptyText,
+}) {
+    const items = safeArray(data);
+
+    if (!items.length) {
+        return (
+            <p className={styles.emptyText}>
+                {emptyText}
+            </p>
+        );
+    }
+
+    return (
+        <div className={styles.objectGrid}>
+            {items.map((item, index) => {
+                if (isPrimitive(item)) {
+                    return (
+                        <div
+                            className={styles.simpleCard}
+                            key={index}
+                        >
+                            {cleanText(item)}
+                        </div>
+                    );
+                }
+
+                return (
+                    <ObjectCard
+                        item={item}
+                        index={index}
+                        key={index}
+                    />
+                );
+            })}
+        </div>
+    );
+}
+
+/* =========================================================
+   ATS ANALYSIS
+========================================================= */
+
+function ATSAnalysis({
+    data,
+}) {
+    if (!data) return null;
+
+    const keywords = Array.isArray(
+        data.keywords
+    )
+        ? data.keywords
+        : [];
+
+        let checkPayement = confirm("Do you want to proceed with the payment?")
+        if (!checkPayement) {
+            return <h1>Please Pay to View ATS Analysis</h1>;
+        }
+    return (
+        <section className={styles.auditSection}>
+            <SectionHeader
+                number="02"
+                title="ATS Analysis"
+                description="How effectively your resume is optimized for Applicant Tracking Systems."
+            />
+
+            <div className={styles.atsCard}>
+                {data.summary && (
+                    <div className={styles.atsSummary}>
+                        <div className={styles.atsIcon}>
+                            ✓
+                        </div>
+
+                        <div>
+                            <h3>
+                                ATS Summary
+                            </h3>
+
+                            <p>
+                                {data.summary}
+                            </p>
+                        </div>
+                    </div>
+                )}
+
+                {keywords.length > 0 && (
+                    <div
+                        className={
+                            styles.keywordSection
+                        }
+                    >
+                        <div
+                            className={
+                                styles.blockHeader
+                            }
+                        >
+                            <h3>
+                                Detected Keywords
+                            </h3>
+
+                            <span
+                                className={
+                                    styles.countBadge
+                                }
+                            >
+                                {keywords.length}
+                            </span>
+                        </div>
+
+                        <TagList
+                            items={keywords}
+                        />
+                    </div>
+                )}
+
+                {Object.entries(data).some(
+                    ([key]) =>
+                        key !== "summary" &&
+                        key !== "keywords"
+                ) && (
+                        <div
+                            className={
+                                styles.additionalATS
+                            }
+                        >
+                            {Object.entries(data)
+                                .filter(
+                                    ([key]) =>
+                                        key !==
+                                        "summary" &&
+                                        key !==
+                                        "keywords"
+                                )
+                                .map(
+                                    ([key, value]) => (
+                                        <div
+                                            className={
+                                                styles.atsDetail
+                                            }
+                                            key={key}
+                                        >
+                                            <span >
+                                                {formatLabel(
+                                                    key
+                                                )}
+                                            </span>
+
+                                            <ValueRenderer
+                                                value={
+                                                    value
+                                                }
+                                            />
+                                        </div>
+                                    )
+                                )}
+                        </div>
+                    )}
+            </div>
+        </section>
+    );
+}
+
+/* =========================================================
+   STRENGTHS
+========================================================= */
+
+function Strengths({
+    items,
+}) {
+    const values = safeArray(items).filter(
+        (item) => isPrimitive(item)
+    );
+
+    if (!values.length) return null;
+
+    return (
+        <section className={styles.auditSection}>
+            <SectionHeader
+                number="08"
+                title="Key Strengths"
+                description="The strongest aspects identified in your resume."
+            />
+
+            <div className={styles.strengthGrid}>
+                {values.map((item, index) => (
+                    <div
+                        className={
+                            styles.strengthCard
+                        }
+                        key={index}
+                    >
+                        <span
+                            className={
+                                styles.strengthNumber
+                            }
+                        >
+                            {String(index + 1).padStart(
+                                2,
+                                "0"
+                            )}
+                        </span>
+
+                        <div>
+                            <div
+                                className={
+                                    styles.checkIcon
+                                }
+                            >
+                                ✓
+                            </div>
+
+                            <p>
+                                {cleanText(item)}
+                            </p>
+                        </div>
+                    </div>
+                ))}
+            </div>
+        </section>
+    );
+}
+
+/* =========================================================
+   WEAKNESSES
+========================================================= */
+
+function Weaknesses({
+    items,
+}) {
+    const values = safeArray(items).filter(
+        (item) => isPrimitive(item)
+    );
+
+    if (!values.length) return null;
+
+    return (
+        <section className={styles.auditSection}>
+            <SectionHeader
+                number="09"
+                title="Areas to Improve"
+                description="Potential weaknesses and opportunities for improvement."
+            />
+
+            <div className={styles.weaknessGrid}>
+                {values.map((item, index) => (
+                    <div
+                        className={
+                            styles.weaknessCard
+                        }
+                        key={index}
+                    >
+                        <div
+                            className={
+                                styles.warningIcon
+                            }
+                        >
+                            !
+                        </div>
+
+                        <div>
+                            <span>
+                                Improvement Area{" "}
+                                {index + 1}
+                            </span>
+
+                            <p>
+                                {cleanText(item)}
+                            </p>
+                        </div>
+                    </div>
+                ))}
+            </div>
+        </section>
+    );
+}
+
+/* =========================================================
+   INTERVIEW QUESTIONS
+========================================================= */
+
+function InterviewQuestions({
+    questions,
+}) {
+    const values = safeArray(questions);
+
+    if (!values.length) return null;
+
+    return (
+        <section className={styles.auditSection}>
+            <SectionHeader
+                number="11"
+                title="Interview Questions"
+                description="Questions you should prepare for based on your resume."
+            />
+
+            <div className={styles.questionsList}>
+                {values.map((question, index) => (
+                    <div
+                        className={
+                            styles.questionCard
+                        }
+                        key={index}
+                    >
+                        <span
+                            className={
+                                styles.questionNumber
+                            }
+                        >
+                            {String(
+                                index + 1
+                            ).padStart(2, "0")}
+                        </span>
+
+                        <div>
+                            {isPrimitive(
+                                question
+                            ) ? (
+                                <p>
+                                    {cleanText(
+                                        question
+                                    )}
+                                </p>
+                            ) : (
+                                <ValueRenderer
+                                    value={
+                                        question
+                                    }
+                                />
+                            )}
+                        </div>
+                    </div>
+                ))}
+            </div>
+        </section>
+    );
+}
+
+/* =========================================================
+   MAIN COMPONENT
+========================================================= */
+
 export default function ResumeAudit() {
-    const [file, setFile] = useState(null);
-    const [loading, setLoading] = useState(false);
-    const [result, setResult] = useState(null);
-    const [error, setError] = useState("");
-    const [dragActive, setDragActive] = useState(false);
+    const [file, setFile] =
+        useState(null);
+
+    const [loading, setLoading] =
+        useState(false);
+
+    const [result, setResult] =
+        useState(null);
+
+    const [error, setError] =
+        useState("");
+
+    const [dragging, setDragging] =
+        useState(false);
+
+    /* -----------------------------------------------------
+       SCORE VALUES
+    ----------------------------------------------------- */
+
+    const scores = useMemo(() => {
+        return result?.scores || {};
+    }, [result]);
+
+    /* -----------------------------------------------------
+       HANDLE FILE
+    ----------------------------------------------------- */
 
     const handleFile = (selectedFile) => {
         setError("");
 
-        if (!selectedFile) return;
+        if (!selectedFile) {
+            return;
+        }
 
-        if (selectedFile.type !== "application/pdf") {
-            setError("Please upload a PDF resume.");
+        if (
+            selectedFile.type !==
+            "application/pdf"
+        ) {
+            setError(
+                "Please select a PDF resume."
+            );
+
+            return;
+        }
+
+        if (
+            selectedFile.size >
+            5 * 1024 * 1024
+        ) {
+            setError(
+                "Resume must be smaller than 5MB."
+            );
+
             return;
         }
 
         setFile(selectedFile);
     };
 
-    const handleDrop = (e) => {
-        e.preventDefault();
-        setDragActive(false);
+    /* -----------------------------------------------------
+       FILE INPUT
+    ----------------------------------------------------- */
 
-        const droppedFile = e.dataTransfer.files?.[0];
+    const handleFileChange = (event) => {
+        const selectedFile =
+            event.target.files?.[0];
+
+        handleFile(selectedFile);
+    };
+
+    /* -----------------------------------------------------
+       DRAG & DROP
+    ----------------------------------------------------- */
+
+    const handleDragOver = (event) => {
+        event.preventDefault();
+        setDragging(true);
+    };
+
+    const handleDragLeave = (event) => {
+        event.preventDefault();
+        setDragging(false);
+    };
+
+    const handleDrop = (event) => {
+        event.preventDefault();
+
+        setDragging(false);
+
+        const droppedFile =
+            event.dataTransfer.files?.[0];
 
         handleFile(droppedFile);
     };
 
-    const handleSubmit = async (e) => {
-        e.preventDefault();
+    /* -----------------------------------------------------
+       SUBMIT
+    ----------------------------------------------------- */
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
 
         if (!file) {
-            setError("Please select your PDF resume first.");
+            setError(
+                "Please select a PDF resume first."
+            );
+
             return;
         }
 
@@ -45,981 +838,982 @@ export default function ResumeAudit() {
         setResult(null);
 
         try {
-            const formData = new FormData();
+            const formData =
+                new FormData();
 
-            formData.append("resume", file);
-
-            const response = await fetch(
-                "/api/careers/upload",
-                {
-                    method: "POST",
-                    body: formData,
-                }
+            formData.append(
+                "resume",
+                file
             );
 
-            const data = await response.json();
+            const response =
+                await fetch(
+                    API_ENDPOINT,
+                    {
+                        method: "POST",
+                        body: formData,
+                    }
+                );
 
-            console.log("Resume analysis result:", data);
+            const data =
+                await response.json();
 
-            if (!response.ok || !data.success) {
+            console.log(
+                "Resume analysis result:",
+                data
+            );
+
+            if (
+                !response.ok ||
+                !data.success
+            ) {
                 throw new Error(
-                    data.message || "Resume analysis failed."
+                    data.message ||
+                    "Resume analysis failed."
                 );
             }
 
-            setResult(data);
+            /*
+             * Some APIs return the actual
+             * analysis inside data.data.
+             *
+             * Support both structures.
+             */
 
+            const analysis =
+                data.data ||
+                data.result ||
+                data.analysis ||
+                data;
+
+            setResult(analysis);
         } catch (err) {
-            console.error("Resume analysis error:", err);
+            console.error(err);
 
             setError(
-                err.message ||
+                err?.message ||
                 "Something went wrong while analyzing your resume."
             );
-
         } finally {
             setLoading(false);
         }
     };
 
-    const resetAnalyzer = () => {
+    /* -----------------------------------------------------
+       RESET
+    ----------------------------------------------------- */
+
+    const analyzeAnother = () => {
         setFile(null);
         setResult(null);
         setError("");
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth",
+        });
     };
 
-    const scoreValue = (value) => {
-        if (value === null || value === undefined) {
-            return 0;
-        }
+    /* =====================================================
+       UPLOAD SCREEN
+    ===================================================== */
 
-        return Number(value) || 0;
-    };
+    if (!result) {
+        return (
+            <main className={styles.page + " " + styles.teamsSection}>
+                <div
+                    className={
+                        styles.backgroundGlow
+                    }
+                />
 
-    const getScoreClass = (score) => {
-        if (score >= 80) return styles.excellent;
-        if (score >= 60) return styles.good;
-        if (score >= 40) return styles.average;
-        return styles.low;
-    };
-
-    return (
-        <section className={styles.wrapper}>
-
-            <div className={styles.backgroundGlow}></div>
-
-            <div className={styles.container}>
-
-                {/* HEADER */}
-
-                <div className={styles.header}>
-
-                    <div className={styles.badge}>
-                        <span className={styles.badgeDot}></span>
-                        AI POWERED RESUME ANALYZER
-                    </div>
-
-                    <h1>
-                        Get Your Resume
-                        <span> AI Audited</span>
-                    </h1>
-
-                    <p>
-                        Upload your resume and let our AI analyze your
-                        skills, ATS compatibility, experience, projects,
-                        and career potential.
-                    </p>
-
-                </div>
-
-
-                {/* UPLOAD AREA */}
-
-                {!result && (
-
-                    <form
-                        onSubmit={handleSubmit}
-                        className={styles.uploadCard}
+                <div
+                    className={
+                        styles.container
+                    }
+                >
+                    <section
+                        className={
+                            styles.uploadHero
+                        }
                     >
-
                         <div
-                            className={`${styles.dropZone} ${dragActive
-                                    ? styles.dragActive
-                                    : ""
-                                }`}
-                            onDragOver={(e) => {
-                                e.preventDefault();
-                                setDragActive(true);
-                            }}
-                            onDragLeave={() =>
-                                setDragActive(false)
-                            }
-                            onDrop={handleDrop}
-                            onClick={() =>
-                                document
-                                    .getElementById("resume-upload")
-                                    ?.click()
+                            className={
+                                styles.heroBadge
                             }
                         >
-
-                            <input
-                                id="resume-upload"
-                                type="file"
-                                accept=".pdf,application/pdf"
-                                hidden
-                                onChange={(e) =>
-                                    handleFile(
-                                        e.target.files?.[0]
-                                    )
-                                }
-                            />
-
-                            <div className={styles.uploadIcon}>
-                                <svg
-                                    viewBox="0 0 24 24"
-                                    fill="none"
-                                    stroke="currentColor"
-                                    strokeWidth="1.7"
-                                >
-                                    <path
-                                        d="M12 16V4"
-                                    />
-                                    <path
-                                        d="M7 9l5-5 5 5"
-                                    />
-                                    <path
-                                        d="M5 20h14"
-                                    />
-                                </svg>
-                            </div>
-
-                            <h3>
-                                {file
-                                    ? file.name
-                                    : "Drop your resume here"}
-                            </h3>
-
-                            <p>
-                                {file
-                                    ? `${(
-                                        file.size /
-                                        1024 /
-                                        1024
-                                    ).toFixed(2)} MB`
-                                    : "or click to browse your computer"}
-                            </p>
-
-                            <span className={styles.fileHint}>
-                                PDF files only
+                            <span>
+                                ✦
                             </span>
 
+                            AI-POWERED
+                            RESUME AUDIT
                         </div>
 
+                        <h1>
+                            Know exactly how
+                            <br />
 
-                        {error && (
-                            <div className={styles.error}>
-                                <span>!</span>
-                                {error}
-                            </div>
-                        )}
+                            <span>
+                                your resume performs.
+                            </span>
+                        </h1>
 
+                        <p>
+                            Upload your resume and
+                            get an intelligent analysis
+                            of your ATS score, skills,
+                            experience, strengths,
+                            weaknesses and career
+                            opportunities.
+                        </p>
 
-                        {file && !loading && (
-                            <div className={styles.selectedFile}>
-
-                                <div className={styles.fileIcon}>
-                                    PDF
-                                </div>
-
-                                <div className={styles.fileInfo}>
-                                    <strong>
-                                        {file.name}
-                                    </strong>
-
-                                    <small>
-                                        Ready for AI analysis
-                                    </small>
-                                </div>
-
-                                <button
-                                    type="button"
-                                    className={styles.removeFile}
-                                    onClick={(e) => {
-                                        e.stopPropagation();
-                                        setFile(null);
-                                    }}
-                                >
-                                    ×
-                                </button>
-
-                            </div>
-                        )}
-
-
-                        <button
-                            type="submit"
-                            className={styles.analyzeButton}
-                            disabled={!file || loading}
+                        <form
+                            onSubmit={
+                                handleSubmit
+                            }
                         >
-
-                            {loading ? (
-
-                                <>
-                                    <span className={styles.spinner}></span>
-
-                                    <span>
-                                        AI is analyzing your resume...
-                                    </span>
-                                </>
-
-                            ) : (
-
-                                <>
-                                    <span>
-                                        Analyze My Resume
-                                    </span>
-
-                                    <span className={styles.arrow}>
-                                        →
-                                    </span>
-                                </>
-
-                            )}
-
-                        </button>
-
-
-                        <div className={styles.security}>
-                            <span>🔒</span>
-                            Your resume is processed securely.
-                        </div>
-
-                    </form>
-
-                )}
-
-
-                {/* RESULTS */}
-
-                {result && (
-
-                    <div className={styles.results}>
-
-                        {/* RESULT HEADER */}
-
-                        <div className={styles.resultHeader}>
-
-                            <div>
-
-                                <div className={styles.successBadge}>
-                                    <span>✓</span>
-                                    ANALYSIS COMPLETE
-                                </div>
-
-                                <h2>
-                                    Resume Audit Results
-                                </h2>
-
-                                <p>
-                                    AI-powered analysis of your
-                                    professional profile.
-                                </p>
-
-                            </div>
-
-                            <button
-                                onClick={resetAnalyzer}
-                                className={styles.newAnalysis}
+                            <label
+                                className={`${styles.dropZone} ${dragging
+                                        ? styles.dragging
+                                        : ""
+                                    }`}
+                                onDragOver={
+                                    handleDragOver
+                                }
+                                onDragLeave={
+                                    handleDragLeave
+                                }
+                                onDrop={
+                                    handleDrop
+                                }
                             >
-                                Analyze Another Resume
-                            </button>
+                                <input
+                                    type="file"
+                                    accept=".pdf,application/pdf"
+                                    onChange={
+                                        handleFileChange
+                                    }
+                                />
 
-                        </div>
-
-
-                        {/* CANDIDATE */}
-
-                        <div className={styles.candidateCard}>
-
-                            <div className={styles.avatar}>
-                                {result.candidate?.name
-                                    ?.charAt(0)
-                                    ?.toUpperCase() || "R"}
-                            </div>
-
-                            <div className={styles.candidateInfo}>
+                                <div
+                                    className={
+                                        styles.uploadIcon
+                                    }
+                                >
+                                    ↑
+                                </div>
 
                                 <h3>
-                                    {result.candidate?.name ||
-                                        "Candidate"}
+                                    {file
+                                        ? file.name
+                                        : "Drop your resume here"}
                                 </h3>
 
                                 <p>
-                                    {result.candidate?.email ||
-                                        "Email not provided"}
+                                    {file
+                                        ? `${(
+                                            file.size /
+                                            1024
+                                        ).toFixed(
+                                            1
+                                        )} KB • PDF`
+                                        : "or click to browse from your computer"}
                                 </p>
 
-                                <span>
-                                    {result.candidate?.location ||
-                                        "Location not provided"}
-                                </span>
-
-                            </div>
-
-                        </div>
-
-
-                        {/* SCORE OVERVIEW */}
-
-                        <div className={styles.sectionTitle}>
-                            <span>01</span>
-                            Resume Score Overview
-                        </div>
-
-                        <div className={styles.scoreGrid}>
-
-                            <ScoreCard
-                                title="ATS Score"
-                                value={scoreValue(
-                                    result.scores?.ats_score
-                                )}
-                                primary
-                                getScoreClass={getScoreClass}
-                            />
-
-                            <ScoreCard
-                                title="Overall Score"
-                                value={scoreValue(
-                                    result.scores?.overall
-                                )}
-                                getScoreClass={getScoreClass}
-                            />
-
-                            <ScoreCard
-                                title="Technical Skills"
-                                value={scoreValue(
-                                    result.scores?.technical_skills
-                                )}
-                                getScoreClass={getScoreClass}
-                            />
-
-                            <ScoreCard
-                                title="Experience"
-                                value={scoreValue(
-                                    result.scores?.experience
-                                )}
-                                getScoreClass={getScoreClass}
-                            />
-
-                            <ScoreCard
-                                title="Projects"
-                                value={scoreValue(
-                                    result.scores?.projects
-                                )}
-                                getScoreClass={getScoreClass}
-                            />
-
-                            <ScoreCard
-                                title="Education"
-                                value={scoreValue(
-                                    result.scores?.education
-                                )}
-                                getScoreClass={getScoreClass}
-                            />
-
-                            <ScoreCard
-                                title="Resume Quality"
-                                value={scoreValue(
-                                    result.scores?.resume_quality
-                                )}
-                                getScoreClass={getScoreClass}
-                            />
-
-                        </div>
-
-
-                        {/* ATS ANALYSIS */}
-
-                        {result.ats_analysis && (
-
-                            <ResultSection
-                                number="02"
-                                title="ATS Analysis"
-                            >
-
-                                <div className={styles.textCard}>
-                                    {typeof result.ats_analysis ===
-                                        "string"
-                                        ? result.ats_analysis
-                                        : JSON.stringify(
-                                            result.ats_analysis,
-                                            null,
-                                            2
-                                        )}
-                                </div>
-
-                            </ResultSection>
-
-                        )}
-
-
-                        {/* RECOMMENDED ROLES */}
-
-                        {Array.isArray(
-                            result.recommended_roles
-                        ) &&
-                            result.recommended_roles.length > 0 && (
-
-                                <ResultSection
-                                    number="03"
-                                    title="Recommended Career Roles"
+                                <span
+                                    className={
+                                        styles.fileHint
+                                    }
                                 >
+                                    PDF only • Maximum
+                                    5MB
+                                </span>
+                            </label>
 
-                                    <div className={styles.rolesGrid}>
+                            {error && (
+                                <div
+                                    className={
+                                        styles.errorBox
+                                    }
+                                >
+                                    <span>
+                                        !
+                                    </span>
 
-                                        {result.recommended_roles.map(
-                                            (role, index) => (
-
-                                                <div
-                                                    className={styles.roleCard}
-                                                    key={index}
-                                                >
-
-                                                    <div>
-                                                        <span>
-                                                            {String(
-                                                                index + 1
-                                                            ).padStart(
-                                                                2,
-                                                                "0"
-                                                            )}
-                                                        </span>
-                                                    </div>
-
-                                                    <strong>
-                                                        {role}
-                                                    </strong>
-
-                                                    <span className={styles.roleArrow}>
-                                                        →
-                                                    </span>
-
-                                                </div>
-
-                                            )
-                                        )}
-
-                                    </div>
-
-                                </ResultSection>
-
-                            )}
-
-
-                        {/* SKILLS */}
-
-                        {result.skills && (
-
-                            <ResultSection
-                                number="04"
-                                title="Skills Analysis"
-                            >
-
-                                <DynamicContent
-                                    data={result.skills}
-                                />
-
-                            </ResultSection>
-
-                        )}
-
-
-                        {/* EXPERIENCE */}
-
-                        {result.experience && (
-
-                            <ResultSection
-                                number="05"
-                                title="Experience Analysis"
-                            >
-
-                                <DynamicContent
-                                    data={result.experience}
-                                />
-
-                            </ResultSection>
-
-                        )}
-
-
-                        {/* PROJECTS */}
-
-                        {result.projects && (
-
-                            <ResultSection
-                                number="06"
-                                title="Projects Analysis"
-                            >
-
-                                <DynamicContent
-                                    data={result.projects}
-                                />
-
-                            </ResultSection>
-
-                        )}
-
-
-                        {/* EDUCATION */}
-
-                        {result.education && (
-
-                            <ResultSection
-                                number="07"
-                                title="Education"
-                            >
-
-                                <DynamicContent
-                                    data={result.education}
-                                />
-
-                            </ResultSection>
-
-                        )}
-
-
-                        {/* CERTIFICATIONS */}
-
-                        {result.certifications && (
-
-                            <ResultSection
-                                number="08"
-                                title="Certifications"
-                            >
-
-                                <DynamicContent
-                                    data={result.certifications}
-                                />
-
-                            </ResultSection>
-
-                        )}
-
-
-                        {/* STRENGTHS / WEAKNESSES */}
-
-                        <div className={styles.twoColumns}>
-
-                            {result.strengths && (
-
-                                <div className={styles.insightCard}>
-
-                                    <div className={styles.insightHeader}>
-                                        <span>✓</span>
-                                        <h3>Strengths</h3>
-                                    </div>
-
-                                    <DynamicList
-                                        data={result.strengths}
-                                    />
-
+                                    {error}
                                 </div>
-
                             )}
 
-
-                            {result.weaknesses && (
-
-                                <div className={styles.insightCard}>
-
-                                    <div className={styles.insightHeader}>
-                                        <span>!</span>
-                                        <h3>Areas to Improve</h3>
-                                    </div>
-
-                                    <DynamicList
-                                        data={result.weaknesses}
-                                    />
-
-                                </div>
-
-                            )}
-
-                        </div>
-
-
-                        {/* INTERVIEW */}
-
-                        {result.interview_recommendation && (
-
-                            <ResultSection
-                                number="09"
-                                title="Interview Recommendation"
+                            <button
+                                type="submit"
+                                className={
+                                    styles.analyzeButton
+                                }
+                                disabled={
+                                    loading ||
+                                    !file
+                                }
                             >
-
-                                <div className={styles.interviewCard}>
-
-                                    <div className={styles.interviewIcon}>
-                                        ✦
-                                    </div>
-
-                                    <div>
-                                        <p>
-                                            {
-                                                result.interview_recommendation
+                                {loading ? (
+                                    <>
+                                        <span
+                                            className={
+                                                styles.spinner
                                             }
-                                        </p>
-                                    </div>
-
-                                </div>
-
-                            </ResultSection>
-
-                        )}
-
-
-                        {/* INTERVIEW QUESTIONS */}
-
-                        {Array.isArray(
-                            result.interview_questions
-                        ) &&
-                            result.interview_questions.length > 0 && (
-
-                                <ResultSection
-                                    number="10"
-                                    title="Suggested Interview Questions"
-                                >
-
-                                    <div className={styles.questions}>
-
-                                        {result.interview_questions.map(
-                                            (question, index) => (
-
-                                                <div
-                                                    className={
-                                                        styles.question
-                                                    }
-                                                    key={index}
-                                                >
-
-                                                    <span>
-                                                        Q{index + 1}
-                                                    </span>
-
-                                                    <p>
-                                                        {typeof question ===
-                                                            "string"
-                                                            ? question
-                                                            : JSON.stringify(
-                                                                question
-                                                            )}
-                                                    </p>
-
-                                                </div>
-
-                                            )
-                                        )}
-
-                                    </div>
-
-                                </ResultSection>
-
-                            )}
-
-
-                        {/* FINAL ASSESSMENT */}
-
-                        {result.final_assessment && (
-
-                            <div className={styles.finalAssessment}>
-
-                                <div className={styles.finalGlow}></div>
-
-                                <span className={styles.finalLabel}>
-                                    FINAL AI ASSESSMENT
-                                </span>
-
-                                <h2>
-                                    Your Resume Has Been Audited
-                                </h2>
-
-                                <p>
-                                    {typeof result.final_assessment ===
-                                        "string"
-                                        ? result.final_assessment
-                                        : JSON.stringify(
-                                            result.final_assessment,
-                                            null,
-                                            2
-                                        )}
-                                </p>
-
-                            </div>
-
-                        )}
-
-
-                        {/* PDF */}
-
-                        {result.pdf_url && (
-
-                            <div className={styles.pdfCard}>
-
-                                <div className={styles.pdfIcon}>
-                                    PDF
-                                </div>
-
-                                <div className={styles.pdfInfo}>
-
-                                    <h3>
-                                        Full Resume Audit Report
-                                    </h3>
-
-                                    <p>
-                                        Download your complete
-                                        AI-generated PDF report.
-                                    </p>
-
-                                </div>
-
-                                <a
-                                    href={result.pdf_url}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className={styles.downloadButton}
-                                >
-                                    Download PDF
-                                    <span>↓</span>
-                                </a>
-
-                            </div>
-
-                        )}
-
-                    </div>
-
-                )}
-
-            </div>
-
-        </section>
-    );
-}
-
-
-/* SCORE CARD */
-
-function ScoreCard({
-    title,
-    value,
-    primary,
-    getScoreClass,
-}) {
-    return (
-
-        <div
-            className={`${styles.scoreCard} ${primary ? styles.primaryScore : ""
-                }`}
-        >
-
-            <div className={styles.scoreTop}>
-
-                <span>
-                    {title}
-                </span>
-
-                {primary && (
-                    <small>PRIMARY</small>
-                )}
-
-            </div>
-
-            <div className={styles.scoreNumber}>
-
-                <strong>
-                    {value}
-                </strong>
-
-                <span>
-                    /100
-                </span>
-
-            </div>
-
-            <div className={styles.progressTrack}>
-
-                <div
-                    className={`${styles.progressBar} ${getScoreClass(value)
-                        }`}
-                    style={{
-                        width: `${Math.min(
-                            value,
-                            100
-                        )}%`,
-                    }}
-                />
-
-            </div>
-
-        </div>
-
-    );
-}
-
-
-/* RESULT SECTION */
-
-function ResultSection({
-    number,
-    title,
-    children,
-}) {
-    return (
-
-        <section className={styles.resultSection}>
-
-            <div className={styles.sectionTitle}>
-                <span>{number}</span>
-                {title}
-            </div>
-
-            {children}
-
-        </section>
-
-    );
-}
-
-
-/* DYNAMIC CONTENT */
-
-function DynamicContent({ data }) {
-
-    if (Array.isArray(data)) {
-
-        return (
-
-            <div className={styles.dynamicGrid}>
-
-                {data.map((item, index) => (
-
-                    <div
-                        className={styles.dynamicItem}
-                        key={index}
-                    >
-
-                        {typeof item === "string"
-                            ? item
-                            : JSON.stringify(
-                                item,
-                                null,
-                                2
-                            )}
-
-                    </div>
-
-                ))}
-
-            </div>
-
-        );
-
-    }
-
-    if (typeof data === "object") {
-
-        return (
-
-            <div className={styles.objectGrid}>
-
-                {Object.entries(data).map(
-                    ([key, value]) => (
+                                        />
+
+                                        Analyzing
+                                        Resume...
+                                    </>
+                                ) : (
+                                    <>
+                                        Analyze
+                                        My Resume
+
+                                        <span>
+                                            →
+                                        </span>
+                                    </>
+                                )}
+                            </button>
+                        </form>
 
                         <div
-                            className={styles.objectItem}
-                            key={key}
+                            className={
+                                styles.trustRow
+                            }
                         >
-
                             <span>
-                                {key
-                                    .replaceAll("_", " ")
-                                    .replace(
-                                        /\b\w/g,
-                                        (char) =>
-                                            char.toUpperCase()
-                                    )}
+                                ✓ AI-powered
+                                analysis
                             </span>
 
-                            <strong>
+                            <span>
+                                ✓ ATS
+                                optimization
+                            </span>
 
-                                {typeof value ===
-                                    "object"
-                                    ? JSON.stringify(
-                                        value,
-                                        null,
-                                        2
-                                    )
-                                    : String(value)}
+                            <span>
+                                ✓ Instant
+                                report
+                            </span>
+                        </div>
+                    </section>
+                </div>
+            </main>
+        );
+    }
 
-                            </strong>
+    /* =====================================================
+       RESULTS SCREEN
+    ===================================================== */
 
+    const candidate =
+        result.candidate || {};
+
+    const candidateName =
+        candidate.name ||
+        "Candidate";
+
+    return (
+        <main className={styles.page}>
+            <div
+                className={
+                    styles.backgroundGlow
+                }
+            />
+
+            <div
+                className={
+                    styles.container
+                }
+            >
+                {/* =========================================
+                    HEADER
+                ========================================= */}
+
+                <div
+                    className={
+                        styles.resultsHeader
+                    }
+                >
+                    <div>
+                        <div
+                            className={
+                                styles.completeBadge
+                            }
+                        >
+                            <span>
+                                ✓
+                            </span>
+
+                            ANALYSIS
+                            COMPLETE
                         </div>
 
-                    )
+                        <h1>
+                            Resume Audit
+                            Results
+                        </h1>
+
+                        <p>
+                            AI-powered analysis of
+                            your professional profile.
+                        </p>
+                    </div>
+
+                    <button
+                        className={
+                            styles.secondaryButton
+                        }
+                        onClick={
+                            analyzeAnother
+                        }
+                    >
+                        Analyze Another
+                        Resume
+                    </button>
+                </div>
+
+                {/* =========================================
+                    CANDIDATE
+                ========================================= */}
+
+                <section
+                    className={
+                        styles.candidateCard
+                    }
+                >
+                    <div
+                        className={
+                            styles.avatar
+                        }
+                    >
+                        {getInitial(
+                            candidateName
+                        )}
+                    </div>
+
+                    <div
+                        className={
+                            styles.candidateInfo
+                        }
+                    >
+                        <span>
+                            Candidate
+                        </span>
+
+                        <h2>
+                            {candidateName}
+                        </h2>
+
+                        <div
+                            className={
+                                styles.candidateMeta
+                            }
+                        >
+                            {candidate.email && (
+                                <span>
+                                    ✉{" "}
+                                    {
+                                        candidate.email
+                                    }
+                                </span>
+                            )}
+
+                            {candidate.phone && (
+                                <span>
+                                    ☎{" "}
+                                    {
+                                        candidate.phone
+                                    }
+                                </span>
+                            )}
+
+                            {candidate.location && (
+                                <span>
+                                    ◉{" "}
+                                    {
+                                        candidate.location
+                                    }
+                                </span>
+                            )}
+                        </div>
+                    </div>
+
+                    <div
+                        className={
+                            styles.profileLinks
+                        }
+                    >
+                        {candidate.linkedin &&
+                            candidate.linkedin !==
+                            "Not provided" && (
+                                <a
+                                    href={
+                                        candidate.linkedin
+                                    }
+                                    target="_blank"
+                                    rel="noreferrer"
+                                >
+                                    LinkedIn ↗
+                                </a>
+                            )}
+
+                        {candidate.github &&
+                            candidate.github !==
+                            "Not provided" && (
+                                <a
+                                    href={
+                                        candidate.github
+                                    }
+                                    target="_blank"
+                                    rel="noreferrer"
+                                >
+                                    GitHub ↗
+                                </a>
+                            )}
+
+                        {candidate.portfolio &&
+                            candidate.portfolio !==
+                            "Not provided" && (
+                                <a
+                                    href={
+                                        candidate.portfolio
+                                    }
+                                    target="_blank"
+                                    rel="noreferrer"
+                                >
+                                    Portfolio ↗
+                                </a>
+                            )}
+                    </div>
+                </section>
+
+                {/* =========================================
+                    SCORE OVERVIEW
+                ========================================= */}
+
+                <section
+                    className={
+                        styles.auditSection
+                    }
+                >
+                    <SectionHeader
+                        number="01"
+                        title="Resume Score Overview"
+                        description="A breakdown of your resume's performance across key evaluation criteria."
+                    />
+
+                    <div
+                        className={
+                            styles.scoreGrid
+                        }
+                    >
+                        <ScoreRing
+                            label="ATS Score"
+                            score={
+                                scores.ats_score
+                            }
+                            primary
+                            description="How effectively your resume can pass ATS screening."
+                        />
+
+                        <ScoreRing
+                            label="Overall Score"
+                            score={
+                                scores.overall
+                            }
+                            description="Your overall resume quality score."
+                        />
+
+                        <ScoreRing
+                            label="Technical Skills"
+                            score={
+                                scores.technical_skills
+                            }
+                            description="Strength and relevance of your technical skills."
+                        />
+
+                        <ScoreRing
+                            label="Experience"
+                            score={
+                                scores.experience
+                            }
+                            description="Quality and relevance of your experience."
+                        />
+
+                        <ScoreRing
+                            label="Projects"
+                            score={
+                                scores.projects
+                            }
+                            description="Strength and impact of your projects."
+                        />
+
+                        <ScoreRing
+                            label="Education"
+                            score={
+                                scores.education
+                            }
+                            description="Education relevance and presentation."
+                        />
+
+                        <ScoreRing
+                            label="Resume Quality"
+                            score={
+                                scores.resume_quality
+                            }
+                            description="Overall structure, clarity and professionalism."
+                        />
+                    </div>
+                </section>
+
+                {/* =========================================
+                    ATS
+                ========================================= */}
+
+                <ATSAnalysis
+                    data={
+                        result.ats_analysis
+                    }
+                />
+
+                {/* =========================================
+                    SKILLS
+                ========================================= */}
+
+                {result.skills && (
+                    <section
+                        className={
+                            styles.auditSection
+                        }
+                    >
+                        <SectionHeader
+                            number="03"
+                            title="Skills"
+                            description="Technical and professional skills detected from your resume."
+                        />
+
+                        <div
+                            className={
+                                styles.skillsCard
+                            }
+                        >
+                            {Array.isArray(
+                                result.skills
+                            ) ? (
+                                <TagList
+                                    items={
+                                        result.skills
+                                    }
+                                />
+                            ) : (
+                                <ValueRenderer
+                                    value={
+                                        result.skills
+                                    }
+                                />
+                            )}
+                        </div>
+                    </section>
                 )}
 
+                {/* =========================================
+                    EXPERIENCE
+                ========================================= */}
+
+                {result.experience && (
+                    <section
+                        className={
+                            styles.auditSection
+                        }
+                    >
+                        <SectionHeader
+                            number="04"
+                            title="Professional Experience"
+                            description="Experience extracted and evaluated from your resume."
+                        />
+
+                        <ObjectCollection
+                            data={
+                                result.experience
+                            }
+                            emptyText="No professional experience information found."
+                        />
+                    </section>
+                )}
+
+                {/* =========================================
+                    PROJECTS
+                ========================================= */}
+
+                {result.projects && (
+                    <section
+                        className={
+                            styles.auditSection
+                        }
+                    >
+                        <SectionHeader
+                            number="05"
+                            title="Projects"
+                            description="Projects and technical work identified in your resume."
+                        />
+
+                        <ObjectCollection
+                            data={
+                                result.projects
+                            }
+                            emptyText="No project information found."
+                        />
+                    </section>
+                )}
+
+                {/* =========================================
+                    EDUCATION
+                ========================================= */}
+
+                {result.education && (
+                    <section
+                        className={
+                            styles.auditSection
+                        }
+                    >
+                        <SectionHeader
+                            number="06"
+                            title="Education"
+                            description="Educational background detected from your resume."
+                        />
+
+                        <ObjectCollection
+                            data={
+                                result.education
+                            }
+                            emptyText="No education information found."
+                        />
+                    </section>
+                )}
+
+                {/* =========================================
+                    CERTIFICATIONS
+                ========================================= */}
+
+                {result.certifications && (
+                    <section
+                        className={
+                            styles.auditSection
+                        }
+                    >
+                        <SectionHeader
+                            number="07"
+                            title="Certifications"
+                            description="Professional certifications identified in your resume."
+                        />
+
+                        <ObjectCollection
+                            data={
+                                result.certifications
+                            }
+                            emptyText="No certifications found."
+                        />
+                    </section>
+                )}
+
+                {/* =========================================
+                    RECOMMENDED ROLES
+                ========================================= */}
+
+                {result.recommended_roles &&
+                    result
+                        .recommended_roles
+                        .length > 0 && (
+                        <section
+                            className={
+                                styles.auditSection
+                            }
+                        >
+                            <SectionHeader
+                                number="08"
+                                title="Recommended Career Roles"
+                                description="Roles that align with the skills and experience found in your resume."
+                            />
+
+                            <div
+                                className={
+                                    styles.rolesGrid
+                                }
+                            >
+                                {result.recommended_roles.map(
+                                    (
+                                        role,
+                                        index
+                                    ) => (
+                                        <div
+                                            className={
+                                                styles.roleCard
+                                            }
+                                            key={
+                                                index
+                                            }
+                                        >
+                                            <span>
+                                                {String(
+                                                    index +
+                                                    1
+                                                ).padStart(
+                                                    2,
+                                                    "0"
+                                                )}
+                                            </span>
+
+                                            <h3>
+                                                {cleanText(
+                                                    role
+                                                )}
+                                            </h3>
+
+                                            <div>
+                                                →
+                                            </div>
+                                        </div>
+                                    )
+                                )}
+                            </div>
+                        </section>
+                    )}
+
+                {/* =========================================
+                    STRENGTHS
+                ========================================= */}
+
+                <Strengths
+                    items={
+                        result.strengths
+                    }
+                />
+
+                {/* =========================================
+                    WEAKNESSES
+                ========================================= */}
+
+                <Weaknesses
+                    items={
+                        result.weaknesses
+                    }
+                />
+
+                {/* =========================================
+                    INTERVIEW RECOMMENDATION
+                ========================================= */}
+
+                {result.interview_recommendation && (
+                    <section
+                        className={
+                            styles.auditSection
+                        }
+                    >
+                        <SectionHeader
+                            number="10"
+                            title="Interview Recommendation"
+                            description="AI-generated guidance based on your resume."
+                        />
+
+                        <div
+                            className={
+                                styles.recommendationCard
+                            }
+                        >
+                            <div
+                                className={
+                                    styles.recommendationIcon
+                                }
+                            >
+                                ★
+                            </div>
+
+                            <div>
+                                <h3>
+                                    Interview
+                                    Readiness
+                                </h3>
+
+                                {isPrimitive(
+                                    result.interview_recommendation
+                                ) ? (
+                                    <p>
+                                        {
+                                            result.interview_recommendation
+                                        }
+                                    </p>
+                                ) : (
+                                    <ValueRenderer
+                                        value={
+                                            result.interview_recommendation
+                                        }
+                                    />
+                                )}
+                            </div>
+                        </div>
+                    </section>
+                )}
+
+                {/* =========================================
+                    INTERVIEW QUESTIONS
+                ========================================= */}
+
+                <InterviewQuestions
+                    questions={
+                        result.interview_questions
+                    }
+                />
+
+                {/* =========================================
+                    FINAL ASSESSMENT
+                ========================================= */}
+
+                {result.final_assessment && (
+                    <section
+                        className={
+                            styles.auditSection
+                        }
+                    >
+                        <SectionHeader
+                            number="12"
+                            title="Final Assessment"
+                            description="Overall evaluation of your current resume."
+                        />
+
+                        <div
+                            className={
+                                styles.finalCard
+                            }
+                        >
+                            <div
+                                className={
+                                    styles.finalGlow
+                                }
+                            />
+
+                            <div
+                                className={
+                                    styles.finalIcon
+                                }
+                            >
+                                ✦
+                            </div>
+
+                            <div
+                                className={
+                                    styles.finalContent
+                                }
+                            >
+                                <h3>
+                                    AI Assessment
+                                </h3>
+
+                                {isPrimitive(
+                                    result.final_assessment
+                                ) ? (
+                                    <p>
+                                        {
+                                            result.final_assessment
+                                        }
+                                    </p>
+                                ) : (
+                                    <ValueRenderer
+                                        value={
+                                            result.final_assessment
+                                        }
+                                    />
+                                )}
+                            </div>
+                        </div>
+                    </section>
+                )}
+
+                {/* =========================================
+                    PDF DOWNLOAD
+                ========================================= */}
+
+                {result.pdf_url && (
+                    <section
+                        className={
+                            styles.pdfSection
+                        }
+                    >
+                        <div
+                            className={
+                                styles.pdfIcon
+                            }
+                        >
+                            PDF
+                        </div>
+
+                        <div
+                            className={
+                                styles.pdfContent
+                            }
+                        >
+                            <span>
+                                COMPLETE REPORT
+                            </span>
+
+                            <h2>
+                                Download Your
+                                Resume Audit
+                            </h2>
+
+                            <p>
+                                Get the complete
+                                AI-generated analysis
+                                as a professional PDF
+                                report.
+                            </p>
+                        </div>
+
+                        <a
+                            href={
+                                result.pdf_url
+                            }
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className={
+                                styles.pdfButton
+                            }
+                        >
+                            Download PDF
+
+                            <span>
+                                ↓
+                            </span>
+                        </a>
+                    </section>
+                )}
+
+                {/* =========================================
+                    FOOTER
+                ========================================= */}
+
+                <div
+                    className={
+                        styles.resultsFooter
+                    }
+                >
+                    <span>
+                        Powered by UniSoft AI
+                    </span>
+
+                    <button
+                        onClick={
+                            analyzeAnother
+                        }
+                    >
+                        Analyze another
+                        resume →
+                    </button>
+                </div>
             </div>
-
-        );
-
-    }
-
-    return (
-        <div className={styles.textCard}>
-            {String(data)}
-        </div>
-    );
-}
-
-
-/* DYNAMIC LIST */
-
-function DynamicList({ data }) {
-
-    let items = [];
-
-    if (Array.isArray(data)) {
-        items = data;
-    } else if (typeof data === "string") {
-        items = [data];
-    } else if (typeof data === "object" && data !== null) {
-        items = Object.entries(data).map(
-            ([key, value]) =>
-                `${key}: ${typeof value === "object"
-                    ? JSON.stringify(value)
-                    : value
-                }`
-        );
-    }
-
-    return (
-
-        <ul className={styles.insightList}>
-
-            {items.map((item, index) => (
-
-                <li key={index}>
-                    <span>→</span>
-                    <div>
-                        {typeof item === "string"
-                            ? item
-                            : JSON.stringify(item)}
-                    </div>
-                </li>
-
-            ))}
-
-        </ul>
-
+        </main>
     );
 }
