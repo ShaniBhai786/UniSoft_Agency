@@ -519,7 +519,7 @@ const Main = () => {
               <h2>Ready to Take Your Business to the Next Level?</h2>
               <p>Let&apos;s discuss how we can help you achieve your goals.</p>
             </div>
-            <Link href="/contact" className="mainCtaBtn">
+            <Link href="/quote" className="mainCtaBtn">
               Get Free Consultation <i className="ri-arrow-right-line"></i>
             </Link>
           </motion.div>

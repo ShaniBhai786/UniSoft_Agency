@@ -20,7 +20,6 @@ const stagger = {
 const validationSchema = Yup.object({
   name: Yup.string().required('Name is required'),
   email: Yup.string().email('Invalid email').required('Email is required'),
-  service: Yup.string().required('Please select a service'),
   message: Yup.string().required('Message is required'),
 })
 
@@ -143,7 +142,7 @@ function Contact() {
                       </div>
                     </div>
 
-                    <div className="ctField">
+                    {/* <div className="ctField">
                       <label>Service Needed</label>
                       <div className="ctInputWrap">
                         <i className="ri-settings-3-line"></i>
@@ -159,7 +158,7 @@ function Contact() {
                         </Field>
                       </div>
                       <ErrorMessage name="service" component="div" className="ctError" />
-                    </div>
+                    </div> */}
 
                     <div className="ctField">
                       <label>Your Message</label>

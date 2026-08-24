@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Bpmf+Huninn&display=swap");
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Manrope:wght@400;500;600;700;800&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Gravitas+One&display=swap');
 /* @import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap'); */
 * {
   margin: 0;
@@ -6305,6 +6305,7 @@ fo {
   align-items: center;
   /* padding: 10px 24px 10px; */
   background: radial-gradient(circle at 75% 20%, rgba(99, 102, 241, 0.18) 0%, transparent 55%);
+  top: 0%;
 }
 
 .mainHeroGrid {
@@ -6331,12 +6332,15 @@ fo {
 }
 
 .mainH1 {
-  font-family: 'Syne', 'Space Grotesk', sans-serif;
-  font-size: clamp(2rem, 4.5vw, 3.5rem);
-  font-weight: 800;
+  /* font-family: 'Syne', 'Space Grotesk', sans-serif; */
+  font-size: clamp(1.25rem, 4.5vw, 2.7rem);
+  font-family: "Gravitas One", serif;
+  font-weight: 100;
   line-height: 1.15;
   margin-bottom: 20px;
   color: #fff;
+  display: flex;
+  flex-direction: column;
 }
 
 .mainGrad {
@@ -6344,6 +6348,7 @@ fo {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   display: inline-block;
+  font-weight: 900;
 }
 
 .mainDesc {
@@ -7490,12 +7495,13 @@ fo {
 }
 
 .ctTitle {
-  font-family: 'Syne', sans-serif;
+  font-family: "Gravitas One", serif;
   font-size: clamp(2rem, 4vw, 3.2rem);
-  font-weight: 800;
   color: #fff;
   line-height: 1.15;
   margin-bottom: 16px;
+  display: flex;
+  flex-direction: column;
 }
 
 .ctGrad {
