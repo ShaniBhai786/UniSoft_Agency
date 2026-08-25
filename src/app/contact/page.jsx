@@ -242,10 +242,10 @@ function Contact() {
                 <h3><i className="ri-share-line" style={{ color: "#a855f7" }}></i> Follow Us</h3>
                 <div className="ctSocials">
                   {[
-                    { icon: "ri-linkedin-fill", label: "LinkedIn", color: "#0077b5", href: "#" },
+                    { icon: "ri-linkedin-fill", label: "LinkedIn", color: "#0077b5", href: "https://www.linkedin.com/in/roshaan-ahmad-35056b41b/" },
                     { icon: "ri-facebook-fill", label: "Facebook", color: "#1877f2", href: "https://www.facebook.com/profile.php?id=61568003026936" },
                     { icon: "ri-instagram-line", label: "Instagram", color: "#e1306c", href: "https://www.instagram.com/unisoftpvt" },
-                    { icon: "ri-github-fill", label: "GitHub", color: "#fff", href: "https://github.com/unisoftpvt" },
+                    { icon: "ri-github-fill", label: "GitHub", color: "#fff", href: "https://github.com/roshaan-ahmad" },
                   ].map((s) => (
                     <a key={s.label} href={s.href} className="ctSocialBtn" style={{ borderColor: `${s.color}40` }}>
                       <i className={s.icon} style={{ color: s.color }}></i>

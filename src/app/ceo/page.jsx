@@ -195,10 +195,10 @@ export default function CEOPage() {
                 through cutting-edge software, SEO, and automation solutions.
               </p>
               <div className="ceoSocials">
-                <a href="https://linkedin.com/in/roshaan-ahmad" target="_blank" className="socialBtn linkedin">
+                <a href="https://www.linkedin.com/in/roshaan-ahmad-35056b41b/" target="_blank" className="socialBtn linkedin">
                   <i className="ri-linkedin-fill" /> LinkedIn
                 </a>
-                <a href="https://github.com/unisoftpvt" target="_blank" className="socialBtn github">
+                <a href="https://github.com/roshaan-ahmad" target="_blank" className="socialBtn github">
                   <i className="ri-github-fill" /> GitHub
                 </a>
                 <a href="https://unisoftpvt.com" target="_blank" className="socialBtn portfolio">
@@ -234,17 +234,17 @@ export default function CEOPage() {
             <div className="sectionLabel"><i className="ri-user-line" /> Biography</div>
             <div className="bioGrid">
               <div className="bioCard">
-                <h2>About Dr. Roshaan Ahmad</h2>
+                <h2>About Roshaan Ahmad</h2>
                 <p>
-                  Dr. Roshaan Ahmad is a visionary technology entrepreneur and the driving force behind
+                  Roshaan Ahmad is a visionary technology entrepreneur and the driving force behind
                   UniSoft Pvt Ltd. With over 5 years of hands-on experience in software engineering,
-                  digital marketing, and business strategy, he has established himself as one of Pakistan's
-                  most innovative tech leaders.
+                  digital marketing, and business strategy, he has established himself as
+                  most innovative tech leader.
                 </p>
                 <p>
                   His academic background in Computer Science, combined with real-world expertise in
                   full-stack development, SEO, and AI automation, enables him to bridge the gap between
-                  technology and business outcomes. Dr. Roshaan believes that technology should be
+                  technology and business outcomes. Roshaan believes that technology should be
                   accessible, impactful, and transformative for businesses of all sizes.
                 </p>
                 <p>
