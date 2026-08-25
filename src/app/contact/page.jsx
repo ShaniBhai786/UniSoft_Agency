@@ -41,7 +41,7 @@ function Contact() {
       setLoading(true)
       const formData = new URLSearchParams()
       Object.entries(values).forEach(([k, v]) => formData.append(k, v))
-      await fetch("https://script.google.com/macros/s/AKfycby7g8x1_fXmSlJCPPB_XYtEby_HDjJOUaWugarLlcV2G-Mmf031XrVg8sS1hN8hseeIrg/exec", {
+      await fetch("https://script.google.com/macros/s/AKfycbxwwTz5hFcjlzR5KZTm6hVbZ65_jMbzEQGPL40QjJFM-4wc9acFclSkdHNNLGwyEXuqiQ/exec", {
         method: "POST", body: formData,
       })
       resetForm()
