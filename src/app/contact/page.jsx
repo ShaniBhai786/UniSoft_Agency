@@ -39,15 +39,39 @@ function Contact() {
   const onSubmit = async (values, { resetForm }) => {
     try {
       setLoading(true)
-      const formData = new URLSearchParams()
-      Object.entries(values).forEach(([k, v]) => formData.append(k, v))
-      await fetch("https://script.google.com/macros/s/AKfycbxwwTz5hFcjlzR5KZTm6hVbZ65_jMbzEQGPL40QjJFM-4wc9acFclSkdHNNLGwyEXuqiQ/exec", {
-        method: "POST", body: formData,
-      })
+
+      const response = await fetch(
+        "https://script.google.com/macros/s/AKfycbwXf4UGQ7PKLK6l2KwQDI7wNzvf4ClIe33s3UozMdil6Jqllf8WuWuaSZxMHg3FHQ5xhw/exec",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "text/plain;charset=utf-8",
+          },
+          body: JSON.stringify({
+            name: values.name,
+            email: values.email,
+            message: values.message,
+          }),
+        }
+      )
+
+      const result = await response.json()
+
+      console.log("Google Sheets Response:", result)
+
+      if (!result.success) {
+        throw new Error(result.message || "Failed to submit feedback")
+      }
+
       resetForm()
       setSubmitted(true)
-      setTimeout(() => setSubmitted(false), 4000)
-    } catch {
+
+      setTimeout(() => {
+        setSubmitted(false)
+      }, 4000)
+
+    } catch (error) {
+      console.error("Feedback submission error:", error)
       alert("Failed to send. Please try again.")
     } finally {
       setLoading(false)
