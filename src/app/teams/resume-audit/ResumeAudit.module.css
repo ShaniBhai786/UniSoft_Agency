@@ -99,7 +99,7 @@
         28px 0 20px;
 
     font-size:
-        clamp(48px, 7vw, 88px);
+        clamp(48px, 7vw, 48px);
 
     line-height: 0.98;
 

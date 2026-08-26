@@ -951,9 +951,7 @@ export default function ResumeAudit() {
                         </div>
 
                         <h1>
-                            Know exactly how
-                            <br />
-
+                            Know exactly how {" "}
                             <span>
                                 your resume performs.
                             </span>
@@ -1001,7 +999,7 @@ export default function ResumeAudit() {
                                         styles.uploadIcon
                                     }
                                 >
-                                    ↑
+                                    <i className="fa fa-arrow-up"></i>
                                 </div>
 
                                 <h3>
