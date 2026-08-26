@@ -79,6 +79,16 @@ export default function RootLayout({ children }) {
         <SpeedInsights />
         <Analytics />
         <Footer />
+        <a
+          href="https://wa.me/923148588707"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="waFloatBtn"
+          aria-label="Chat on WhatsApp"
+        >
+          <i className="ri-whatsapp-fill"></i>
+          <span className="waFloatLabel">Chat with us</span>
+        </a>
       </body>
     </html>
   );

@@ -389,23 +389,39 @@ const Main = () => {
             className="mainPortfolioGrid"
           >
             {[
-              { image: "https://images.unsplash.com/photo-1501504905252-473c47e087f8?auto=format&fit=crop&w=600&q=80", title: "School Management System", type: "Web Application", icon: "ri-school-line", desc: "A complete school ERP with attendance, grades, fee management and parent portal.", href: "#" },
-              { image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=600&q=80", title: "Online Examination System", type: "Web Application", icon: "ri-file-list-3-line", desc: "Secure online exam platform with auto-grading, timer, and result analytics.", href: "#" },
-              { image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80", title: "E-commerce Website", type: "Web Development", icon: "ri-shopping-cart-line", desc: "Full-featured online store with payments, inventory, and order tracking.", href: "#" },
-              { image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=600&q=80", title: "Smart Chatbot Solution", type: "Automation", icon: "ri-chat-3-line", desc: "AI-powered chatbot for customer support, lead capture, and 24/7 automation.", href: "/chatbot" },
+              { image: "https://images.unsplash.com/photo-1501504905252-473c47e087f8?auto=format&fit=crop&w=600&q=80", title: "School Management System", type: "Web Application", icon: "ri-school-line", desc: "A complete school ERP with attendance, grades, fee management and parent portal.", href: "https://asitsol.net/", external: true },
+              { image: "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=600&q=80", title: "Online Examination System", type: "Web Application", icon: "ri-file-list-3-line", desc: "Secure online exam platform with auto-grading, timer, and result analytics.", href: "https://exam.com.pk/", external: true },
+              { image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=600&q=80", title: "E-commerce Website", type: "Web Development", icon: "ri-shopping-cart-line", desc: "Full-featured online store with payments, inventory, and order tracking.", href: "https://onlineeasystore.com/", external: true },
+              { image: "https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=600&q=80", title: "Smart Chatbot Solution", type: "Automation", icon: "ri-chat-3-line", desc: "AI-powered chatbot for customer support, lead capture, and 24/7 automation.", href: "/chatbot", external: false },
             ].map((p) => (
               <motion.div key={p.title} variants={fadeUp} className="mainPortfolioCard">
-                <Link href={p.href} className="mainPortfolioLink">
-                  <div className="mainPortfolioImg" style={{ backgroundImage: `url(${p.image})` }}>
-                    <div className="mainPortfolioOverlay" />
-                    <span className="mainPortfolioTag">
-                      <i className={p.icon}></i> {p.type}
-                    </span>
-                  </div>
-                  <div className="mainPortfolioInfo">
-                    <h3>{p.title}</h3>
-                    <p>{p.desc}</p>
-                  </div></Link>
+                {p.external ? (
+                  <a href={p.href} target="_blank" rel="noopener noreferrer" className="mainPortfolioLink">
+                    <div className="mainPortfolioImg" style={{ backgroundImage: `url(${p.image})` }}>
+                      <div className="mainPortfolioOverlay" />
+                      <span className="mainPortfolioTag">
+                        <i className={p.icon}></i> {p.type}
+                      </span>
+                    </div>
+                    <div className="mainPortfolioInfo">
+                      <h3>{p.title}</h3>
+                      <p>{p.desc}</p>
+                    </div>
+                  </a>
+                ) : (
+                  <Link href={p.href} className="mainPortfolioLink">
+                    <div className="mainPortfolioImg" style={{ backgroundImage: `url(${p.image})` }}>
+                      <div className="mainPortfolioOverlay" />
+                      <span className="mainPortfolioTag">
+                        <i className={p.icon}></i> {p.type}
+                      </span>
+                    </div>
+                    <div className="mainPortfolioInfo">
+                      <h3>{p.title}</h3>
+                      <p>{p.desc}</p>
+                    </div>
+                  </Link>
+                )}
               </motion.div>
             ))}
           </motion.div>
