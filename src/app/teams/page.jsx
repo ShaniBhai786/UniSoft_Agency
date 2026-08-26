@@ -126,21 +126,23 @@ function Teams() {
             web development, SEO optimization, UI/UX design, automation systems, and business growth solutions.
           </p>
 
-          <a
-            href={googleFormsURL}
-            target="_blank"
-            className="joinBtn"
-          >
-            Join UniSoft Team
-            <i className="ri-arrow-right-line"></i>
-          </a>
-          <button
-            className="joinBtn"
-            onClick={() => (window.location.href = '/teams/resume-audit')}
-          >
-            Get Your Resume Audited by AI
-            <i className="ri-arrow-right-line"></i>
-          </button>
+          <div className="teams_buttons_div">
+            <a
+              href={googleFormsURL}
+              target="_blank"
+              className="joinBtn"
+            >
+              Join UniSoft Team
+              <i className="ri-arrow-right-line"></i>
+            </a>
+            <button
+              className="resumeAuditBtn"
+              onClick={() => (window.location.href = '/teams/resume-audit')}
+            >
+              Get Your Resume Audited by AI
+              <i className="ri-arrow-right-line"></i>
+            </button>
+          </div>
         </motion.div>
 
         {/* TEAM MEMBERS */}
