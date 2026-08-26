@@ -8764,3 +8764,62 @@ fo {
   background: rgba(56, 189, 248, 0.16);
   transform: translateY(-2px);
 }
+
+
+/* ============================================================
+   WHATSAPP FLOATING BUTTON
+============================================================ */
+.waFloatBtn {
+  position: fixed;
+  bottom: 28px;
+  right: 28px;
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #25d366;
+  color: #fff;
+  text-decoration: none;
+  padding: 13px 20px 13px 16px;
+  border-radius: 999px;
+  font-size: 15px;
+  font-weight: 700;
+  box-shadow: 0 8px 28px rgba(37, 211, 102, 0.45);
+  transition: all 0.3s ease;
+  overflow: hidden;
+  max-width: 200px;
+}
+
+.waFloatBtn i {
+  font-size: 26px;
+  color: #fff;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.waFloatLabel {
+  font-size: 13px;
+  font-weight: 700;
+  color: #fff;
+  white-space: nowrap;
+}
+
+.waFloatBtn:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 36px rgba(37, 211, 102, 0.6);
+  background: #20ba5a;
+}
+
+@media (max-width: 480px) {
+  .waFloatBtn {
+    bottom: 20px;
+    right: 16px;
+    padding: 12px;
+    border-radius: 50%;
+    max-width: unset;
+  }
+
+  .waFloatLabel {
+    display: none;
+  }
+}
